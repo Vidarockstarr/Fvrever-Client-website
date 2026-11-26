@@ -1,15 +1,677 @@
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f4a8c5" />
-    <meta name="description" content="FVREVER Launcher - Your cozy gaming experience." />
-    <title>FVREVER Launcher</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#241a2d">
+  <meta name="description" content="FVREVER Launcher — A cozy gaming experience.">
+  <title>FVREVER — Your world, your way.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pink: #f5a9c9;
+      --pink-light: #ffd0e2;
+      --text: #fff8fc;
+      --muted: #d2c1d1;
+      --background: #241a2d;
+      --surface: #30243a;
+      --border: rgba(255,255,255,.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* NAVIGATION */
+
+    .navbar {
+      height: 82px;
+      padding: 0 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      background: rgba(36,26,45,.35);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      transition: background .3s;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: var(--pink);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      font-size: 13px;
+      color: rgba(255,255,255,.8);
+    }
+
+    .nav-links a {
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--pink);
+    }
+
+    .nav-download {
+      padding: 12px 23px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,.3);
+      background: rgba(255,255,255,.08);
+      color: white;
+      transition: .2s;
+    }
+
+    .nav-download:hover {
+      background: var(--pink);
+      color: #35223c;
+      border-color: var(--pink);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 780px;
+      height: 100vh;
+      max-height: 1050px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 120px 12% 90px;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(24,16,30,.87), rgba(35,22,38,.53), rgba(30,20,34,.2)),
+        linear-gradient(0deg, var(--background), transparent 40%),
+        url('/cherry-grove.jpg') center 55% / cover no-repeat,
+        linear-gradient(135deg,#684b65,#d18aaa 50%,#526d5b);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 660px;
+      animation: appear 1s ease both;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--pink-light);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 23px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(58px, 7.5vw, 100px);
+      line-height: 1.04;
+      font-weight: 500;
+      letter-spacing: -3px;
+    }
+
+    .hero h1 span {
+      color: var(--pink);
+      font-style: italic;
+    }
+
+    .hero-description {
+      color: rgba(255,255,255,.82);
+      font-size: 16px;
+      line-height: 1.9;
+      max-width: 460px;
+      margin-top: 27px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 35px;
+    }
+
+    .button-primary, .button-secondary {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 27px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .button-primary {
+      background: var(--pink);
+      color: #38233b;
+      border: 1px solid var(--pink);
+    }
+
+    .button-primary:hover {
+      background: var(--pink-light);
+      transform: translateY(-3px);
+    }
+
+    .button-secondary {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.4);
+      color: white;
+    }
+
+    .button-secondary:hover {
+      background: rgba(255,255,255,.18);
+    }
+
+    .hero-note {
+      color: rgba(255,255,255,.65);
+      font-size: 12px;
+      margin-top: 44px;
+      letter-spacing: 1px;
+    }
+
+    .hero-symbol {
+      position: absolute;
+      right: 13%;
+      top: 23%;
+      color: rgba(255,190,215,.45);
+      font-size: 90px;
+      animation: floating 6s ease-in-out infinite;
+    }
+
+    /* PETALS */
+
+    .petals {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .petal {
+      position: absolute;
+      top: -30px;
+      width: 9px;
+      height: 13px;
+      border-radius: 90% 10% 90% 10%;
+      background: rgba(255,190,218,.85);
+      filter: blur(.3px);
+      animation: falling linear infinite;
+    }
+
+    @keyframes falling {
+      0% {
+        transform: translate3d(0,-20px,0) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: .9; }
+      90% { opacity: .7; }
+      100% {
+        transform: translate3d(120px,850px,0) rotate(650deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes floating {
+      0%,100% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-20px) rotate(15deg); }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* GENERAL SECTIONS */
+
+    .section {
+      padding: 115px 10%;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: clamp(35px, 4vw, 53px);
+      margin-bottom: 17px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 14px;
+    }
+
+    /* FEATURES */
+
+    .features {
+      background: var(--background);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 22px;
+      margin-top: 55px;
+    }
+
+    .feature-card {
+      padding: 40px 27px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.035);
+      border-radius: 23px;
+      text-align: left;
+      transition: .3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(245,169,201,.4);
+      background: rgba(255,255,255,.065);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 22px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* GALLERY */
+
+    .gallery {
+      background: #30233a;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 18px;
+      margin-top: 50px;
+    }
+
+    .gallery-placeholder {
+      min-height: 250px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg,rgba(245,169,201,.13),rgba(255,255,255,.02)),
+        #3c2c46;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 12px;
+      color: #e6c8d9;
+    }
+
+    .gallery-placeholder:first-child {
+      min-height: 320px;
+    }
+
+    .gallery-placeholder span {
+      font-size: 34px;
+    }
+
+    .gallery-placeholder p {
+      font-size: 12px;
+      opacity: .7;
+    }
+
+    /* CHANGELOG */
+
+    .changelog {
+      background: var(--background);
+    }
+
+    .updates-placeholder {
+      max-width: 700px;
+      margin: 45px auto 0;
+      padding: 35px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .updates-placeholder p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* DOWNLOAD */
+
+    .download {
+      background:
+        radial-gradient(ellipse at 50% 100%,rgba(209,119,163,.27),transparent 65%),
+        #30233a;
+    }
+
+    .download-panel {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .download-panel .button-primary {
+      margin-top: 30px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 9%;
+      min-height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: #1d1523;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-logo {
+      color: white;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .footer-logo span {
+      color: var(--pink);
+    }
+
+    .music-button {
+      background: rgba(255,255,255,.07);
+      color: white;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 10px 17px;
+      transition: .2s;
+    }
+
+    .music-button:hover {
+      background: rgba(245,169,201,.15);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width: 800px) {
+      .navbar {
+        padding: 0 6%;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 740px;
+        padding: 110px 8%;
+        background-position: 60% center;
+      }
+
+      .hero h1 {
+        font-size: clamp(55px,12vw,75px);
+      }
+
+      .hero-symbol {
+        right: 7%;
+        top: 17%;
+        font-size: 55px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 85px 7%;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <a href="#" class="logo">FVREVER<span>.</span></a>
+
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#changelog">Changelog</a>
+    </div>
+
+    <a href="#download" class="nav-download">Download ↗</a>
+  </nav>
+
+  <main>
+
+    <section class="hero">
+      <div class="petals" id="petals"></div>
+
+      <div class="hero-content">
+        <span class="eyebrow">✿ YOUR GAMING EXPERIENCE</span>
+
+        <h1>A little more<br><span>magic</span> in your world.</h1>
+
+        <p class="hero-description">
+          Discover FVREVER Launcher. A cozy place for your
+          gaming experience, built with love and made for the community.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#download" class="button-primary">Get FVREVER ↗</a>
+          <a href="#features" class="button-secondary">Discover more</a>
+        </div>
+
+        <div class="hero-note">
+          ✿ Made with love, for the community
+        </div>
+      </div>
+
+      <div class="hero-symbol">✿</div>
+    </section>
+
+    <section class="section features" id="features">
+      <span class="eyebrow">WHAT MAKES IT SPECIAL</span>
+      <h2 class="section-title">A better way to experience your games.</h2>
+      <p class="section-description">
+        Everything designed to make your experience simple,
+        beautiful and enjoyable.
+      </p>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="feature-icon">🌸</span>
+          <h3>A cozy experience</h3>
+          <p>A welcoming interface with a unique visual identity.</p>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3>Simple and intuitive</h3>
+          <p>Access your launcher experience without unnecessary complexity.</p>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-icon">💗</span>
+          <h3>Made with care</h3>
+          <p>Built with the community in mind, with continuous improvements.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section gallery" id="gallery">
+      <span class="eyebrow">A GLIMPSE OF FVREVER</span>
+      <h2 class="section-title">Take a look around.</h2>
+      <p class="section-description">
+        Discover the launcher, its interface and everything it has to offer.
+      </p>
+
+      <div class="gallery-grid">
+        <div class="gallery-placeholder">
+          <span>🌸</span>
+          <strong>Launcher preview</strong>
+          <p>Images will be managed from the dashboard.</p>
+        </div>
+
+        <div class="gallery-placeholder">
+          <span>✨</span>
+          <strong>More screenshots</strong>
+          <p>Coming soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section changelog" id="changelog">
+      <span class="eyebrow">WHAT'S NEW</span>
+      <h2 class="section-title">Latest updates.</h2>
+      <p class="section-description">
+        Follow the latest improvements, fixes and new features.
+      </p>
+
+      <div class="updates-placeholder">
+        <p>Release notes will appear here when the first update is published.</p>
+      </div>
+    </section>
+
+    <section class="section download" id="download">
+      <div class="download-panel">
+        <span class="eyebrow">YOUR NEXT ADVENTURE</span>
+        <h2 class="section-title">Ready to join FVREVER?</h2>
+        <p class="section-description">
+          Get access to the latest launcher release.
+          A valid gift code will be required to download.
+        </p>
+
+        <button class="button-primary" id="downloadButton" type="button">
+          Get access ↗
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-logo">FVREVER<span>.</span></div>
+    <p>Made with ♡ for the community.</p>
+
+    <button class="music-button" id="musicButton" type="button">
+      ♫ Music off
+    </button>
+  </footer>
+
+  <script>
+    // Decorative falling petals
+    const petalsContainer = document.getElementById("petals");
+
+    for (let i = 0; i < 24; i++) {
+      const petal = document.createElement("span");
+      petal.className = "petal";
+      petal.style.left = Math.random() * 100 + "%";
+      petal.style.animationDuration = (8 + Math.random() * 12) + "s";
+      petal.style.animationDelay = (-Math.random() * 15) + "s";
+      petal.style.opacity = 0.3 + Math.random() * 0.6;
+      petal.style.transform = `scale(${0.5 + Math.random()})`;
+      petalsContainer.appendChild(petal);
+    }
+
+    // Download access placeholder
+    document.getElementById("downloadButton").addEventListener("click", () => {
+      alert("Gift code verification will be available soon!");
+    });
+
+    // Music placeholder
+    // Audio will be connected once the licensed/original music file is added.
+    const musicButton = document.getElementById("musicButton");
+    let musicEnabled = false;
+
+    musicButton.addEventListener("click", () => {
+      musicEnabled = !musicEnabled;
+      musicButton.textContent = musicEnabled ? "♫ Music on" : "♫ Music off";
+
+      if (musicEnabled) {
+        alert("Ambient music will be available once the audio is added.");
+        musicEnabled = false;
+        musicButton.textContent = "♫ Music off";
+      }
+    });
+  </script>
+
+</body>
 </html>
