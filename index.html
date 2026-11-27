@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +10,15 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{--bg:#100d13;--panel:rgba(27,22,31,.82);--panel2:#211923;--pink:#f08aa8;--red:#ed4167;--red2:#ff587b;--text:#fff7fa;--muted:#a99ca9;--line:rgba(255,255,255,.09);--sidebar:245px}
+:root{
+ --bg:#100d13;--panel:rgba(27,22,31,.82);--panel2:#211923;
+ --pink:#f08aa8;--red:#ed4167;--red2:#ff587b;
+ --text:#fff7fa;--muted:#a99ca9;--line:rgba(255,255,255,.09);
+ --sidebar:245px;--card-bg:linear-gradient(145deg,rgba(40,30,42,.82),rgba(24,19,28,.75));
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:35px}
-body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden;transition:background .3s,color .3s}
 button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer}
 ::selection{background:var(--red);color:white}
 .background{position:fixed;inset:0;z-index:-3;overflow:hidden;background:#17101a}
@@ -29,7 +33,7 @@ button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer
 .nav-label{color:#817581;font-size:10px;font-weight:700;letter-spacing:2px;padding:0 12px;margin:8px 0 12px}
 .nav{display:flex;flex-direction:column;gap:6px}
 .nav-link{display:flex;align-items:center;gap:13px;padding:12px 13px;border-radius:12px;color:#b8acb9;font-size:13px;font-weight:600;transition:.25s ease;border:1px solid transparent}
-.nav-link svg{width:18px;height:18px;opacity:.8}
+.nav-link svg{width:18px;height:18px;opacity:.8;flex-shrink:0}
 .nav-link:hover{color:white;background:rgba(255,255,255,.055);transform:translateX(3px)}
 .nav-link.active{color:#fff;background:linear-gradient(100deg,rgba(237,65,103,.19),rgba(237,65,103,.045));border-color:rgba(237,65,103,.2)}
 .nav-link.active svg{color:var(--pink)}
@@ -66,33 +70,40 @@ button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer
 .section-title{font-family:"Space Grotesk";font-size:clamp(30px,4vw,46px);letter-spacing:-1.8px}
 .section-description{color:var(--muted);font-size:13px;line-height:1.8;margin-top:12px;max-width:570px}
 .feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.feature-card{padding:25px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(40,30,42,.82),rgba(24,19,28,.75));transition:.3s ease;min-height:190px}
+.feature-card{padding:25px;border:1px solid var(--line);border-radius:18px;background:var(--card-bg);transition:.3s ease;min-height:190px}
 .feature-card:hover{transform:translateY(-6px);border-color:rgba(240,138,168,.38);background:linear-gradient(145deg,rgba(64,37,53,.85),rgba(29,21,32,.9));box-shadow:0 15px 40px rgba(0,0,0,.18)}
 .feature-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:13px;background:rgba(237,65,103,.13);color:#ff9db5;margin-bottom:19px}
 .feature-icon svg{width:21px;height:21px}
 .feature-card h3{font-family:"Space Grotesk";font-size:15px;margin-bottom:9px}
 .feature-card p{color:var(--muted);font-size:12px;line-height:1.8}
-
-/* GALERÍA: dimensiones y estructura sincronizadas con el editor */
 .gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
 .gallery-card{min-height:215px;border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative;background:radial-gradient(ellipse at 80% 20%,rgba(238,91,132,.18),transparent 45%),linear-gradient(135deg,#30202e,#17121c 75%);display:flex;align-items:flex-end;padding:23px;transition:.3s ease}
 .gallery-card:nth-child(2){background:radial-gradient(ellipse at 20% 20%,rgba(124,103,183,.2),transparent 45%),linear-gradient(135deg,#282238,#17121c 75%)}
 .gallery-card:nth-child(3){background:radial-gradient(ellipse at 80% 20%,rgba(224,87,112,.18),transparent 45%),linear-gradient(135deg,#30202b,#17121c 75%)}
 .gallery-card:nth-child(4){background:radial-gradient(ellipse at 20% 20%,rgba(112,139,180,.2),transparent 45%),linear-gradient(135deg,#222738,#17121c 75%)}
 .gallery-card:hover{transform:translateY(-5px);border-color:rgba(240,138,168,.35)}
-.gallery-card::before{content:"";position:absolute;width:190px;height:190px;border:1px solid rgba(255,255,255,.07);border-radius:50%;right:-45px;top:-65px;box-shadow:0 0 0 25px rgba(255,255,255,.018),0 0 0 50px rgba(255,255,255,.012)}
-.gallery-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gallery-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease;transform:scale(var(--gallery-zoom,1));object-position:var(--gallery-position,50% 50%)}
 .gallery-card:hover>img{transform:scale(var(--hover-zoom,1.04))}
+.gallery-card::before{content:"";position:absolute;width:190px;height:190px;border:1px solid rgba(255,255,255,.07);border-radius:50%;right:-45px;top:-65px;box-shadow:0 0 0 25px rgba(255,255,255,.018),0 0 0 50px rgba(255,255,255,.012)}
 .gallery-card::after{content:"";position:absolute;inset:30% 0 0;z-index:0;background:linear-gradient(transparent,rgba(8,6,10,.9));pointer-events:none}
 .gallery-placeholder{position:relative;z-index:1}
 .gallery-placeholder span{color:#ffabc0;font-size:9px;font-weight:800;letter-spacing:2px}
 .gallery-placeholder h3{font-family:"Space Grotesk";font-size:20px;margin-top:7px}
 .gallery-placeholder p{color:#b7a9b7;font-size:11px;margin-top:5px}
 .update-list{display:grid;gap:13px}
-.update-card{padding:22px 24px;display:flex;align-items:center;gap:20px;border-radius:16px;border:1px solid var(--line);background:rgba(30,23,33,.78)}
+.update-card{padding:22px 24px;display:flex;align-items:flex-start;gap:20px;border-radius:16px;border:1px solid var(--line);background:rgba(30,23,33,.78);transition:.25s}
+.update-card:hover{transform:translateY(-3px);border-color:rgba(240,138,168,.3)}
 .version{color:#ffb2c5;background:rgba(237,65,103,.13);border:1px solid rgba(237,65,103,.2);padding:9px 12px;border-radius:9px;font-size:11px;font-weight:800;white-space:nowrap}
 .update-card h3{font-family:"Space Grotesk";font-size:14px;margin-bottom:5px}
 .update-card p{color:var(--muted);font-size:12px;line-height:1.7}
+.post-meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:8px;color:#a99ca9;font-size:10px}
+.post-category{color:#ffb2c5;background:rgba(237,65,103,.12);padding:5px 8px;border-radius:6px;font-weight:800;text-transform:uppercase;letter-spacing:.6px}
+.post-image{width:100%;max-height:240px;object-fit:cover;border-radius:11px;margin:12px 0}
+.post-body{white-space:pre-wrap;line-height:1.85;color:#d1c5d1;font-size:12px;margin-top:12px}
+.post-read{background:none;border:0;color:#ffadc1;font-size:11px;font-weight:800;margin-top:12px;padding:0}
+.post-read:hover{text-decoration:underline}
+.post-featured{border-color:rgba(240,138,168,.38);background:linear-gradient(130deg,rgba(78,37,55,.48),rgba(30,23,33,.82))}
+.post-empty{padding:25px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:12px;text-align:center}
 .download-section{padding-bottom:115px}
 .download-panel{position:relative;overflow:hidden;padding:58px 45px;border-radius:25px;border:1px solid rgba(255,137,168,.26);background:radial-gradient(ellipse at 90% 10%,rgba(244,76,117,.25),transparent 45%),linear-gradient(120deg,rgba(65,30,48,.94),rgba(27,19,31,.97));box-shadow:0 20px 70px rgba(0,0,0,.22)}
 .download-panel::after{content:"FV";position:absolute;right:5%;top:50%;transform:translateY(-50%);font-family:"Space Grotesk";font-size:clamp(130px,23vw,260px);font-weight:800;color:rgba(255,255,255,.035);pointer-events:none}
@@ -105,7 +116,7 @@ button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer
 .footer-dashboard:hover{opacity:.9;color:#ffb2c5}
 .modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(8,6,10,.78);backdrop-filter:blur(12px)}
 .modal.show{display:flex}
-.modal-box{width:min(440px,100%);padding:30px;border-radius:21px;background:#211923;border:1px solid rgba(255,255,255,.12);box-shadow:0 25px 90px rgba(0,0,0,.5);animation:modalIn .25s ease}
+.modal-box{width:min(440px,100%);padding:30px;border-radius:21px;background:#211923;border:1px solid rgba(255,255,255,.12);box-shadow:0 25px 90px rgba(0,0,0,.5);animation:modalIn .25s ease;max-height:90vh;overflow:auto}
 .modal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
 .modal-top h2{font-family:"Space Grotesk";font-size:21px}
 .close-modal{border:0;color:#b8aab8;background:rgba(255,255,255,.07);width:34px;height:34px;border-radius:10px;font-size:19px}
@@ -119,6 +130,48 @@ button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer
 .reveal.visible{opacity:1;transform:translateY(0)}
 @keyframes appear{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes modalIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* Ajustes / preferencias */
+.settings-trigger{position:fixed;right:22px;bottom:22px;z-index:30;width:46px;height:46px;border-radius:15px;border:1px solid rgba(255,255,255,.16);background:rgba(28,20,31,.88);color:#ffb2c5;backdrop-filter:blur(15px);box-shadow:0 8px 25px #0005;transition:.25s}
+.settings-trigger:hover{transform:translateY(-4px) rotate(25deg);border-color:var(--pink)}
+.settings-panel{position:fixed;right:22px;bottom:78px;width:min(310px,calc(100vw - 35px));z-index:31;padding:20px;border-radius:17px;background:#211923;border:1px solid #ffffff20;box-shadow:0 20px 65px #0008;display:none;animation:modalIn .2s ease}
+.settings-panel.open{display:block}
+.settings-panel h3{font:700 16px "Space Grotesk";margin-bottom:17px}
+.setting-group{margin-top:15px}
+.setting-group label{display:block;color:#bbaaba;font-size:10px;font-weight:800;letter-spacing:1px;margin-bottom:8px}
+.setting-group select{width:100%;padding:11px;background:#100d14;border:1px solid #443344;border-radius:9px;color:white}
+.settings-note{font-size:10px;color:#9c8c9b;line-height:1.6;margin-top:15px}
+
+/* OLED PINK: conserva el diseño original como predeterminado */
+body[data-theme="white"]{--bg:#f7f3f6;--panel:#fff;--panel2:#fff;--text:#251a23;--muted:#786c77;--line:rgba(50,25,45,.13);--card-bg:linear-gradient(145deg,#fff,#f5edf2)}
+body[data-theme="white"] .background{background:#f8f3f6}
+body[data-theme="white"] .background video{opacity:.08;filter:brightness(1.5)}
+body[data-theme="white"] .background::after{background:rgba(255,248,252,.78)}
+body[data-theme="white"] .sidebar{background:rgba(255,250,253,.94);border-color:#eadde5}
+body[data-theme="white"] .brand-name,body[data-theme="white"] .hero h1,body[data-theme="white"] .section-title,body[data-theme="white"] .feature-card h3,body[data-theme="white"] .update-card h3{color:#281b25}
+body[data-theme="white"] .nav-link{color:#766675}
+body[data-theme="white"] .nav-link:hover{color:#241923;background:#f3e7ed}
+body[data-theme="white"] .nav-link.active{color:#a9274c}
+body[data-theme="white"] .topbar{background:#ffffff99;border-color:#eadde5}
+body[data-theme="white"] .top-status,body[data-theme="white"] .hero-description{color:#665966}
+body[data-theme="white"] .hero-footnote{color:#786c77}
+body[data-theme="white"] .feature-card,body[data-theme="white"] .update-card{background:#ffffffd9;border-color:#eadde5}
+body[data-theme="white"] .feature-card p,body[data-theme="white"] .update-card p{color:#786c77}
+body[data-theme="white"] .section{border-color:#eadde5}
+body[data-theme="white"] .footer{color:#786c77;border-color:#eadde5}
+body[data-theme="white"] .settings-panel{background:#fff;color:#251a23;border-color:#eadde5}
+body[data-theme="white"] .settings-panel h3{color:#251a23}
+body[data-theme="white"] .setting-group label{color:#665966}
+body[data-theme="white"] .setting-group select{background:#faf5f8;color:#251a23;border-color:#e5d5df}
+body[data-theme="white"] .settings-trigger{background:#fff;color:#c32f58;border-color:#eadde5}
+body[data-theme="white"] .download-panel{background:linear-gradient(120deg,#f8dce6,#f9edf3);border-color:#edc3d2}
+body[data-theme="white"] .download-panel h2{color:#2b1c27}
+body[data-theme="white"] .download-panel p{color:#6d5968}
+body[data-theme="white"] .download-panel::after{color:#c32f580c}
+body[data-theme="white"] .eyebrow{color:#a72d50}
+body[data-theme="white"] .gallery-card{border-color:#e9dce4}
+body[data-theme="white"] .sidebar-note p{color:#786c77}
+
 @media(max-width:1050px){:root{--sidebar:215px}.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding-left:7%;padding-right:7%}}
 @media(max-width:760px){
  :root{--sidebar:0px}
@@ -131,12 +184,13 @@ button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer
  .section{padding:75px 7%}.feature-grid{grid-template-columns:1fr}
  .gallery-grid{grid-template-columns:1fr}.gallery-card{min-height:185px}
  .download-panel{padding:38px 25px}.footer{padding:25px 7%}
+ .update-card{flex-direction:column;gap:12px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 
-<body>
+<body data-theme="pink">
 <div class="background"><video autoplay muted loop playsinline><source src="/public/videos/cherry.mp4" type="video/mp4"></video></div>
 <div class="background-glow"></div>
 
@@ -147,47 +201,47 @@ button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer
 
 <aside class="sidebar" id="sidebar">
  <a href="#home" class="brand"><div class="brand-mark">F</div><div><div class="brand-name">FVREVER</div><div class="brand-sub">MINECRAFT CLIENT</div></div></a>
- <div class="nav-label">NAVIGATION</div>
+ <div class="nav-label" data-i18n="navigation">NAVIGATION</div>
  <nav class="nav">
-  <a href="#home" class="nav-link active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg>Home</a>
-  <a href="#features" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>Features</a>
-  <a href="#gallery" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>Gallery</a>
-  <a href="#changelog" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/><path d="M12 3v2M3 12h2"/></svg>Changelog</a>
-  <a href="#download" class="nav-link download-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M5 17v3h14v-3"/></svg>Download</a>
+  <a href="#home" class="nav-link active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span data-i18n="home">Home</span></a>
+  <a href="#features" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg><span data-i18n="features">Features</span></a>
+  <a href="#gallery" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span data-i18n="gallery">Gallery</span></a>
+  <a href="#changelog" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/><path d="M12 3v2M3 12h2"/></svg><span data-i18n="changelog">Changelog</span></a>
+  <a href="#download" class="nav-link download-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M5 17v3h14v-3"/></svg><span data-i18n="download">Download</span></a>
  </nav>
- <div class="sidebar-bottom"><div class="sidebar-note"><strong>Made for your game.</strong><p>Your Minecraft PvP experience, with everything organized in one place.</p></div><div class="sidebar-footer">FVREVER CLIENT · 2026</div></div>
+ <div class="sidebar-bottom"><div class="sidebar-note"><strong data-i18n="sidebarTitle">Made for your game.</strong><p data-i18n="sidebarDescription">Your Minecraft PvP experience, with everything organized in one place.</p></div><div class="sidebar-footer">FVREVER CLIENT · 2026</div></div>
 </aside>
 
 <main class="main">
- <div class="topbar"><div class="top-status"><span class="status-dot"></span>YOUR NEXT GAME STARTS HERE</div></div>
+ <div class="topbar"><div class="top-status"><span class="status-dot"></span><span data-i18n="topStatus">YOUR NEXT GAME STARTS HERE</span></div></div>
 
  <section class="hero" id="home">
   <div class="hero-content">
-   <div class="eyebrow"><span></span> THE MINECRAFT PvP EXPERIENCE</div>
-   <h1>ENTER THE<span>FVREVER CLIENT</span></h1>
-   <p class="hero-description">Everything you need for your Minecraft experience. Manage your instances, mods, accounts and settings in one place. Make it yours. Play your way.</p>
+   <div class="eyebrow"><span></span><span data-i18n="heroEyebrow">THE MINECRAFT PvP EXPERIENCE</span></div>
+   <h1 data-i18n-html="heroTitle">ENTER THE<span>FVREVER CLIENT</span></h1>
+   <p class="hero-description" data-i18n="heroDescription">Everything you need for your Minecraft experience. Manage your instances, mods, accounts and settings in one place. Make it yours. Play your way.</p>
    <div class="hero-actions">
-    <a href="#download" class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M5 17v3h14v-3"/></svg>DOWNLOAD FVREVER</a>
-    <a href="#features" class="btn btn-secondary">EXPLORE FEATURES<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></a>
+    <a href="#download" class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M5 17v3h14v-3"/></svg><span data-i18n="downloadFvrever">DOWNLOAD FVREVER</span></a>
+    <a href="#features" class="btn btn-secondary"><span data-i18n="exploreFeatures">EXPLORE FEATURES</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></a>
    </div>
-   <div class="hero-footnote">A CLIENT THAT FEELS LIKE YOURS.</div>
+   <div class="hero-footnote" data-i18n="heroFootnote">A CLIENT THAT FEELS LIKE YOURS.</div>
   </div>
  </section>
 
  <section class="section" id="features">
-  <div class="section-heading reveal"><div class="section-kicker">WHAT'S INSIDE</div><h2 class="section-title">Made for your way to play.</h2><p class="section-description">Your Minecraft setup, organized and ready. Discover the tools that make FVREVER Client your own.</p></div>
-  <div class="feature-grid">
-   <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></div><h3>Independent Instances</h3><p>Create, duplicate, rename and customize separate Minecraft instances.</p></article>
-   <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m14 7 3 3m-9 9 11-11a2.1 2.1 0 0 0-3-3L5 16l-1 4z"/><path d="m4 4 2 2M17 17l3 3"/></svg></div><h3>Mod Manager</h3><p>Import, find, enable, disable and manage your mods with ease.</p></article>
-   <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/><path d="m17 5 2-2 2 2"/></svg></div><h3>Accounts & Skins</h3><p>Keep your accounts organized and personalize your Minecraft identity.</p></article>
-   <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5m0 14h16"/><path d="m7 15 4-4 3 2 5-6"/></svg></div><h3>Performance Settings</h3><p>Configure Java, memory allocation and FPS-related settings.</p></article>
-   <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/><path d="m5.6 5.6 12.8 12.8m0-12.8L5.6 18.4"/></svg></div><h3>Your Own Profiles</h3><p>Customize your launcher experience with settings and personal preferences.</p></article>
-   <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 5-7"/></svg></div><h3>Game Statistics</h3><p>Keep track of your playtime, sessions and activity across instances.</p></article>
+  <div class="section-heading reveal"><div class="section-kicker" data-i18n="featuresKicker">WHAT'S INSIDE</div><h2 class="section-title" data-i18n="featuresTitle">Made for your way to play.</h2><p class="section-description" data-i18n="featuresDescription">Your Minecraft setup, organized and ready. Discover the tools that make FVREVER Client your own.</p></div>
+  <div class="feature-grid" id="featureGrid">
+   <article class="feature-card reveal"><div class="feature-icon">▦</div><h3>Independent Instances</h3><p>Create, duplicate, rename and customize separate Minecraft instances.</p></article>
+   <article class="feature-card reveal"><div class="feature-icon">⚒</div><h3>Mod Manager</h3><p>Import, find, enable, disable and manage your mods with ease.</p></article>
+   <article class="feature-card reveal"><div class="feature-icon">♙</div><h3>Accounts & Skins</h3><p>Keep your accounts organized and personalize your Minecraft identity.</p></article>
+   <article class="feature-card reveal"><div class="feature-icon">⌁</div><h3>Performance Settings</h3><p>Configure Java, memory allocation and FPS-related settings.</p></article>
+   <article class="feature-card reveal"><div class="feature-icon">✧</div><h3>Your Own Profiles</h3><p>Customize your launcher experience with settings and personal preferences.</p></article>
+   <article class="feature-card reveal"><div class="feature-icon">⌁</div><h3>Game Statistics</h3><p>Keep track of your playtime, sessions and activity across instances.</p></article>
   </div>
  </section>
 
  <section class="section" id="gallery">
-  <div class="section-heading reveal"><div class="section-kicker">TAKE A LOOK</div><h2 class="section-title">Inside FVREVER.</h2><p class="section-description">A closer look at the launcher and the experience around it. Screenshots can be added here as the gallery grows.</p></div>
+  <div class="section-heading reveal"><div class="section-kicker" data-i18n="galleryKicker">TAKE A LOOK</div><h2 class="section-title" data-i18n="galleryTitle">Inside FVREVER.</h2><p class="section-description" data-i18n="galleryDescription">A closer look at the launcher and the experience around it. Screenshots can be added here as the gallery grows.</p></div>
   <div class="gallery-grid" id="galleryGrid">
    <div class="gallery-card reveal"><div class="gallery-placeholder"><span>01 / LAUNCHER</span><h3>Your Minecraft Hub</h3><p>Launcher interface preview coming soon.</p></div></div>
    <div class="gallery-card reveal"><div class="gallery-placeholder"><span>02 / CUSTOMIZATION</span><h3>Make It Yours</h3><p>Explore your personalized setup.</p></div></div>
@@ -197,35 +251,139 @@ button,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer
  </section>
 
  <section class="section" id="changelog">
-  <div class="section-heading reveal"><div class="section-kicker">WHAT'S NEW</div><h2 class="section-title">Changelog.</h2><p class="section-description">Follow the latest updates and improvements to FVREVER Client.</p></div>
-  <div class="update-list">
-   <article class="update-card reveal"><span class="version">LATEST</span><div><h3>Latest release</h3><p>Version details and release notes will appear here when published.</p></div></article>
-   <article class="update-card reveal"><span class="version">UPDATES</span><div><h3>More improvements coming</h3><p>Check back for new features, improvements and fixes.</p></div></article>
-  </div>
+  <div class="section-heading reveal"><div class="section-kicker" data-i18n="updatesKicker">WHAT'S NEW</div><h2 class="section-title" data-i18n="updatesTitle">Changelog.</h2><p class="section-description" data-i18n="updatesDescription">Follow the latest updates and improvements to FVREVER Client.</p></div>
+  <div class="update-list" id="postsList"><div class="post-empty" data-i18n="postsLoading">Loading publications...</div></div>
  </section>
 
  <section class="section download-section" id="download">
-  <div class="download-panel reveal"><div class="download-panel-content"><div class="section-kicker">READY TO JOIN?</div><h2>Your next Minecraft experience starts with FVREVER.</h2><p>Get access to FVREVER Client. Enter your gift code to continue to the download process.</p><button class="btn btn-primary" id="openDownload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M5 17v3h14v-3"/></svg>DOWNLOAD FVREVER CLIENT</button></div></div>
+  <div class="download-panel reveal"><div class="download-panel-content"><div class="section-kicker" data-i18n="downloadKicker">READY TO JOIN?</div><h2 data-i18n="downloadTitle">Your next Minecraft experience starts with FVREVER.</h2><p data-i18n="downloadDescription">Get access to FVREVER Client. Enter your gift code to continue to the download process.</p><button class="btn btn-primary" id="openDownload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M5 17v3h14v-3"/></svg><span data-i18n="downloadButton">DOWNLOAD FVREVER CLIENT</span></button></div></div>
  </section>
 
  <footer class="footer"><span>© 2026 FVREVER CLIENT. All rights reserved.</span><span>MADE FOR MINECRAFT PvP.</span><a class="footer-dashboard" href="/dashboard.html" aria-label="Administrator dashboard" title="Dashboard">•</a></footer>
 </main>
 
+<button class="settings-trigger" id="settingsTrigger" aria-label="Settings" title="Settings">⚙</button>
+<div class="settings-panel" id="settingsPanel">
+ <h3 data-i18n="settingsTitle">Preferences</h3>
+ <div class="setting-group"><label data-i18n="languageLabel">LANGUAGE</label>
+  <select id="languageSelect">
+   <option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option>
+  </select>
+ </div>
+ <div class="setting-group"><label data-i18n="themeLabel">THEME</label>
+  <select id="themeSelect">
+   <option value="pink">OLED Pink (Default)</option><option value="white">White</option>
+  </select>
+ </div>
+ <p class="settings-note" data-i18n="settingsNote">Your preferences are saved automatically on this device.</p>
+</div>
+
 <div class="modal" id="downloadModal">
  <div class="modal-box">
-  <div class="modal-top"><h2>Unlock your download</h2><button class="close-modal" id="closeModal" aria-label="Close">×</button></div>
-  <p>Enter your FVREVER gift code to continue. Code verification will be connected to the download system later.</p>
+  <div class="modal-top"><h2 data-i18n="modalTitle">Unlock your download</h2><button class="close-modal" id="closeModal" aria-label="Close">×</button></div>
+  <p data-i18n="modalDescription">Enter your FVREVER gift code to continue.</p>
   <input class="code-input" id="giftCode" type="text" placeholder="Enter your gift code" autocomplete="off">
-  <button class="btn btn-primary" id="verifyCode">CONTINUE</button>
-  <div class="modal-message" id="modalMessage">Download verification is not active yet.</div>
+  <button class="btn btn-primary" id="verifyCode" data-i18n="continueButton">CONTINUE</button>
+  <div class="modal-message" id="modalMessage"></div>
  </div>
 </div>
 
 <script>
+const translations={
+ en:{
+ navigation:"NAVIGATION",home:"Home",features:"Features",gallery:"Gallery",changelog:"Changelog",download:"Download",
+ sidebarTitle:"Made for your game.",sidebarDescription:"Your Minecraft PvP experience, with everything organized in one place.",
+ topStatus:"YOUR NEXT GAME STARTS HERE",heroEyebrow:"THE MINECRAFT PvP EXPERIENCE",heroTitle:"ENTER THE<span>FVREVER CLIENT</span>",
+ heroDescription:"Everything you need for your Minecraft experience. Manage your instances, mods, accounts and settings in one place. Make it yours. Play your way.",
+ downloadFvrever:"DOWNLOAD FVREVER",exploreFeatures:"EXPLORE FEATURES",heroFootnote:"A CLIENT THAT FEELS LIKE YOURS.",
+ featuresKicker:"WHAT'S INSIDE",featuresTitle:"Made for your way to play.",featuresDescription:"Your Minecraft setup, organized and ready. Discover the tools that make FVREVER Client your own.",
+ galleryKicker:"TAKE A LOOK",galleryTitle:"Inside FVREVER.",galleryDescription:"A closer look at the launcher and the experience around it. Screenshots can be added here as the gallery grows.",
+ updatesKicker:"WHAT'S NEW",updatesTitle:"Changelog.",updatesDescription:"Follow the latest updates and improvements to FVREVER Client.",
+ postsLoading:"Loading publications...",noPosts:"No publications yet. Check back soon.",downloadKicker:"READY TO JOIN?",downloadTitle:"Your next Minecraft experience starts with FVREVER.",downloadDescription:"Get access to FVREVER Client. Enter your gift code to continue to the download process.",
+ downloadButton:"DOWNLOAD FVREVER CLIENT",settingsTitle:"Preferences",languageLabel:"LANGUAGE",themeLabel:"THEME",settingsNote:"Your preferences are saved automatically on this device.",
+ modalTitle:"Unlock your download",modalDescription:"Enter your FVREVER gift code to continue.",continueButton:"CONTINUE",codePlaceholder:"Enter your gift code",latest:"LATEST",readMore:"READ MORE",readLess:"READ LESS",featured:"FEATURED",dateLocale:"en-US"
+ },
+ es:{
+ navigation:"NAVEGACIÓN",home:"Inicio",features:"Funciones",gallery:"Galería",changelog:"Novedades",download:"Descargar",
+ sidebarTitle:"Hecho para tu juego.",sidebarDescription:"Tu experiencia Minecraft PvP, con todo organizado en un solo lugar.",
+ topStatus:"TU PRÓXIMA PARTIDA COMIENZA AQUÍ",heroEyebrow:"LA EXPERIENCIA MINECRAFT PvP",heroTitle:"ENTRA EN<span>FVREVER CLIENT</span>",
+ heroDescription:"Todo lo que necesitas para tu experiencia de Minecraft. Administra tus instancias, mods, cuentas y ajustes en un solo lugar. Hazlo tuyo. Juega a tu manera.",
+ downloadFvrever:"DESCARGAR FVREVER",exploreFeatures:"EXPLORAR FUNCIONES",heroFootnote:"UN CLIENT QUE SE SIENTE TUYO.",
+ featuresKicker:"QUÉ INCLUYE",featuresTitle:"Hecho para tu forma de jugar.",featuresDescription:"Tu configuración de Minecraft, organizada y lista. Descubre las herramientas que hacen de FVREVER Client algo tuyo.",
+ galleryKicker:"ÉCHALE UN VISTAZO",galleryTitle:"Dentro de FVREVER.",galleryDescription:"Una mirada más cercana al launcher y a toda la experiencia. Aquí aparecerán las capturas de pantalla.",
+ updatesKicker:"NOVEDADES",updatesTitle:"Registro de cambios.",updatesDescription:"Sigue las últimas actualizaciones y mejoras de FVREVER Client.",
+ postsLoading:"Cargando publicaciones...",noPosts:"Todavía no hay publicaciones. Vuelve pronto.",downloadKicker:"¿LISTO PARA UNIRTE?",downloadTitle:"Tu próxima experiencia de Minecraft comienza con FVREVER.",downloadDescription:"Obtén acceso a FVREVER Client. Introduce tu Gift Code para continuar con la descarga.",
+ downloadButton:"DESCARGAR FVREVER CLIENT",settingsTitle:"Preferencias",languageLabel:"IDIOMA",themeLabel:"TEMA",settingsNote:"Tus preferencias se guardan automáticamente en este dispositivo.",
+ modalTitle:"Desbloquea tu descarga",modalDescription:"Introduce tu Gift Code de FVREVER para continuar.",continueButton:"CONTINUAR",codePlaceholder:"Introduce tu Gift Code",latest:"NUEVO",readMore:"LEER MÁS",readLess:"LEER MENOS",featured:"DESTACADO",dateLocale:"es-SV"
+ },
+ fr:{
+ navigation:"NAVIGATION",home:"Accueil",features:"Fonctionnalités",gallery:"Galerie",changelog:"Actualités",download:"Télécharger",
+ sidebarTitle:"Conçu pour votre jeu.",sidebarDescription:"Votre expérience Minecraft PvP, tout organisé au même endroit.",
+ topStatus:"VOTRE PROCHAINE PARTIE COMMENCE ICI",heroEyebrow:"L'EXPÉRIENCE MINECRAFT PvP",heroTitle:"ENTREZ DANS<span>FVREVER CLIENT</span>",
+ heroDescription:"Tout ce dont vous avez besoin pour Minecraft. Gérez vos instances, mods, comptes et paramètres au même endroit. Personnalisez votre expérience et jouez à votre façon.",
+ downloadFvrever:"TÉLÉCHARGER FVREVER",exploreFeatures:"DÉCOUVRIR",heroFootnote:"UN CLIENT QUI VOUS RESSEMBLE.",
+ featuresKicker:"À L'INTÉRIEUR",featuresTitle:"Conçu pour votre façon de jouer.",featuresDescription:"Votre configuration Minecraft, organisée et prête. Découvrez les outils de FVREVER Client.",
+ galleryKicker:"DÉCOUVRIR",galleryTitle:"À l'intérieur de FVREVER.",galleryDescription:"Découvrez le launcher et son expérience. Les captures d'écran apparaîtront ici.",
+ updatesKicker:"ACTUALITÉS",updatesTitle:"Journal des modifications.",updatesDescription:"Suivez les dernières mises à jour et améliorations de FVREVER Client.",
+ postsLoading:"Chargement des publications...",noPosts:"Aucune publication pour le moment.",downloadKicker:"PRÊT À NOUS REJOINDRE ?",downloadTitle:"Votre prochaine expérience Minecraft commence avec FVREVER.",downloadDescription:"Accédez à FVREVER Client. Entrez votre code cadeau pour continuer.",
+ downloadButton:"TÉLÉCHARGER FVREVER CLIENT",settingsTitle:"Préférences",languageLabel:"LANGUE",themeLabel:"THÈME",settingsNote:"Vos préférences sont enregistrées automatiquement sur cet appareil.",
+ modalTitle:"Débloquer le téléchargement",modalDescription:"Entrez votre code cadeau FVREVER pour continuer.",continueButton:"CONTINUER",codePlaceholder:"Entrez votre code cadeau",latest:"RÉCENT",readMore:"LIRE PLUS",readLess:"LIRE MOINS",featured:"À LA UNE",dateLocale:"fr-FR"
+ },
+ pt:{
+ navigation:"NAVEGAÇÃO",home:"Início",features:"Recursos",gallery:"Galeria",changelog:"Novidades",download:"Baixar",
+ sidebarTitle:"Feito para o seu jogo.",sidebarDescription:"Sua experiência Minecraft PvP, com tudo organizado em um só lugar.",
+ topStatus:"SUA PRÓXIMA PARTIDA COMEÇA AQUI",heroEyebrow:"A EXPERIÊNCIA MINECRAFT PvP",heroTitle:"ENTRE NO<span>FVREVER CLIENT</span>",
+ heroDescription:"Tudo o que você precisa para sua experiência no Minecraft. Gerencie instâncias, mods, contas e configurações em um só lugar. Personalize e jogue do seu jeito.",
+ downloadFvrever:"BAIXAR FVREVER",exploreFeatures:"EXPLORAR RECURSOS",heroFootnote:"UM CLIENT QUE TEM A SUA CARA.",
+ featuresKicker:"O QUE TEM DENTRO",featuresTitle:"Feito para o seu jeito de jogar.",featuresDescription:"Sua configuração do Minecraft, organizada e pronta. Descubra as ferramentas do FVREVER Client.",
+ galleryKicker:"DÊ UMA OLHADA",galleryTitle:"Por dentro do FVREVER.",galleryDescription:"Uma visão mais próxima do launcher e da experiência. As capturas de tela aparecerão aqui.",
+ updatesKicker:"NOVIDADES",updatesTitle:"Registro de alterações.",updatesDescription:"Acompanhe as últimas atualizações e melhorias do FVREVER Client.",
+ postsLoading:"Carregando publicações...",noPosts:"Ainda não há publicações. Volte em breve.",downloadKicker:"PRONTO PARA ENTRAR?",downloadTitle:"Sua próxima experiência Minecraft começa com FVREVER.",downloadDescription:"Tenha acesso ao FVREVER Client. Insira seu Gift Code para continuar.",
+ downloadButton:"BAIXAR FVREVER CLIENT",settingsTitle:"Preferências",languageLabel:"IDIOMA",themeLabel:"TEMA",settingsNote:"Suas preferências são salvas automaticamente neste dispositivo.",
+ modalTitle:"Desbloqueie seu download",modalDescription:"Insira seu Gift Code FVREVER para continuar.",continueButton:"CONTINUAR",codePlaceholder:"Insira seu Gift Code",latest:"RECENTE",readMore:"LER MAIS",readLess:"LER MENOS",featured:"DESTAQUE",dateLocale:"pt-BR"
+ }
+};
+
+let currentLanguage=localStorage.getItem("fvrever-language")||"en";
+let currentTheme=localStorage.getItem("fvrever-theme")||"pink";
+const $=id=>document.getElementById(id);
+
+function applyLanguage(lang){
+ if(!translations[lang])lang="en";
+ currentLanguage=lang;
+ localStorage.setItem("fvrever-language",lang);
+ document.documentElement.lang=lang;
+ $("languageSelect").value=lang;
+ const dict=translations[lang];
+ document.querySelectorAll("[data-i18n]").forEach(el=>{
+  const key=el.dataset.i18n;if(dict[key])el.textContent=dict[key];
+ });
+ document.querySelectorAll("[data-i18n-html]").forEach(el=>{
+  const key=el.dataset.i18nHtml;if(dict[key])el.innerHTML=dict[key];
+ });
+ $("giftCode").placeholder=dict.codePlaceholder;
+ renderPosts(window.publicPosts||[]);
+}
+function applyTheme(theme){
+ if(!["pink","white"].includes(theme))theme="pink";
+ currentTheme=theme;
+ document.body.dataset.theme=theme;
+ $("themeSelect").value=theme;
+ localStorage.setItem("fvrever-theme",theme);
+}
+$("languageSelect").addEventListener("change",e=>applyLanguage(e.target.value));
+$("themeSelect").addEventListener("change",e=>applyTheme(e.target.value));
+applyLanguage(currentLanguage);
+applyTheme(currentTheme);
+
+$("settingsTrigger").onclick=()=>$("settingsPanel").classList.toggle("open");
+document.addEventListener("click",e=>{
+ if(!$("settingsPanel").contains(e.target)&&!$("settingsTrigger").contains(e.target))$("settingsPanel").classList.remove("open");
+});
+
 // MENÚ MÓVIL
-const sidebar=document.getElementById("sidebar");
-const menuToggle=document.getElementById("menuToggle");
-menuToggle.addEventListener("click",()=>sidebar.classList.toggle("open"));
+const sidebar=$("sidebar");
+$("menuToggle").addEventListener("click",()=>sidebar.classList.toggle("open"));
 document.querySelectorAll(".nav-link").forEach(link=>link.addEventListener("click",()=>sidebar.classList.remove("open")));
 
 // NAVEGACIÓN ACTIVA
@@ -233,9 +391,7 @@ const sections=document.querySelectorAll("main section[id]");
 const navLinks=document.querySelectorAll(".nav-link");
 const sectionObserver=new IntersectionObserver(entries=>{
  entries.forEach(entry=>{
-  if(entry.isIntersecting){
-   navLinks.forEach(link=>link.classList.toggle("active",link.getAttribute("href")==="#"+entry.target.id));
-  }
+  if(entry.isIntersecting)navLinks.forEach(link=>link.classList.toggle("active",link.getAttribute("href")==="#"+entry.target.id));
  });
 },{rootMargin:"-30% 0px -55% 0px"});
 sections.forEach(section=>sectionObserver.observe(section));
@@ -248,29 +404,24 @@ const revealObserver=new IntersectionObserver(entries=>{
 },{threshold:.12});
 document.querySelectorAll(".reveal").forEach(element=>revealObserver.observe(element));
 
-// MODAL DE DESCARGA
-const modal=document.getElementById("downloadModal");
-const openDownload=document.getElementById("openDownload");
-const closeModal=document.getElementById("closeModal");
-const verifyCode=document.getElementById("verifyCode");
-const modalMessage=document.getElementById("modalMessage");
-function showModal(){modal.classList.add("show");document.getElementById("giftCode").focus()}
+// MODAL GIFT CODE
+const modal=$("downloadModal");
+function showModal(){modal.classList.add("show");$("giftCode").focus()}
 function hideModal(){modal.classList.remove("show")}
-openDownload.addEventListener("click",showModal);
-closeModal.addEventListener("click",hideModal);
+$("openDownload").addEventListener("click",showModal);
+$("closeModal").addEventListener("click",hideModal);
 modal.addEventListener("click",event=>{if(event.target===modal)hideModal()});
 document.addEventListener("keydown",event=>{if(event.key==="Escape")hideModal()});
-verifyCode.addEventListener("click",()=>{modalMessage.textContent="Gift code verification will be connected when the download system is ready."});
-document.getElementById("giftCode").addEventListener("keydown",event=>{if(event.key==="Enter")verifyCode.click()});
+$("verifyCode").addEventListener("click",()=>{$("modalMessage").textContent="Gift code verification is not active yet."});
+$("giftCode").addEventListener("keydown",event=>{if(event.key==="Enter")$("verifyCode").click()});
 
-// GALERÍA PÚBLICA: CUATRO SLOTS FIJOS
+// GALERÍA PÚBLICA
 const galleryDefaults=[
  {category:"LAUNCHER",title:"Your Minecraft Hub",description:"Launcher interface preview coming soon."},
  {category:"CUSTOMIZATION",title:"Make It Yours",description:"Explore your personalized setup."},
  {category:"MODS",title:"Your Mod Collection",description:"Keep your mods organized."},
  {category:"SETTINGS",title:"Your Perfect Setup",description:"Configure your game your way."}
 ];
-
 function normalizePublicGallery(raw){
  const slots=[null,null,null,null];
  if(!Array.isArray(raw))return slots;
@@ -282,61 +433,108 @@ function normalizePublicGallery(raw){
  });
  return slots;
 }
-
 function createGalleryCard(item,index){
  const fallback=galleryDefaults[index];
- const card=document.createElement("article");
- card.className="gallery-card reveal";
-
+ const card=document.createElement("article");card.className="gallery-card reveal";
  if(item&&item.url){
-  const image=document.createElement("img");
-  image.src=item.url;
-  image.alt=item.title||"FVREVER Client screenshot";
-  image.loading="lazy";
-  image.style.objectPosition=(Number.isFinite(Number(item.positionX))?item.positionX:50)+"% "+(Number.isFinite(Number(item.positionY))?item.positionY:50)+"%";
+  const image=document.createElement("img");image.src=item.url;image.alt=item.title||"FVREVER Client screenshot";image.loading="lazy";
   const zoom=Math.max(100,Math.min(250,Number(item.zoom)||100));
-  image.style.transform="scale("+(zoom/100)+")";
-  image.onerror=()=>{image.remove()};
-  card.append(image);
+  card.style.setProperty("--gallery-zoom",zoom/100);
+  card.style.setProperty("--hover-zoom",Math.max(1.04,zoom/100));
+  card.style.setProperty("--gallery-position",(Number(item.positionX)||50)+"% "+(Number(item.positionY)||50)+"%");
+  image.onerror=()=>image.remove();card.append(image);
  }
-
- const details=document.createElement("div");
- details.className="gallery-placeholder";
-
- const category=document.createElement("span");
- category.textContent=String(index+1).padStart(2,"0")+" / "+(item?.category||fallback.category).toUpperCase();
-
- const title=document.createElement("h3");
- title.textContent=item?.title||fallback.title;
-
- const description=document.createElement("p");
- description.textContent=item?.description||fallback.description;
-
- details.append(category,title,description);
- card.append(details);
- return card;
+ const details=document.createElement("div");details.className="gallery-placeholder";
+ const category=document.createElement("span");category.textContent=String(index+1).padStart(2,"0")+" / "+(item?.category||fallback.category).toUpperCase();
+ const title=document.createElement("h3");title.textContent=item?.title||fallback.title;
+ const description=document.createElement("p");description.textContent=item?.description||fallback.description;
+ details.append(category,title,description);card.append(details);return card;
 }
-
 async function loadPublicGallery(){
- const grid=document.getElementById("galleryGrid");
- if(!grid)return;
-
+ const grid=$("galleryGrid");if(!grid)return;
  try{
   const response=await fetch("/api/content",{method:"GET",cache:"no-store"});
-  if(!response.ok)throw new Error("No se pudo cargar el contenido.");
+  if(!response.ok)throw new Error("Could not load content.");
   const content=await response.json();
   const slots=normalizePublicGallery(content.gallery);
-
-  // Siempre se dibujan exactamente cuatro tarjetas.
   grid.replaceChildren();
   slots.forEach((item,index)=>grid.append(createGalleryCard(item,index)));
-
   grid.querySelectorAll(".reveal").forEach(element=>revealObserver.observe(element));
- }catch(error){
-  console.warn("FVREVER: error cargando galería:",error);
+ }catch(error){console.warn("FVREVER: gallery loading error:",error)}
+}
+
+// PUBLICACIONES
+window.publicPosts=[];
+function postText(post,field){
+ const translated=post.translations?.[currentLanguage]||{};
+ const original=post.translations?.[post.originalLanguage]||post.translations?.en||post.translations?.es||{};
+ return String(translated[field]||original[field]||post[field]||"");
+}
+function renderPosts(posts){
+ window.publicPosts=Array.isArray(posts)?posts:[];
+ const list=$("postsList");if(!list)return;
+ list.replaceChildren();
+ const published=window.publicPosts.filter(p=>p&&p.status==="published").sort((a,b)=>{
+  if(Boolean(a.featured)!==Boolean(b.featured))return a.featured?-1:1;
+  return new Date(b.date||0)-new Date(a.date||0);
+ });
+ if(!published.length){
+  const empty=document.createElement("div");empty.className="post-empty";empty.textContent=translations[currentLanguage].noPosts;list.append(empty);return;
+ }
+ published.forEach(post=>{
+  const card=document.createElement("article");
+  card.className="update-card"+(post.featured?" post-featured":"");
+  const badge=document.createElement("span");badge.className="version";
+  badge.textContent=post.version?("v"+post.version):translations[currentLanguage].latest;
+  const content=document.createElement("div");content.style.minWidth="0";content.style.flex="1";
+  const meta=document.createElement("div");meta.className="post-meta";
+  const cat=document.createElement("span");cat.className="post-category";
+  const categories={update:"Update",announcement:"Announcement",fix:"Fix",news:"News"};
+  const categoriesTranslated={
+   en:{update:"Update",announcement:"Announcement",fix:"Fix",news:"News"},
+   es:{update:"Actualización",announcement:"Anuncio",fix:"Corrección",news:"Noticias"},
+   fr:{update:"Mise à jour",announcement:"Annonce",fix:"Correction",news:"Actualités"},
+   pt:{update:"Atualização",announcement:"Anúncio",fix:"Correção",news:"Notícias"}
+  };
+  cat.textContent=(categoriesTranslated[currentLanguage]?.[post.category]||categories[post.category]||"News");
+  meta.append(cat);
+  if(post.featured){const f=document.createElement("span");f.textContent=translations[currentLanguage].featured;meta.append(f)}
+  if(post.date){
+   const date=document.createElement("span");
+   const d=new Date(post.date);date.textContent=isNaN(d)?"":d.toLocaleDateString(translations[currentLanguage].dateLocale);
+   meta.append(date);
+  }
+  const title=document.createElement("h3");title.textContent=postText(post,"title");
+  const excerpt=document.createElement("p");excerpt.textContent=postText(post,"excerpt")||postText(post,"description");
+  content.append(meta,title,excerpt);
+  if(post.image){
+   const image=document.createElement("img");image.className="post-image";image.src=post.image;image.alt=postText(post,"title");image.loading="lazy";
+   image.onerror=()=>image.remove();content.append(image);
+  }
+  const bodyText=postText(post,"body");
+  if(bodyText){
+   const body=document.createElement("p");body.className="post-body";body.textContent=bodyText;body.hidden=true;content.append(body);
+   const read=document.createElement("button");read.className="post-read";read.textContent=translations[currentLanguage].readMore;
+   read.onclick=()=>{body.hidden=!body.hidden;read.textContent=body.hidden?translations[currentLanguage].readMore:translations[currentLanguage].readLess};
+   content.append(read);
+  }
+  card.append(badge,content);list.append(card);
+  revealObserver.observe(card);
+ });
+}
+async function loadPublicContent(){
+ try{
+  const r=await fetch("/api/content",{cache:"no-store"});
+  if(!r.ok)throw new Error("API unavailable");
+  const data=await r.json();
+  renderPosts(data.posts||[]);
+ }catch(e){
+  console.warn("FVREVER: posts could not be loaded",e);
+  renderPosts([]);
  }
 }
-loadPublicGallery();
+async function loadEverything(){await Promise.all([loadPublicGallery(),loadPublicContent()])}
+loadEverything();
 
 // VIDEO FALLBACK
 const backgroundVideo=document.querySelector(".background video");
