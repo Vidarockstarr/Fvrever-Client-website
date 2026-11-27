@@ -1193,7 +1193,7 @@ async function downloadRelease(release,button,progress){
  let responseReceived=false;
  fill.style.width="0%";label.innerHTML='<span>Starting secure download</span><span>0%</span>';
  try{
-  const url="/api/releases-download?pathname="+encodeURIComponent(release.pathname)+"&filename="+encodeURIComponent(release.filename||"FVREVER-Client");
+  const url="/api/releases?action=download&pathname="+encodeURIComponent(release.pathname)+"&filename="+encodeURIComponent(release.filename||"FVREVER-Client");
   const response=await fetch(url,{method:"GET",cache:"no-store",credentials:"same-origin"});
   if(!response.ok){const message=await response.text().catch(()=>"");throw new Error(message||"Download failed ("+response.status+")");}
   responseReceived=true;
@@ -1222,7 +1222,7 @@ async function loadPrivateReleases(){
  box.className="downloads-empty";
  box.innerHTML='<div class="empty-icon">✧</div><strong>Loading releases...</strong><p>Checking your download access.</p>';
  try{
-  const response=await fetch("/api/releases-list",{method:"GET",cache:"no-store",credentials:"same-origin"});
+  const response=await fetch("/api/releases?action=list",{method:"GET",cache:"no-store",credentials:"same-origin"});
   const data=await response.json().catch(()=>({}));
   if(!response.ok||!data.success)throw new Error(data.error||"No releases are available.");
   if(!Array.isArray(data.releases)||!data.releases.length){box.className="downloads-empty";box.innerHTML='<div class="empty-icon">✧</div><strong>No downloads available yet.</strong><p>We&apos;re preparing something special. Check back soon!</p>';return;}
