@@ -29,29 +29,30 @@ module.exports = async function handler(req, res) {
       const messages = {
         invalid: "This gift code is invalid.",
         expired: "This gift code has expired.",
-        used: "This gift code has already been used.",
+        used: "This gift code has already been redeemed.",
         revoked: "This gift code has been revoked.",
         available: "This gift code could not be redeemed."
       };
 
       return res.status(409).json({
         success: false,
-        error: messages[result.reason] || "This gift code cannot be used."
+        error: messages[result.reason] ||
+          "This gift code cannot be redeemed."
       });
     }
 
     return res.status(200).json({
       success: true,
-      message: "Gift code redeemed successfully.",
+      message: "You've redeemed a code!",
       downloadAuthorized: true
     });
 
   } catch (error) {
-    console.error("Gift code redemption error:", error);
+    console.error("Gift Code Redemption Error:", error);
 
     return res.status(500).json({
       success: false,
-      error: "Unable to verify your gift code right now. Please try again."
+      error: "Something went wrong. Please try again later."
     });
   }
 };
