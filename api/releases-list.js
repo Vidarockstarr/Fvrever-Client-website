@@ -1,5 +1,5 @@
-
 const { list } = require("@vercel/blob");
+
 const {
   getCookie,
   verifyDownloadToken,
@@ -49,7 +49,6 @@ module.exports = async function handler(req, res) {
     }
 
     const storeId = getReleasesStoreId();
-
     const { get } = await import("@vercel/blob");
 
     const [stored, result] = await Promise.all([
@@ -83,15 +82,13 @@ module.exports = async function handler(req, res) {
     );
 
     const releases = Object.values(manifest)
-      .filter(
-        item =>
-          item &&
-          existing.has(item.pathname)
+      .filter(item =>
+        item &&
+        existing.has(item.pathname)
       )
-      .sort(
-        (a, b) =>
-          new Date(b.uploadedAt || 0) -
-          new Date(a.uploadedAt || 0)
+      .sort((a, b) =>
+        new Date(b.uploadedAt || 0) -
+        new Date(a.uploadedAt || 0)
       );
 
     return res.status(200).json({
