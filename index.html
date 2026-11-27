@@ -575,6 +575,37 @@ body[data-theme="white"] .success-view>p{color:#786c77}
 .ticket-modal-box{width:min(560px,100%)}.ticket-form{display:grid;gap:13px}.ticket-form label{display:grid;gap:7px;color:#d8c8d4;font-size:9px;font-weight:900;letter-spacing:1.2px}.ticket-form input,.ticket-form textarea,.ticket-form select{width:100%;padding:12px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.2);color:white;outline:none;font:12px "DM Sans",sans-serif;letter-spacing:0}.ticket-form textarea{min-height:110px;resize:vertical}.ticket-form input:focus,.ticket-form textarea:focus,.ticket-form select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(240,138,168,.09)}.ticket-form select option{background:#211923;color:white}.ticket-form .btn{width:100%}.ticket-created{text-align:center;padding:12px 0 4px}.ticket-created p{color:var(--muted);font-size:12px;margin:10px 0}.ticket-created>strong{display:inline-block;padding:12px 18px;border-radius:10px;background:rgba(237,65,103,.13);border:1px solid rgba(240,138,168,.3);color:#ffc0d0;font:800 17px "Space Grotesk";letter-spacing:1px}
 .release-card{align-items:flex-start;padding:17px;border-radius:15px;background:linear-gradient(140deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border-color:rgba(240,138,168,.14);transition:.22s}.release-card:hover{transform:translateY(-2px);border-color:rgba(240,138,168,.38);box-shadow:0 12px 30px #0003}.release-icon{width:50px;height:50px;flex-basis:50px;border-radius:15px;font-size:25px}.release-info strong{font-size:13px}.release-info p{font-size:11px}.release-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.release-meta span{padding:5px 8px;border:1px solid rgba(255,255,255,.08);border-radius:7px;background:rgba(255,255,255,.035);color:#cdbbc9;font-size:9px}.release-progress{display:none;margin-top:12px}.release-progress.active{display:block}.release-progress-track{height:8px;border-radius:20px;background:rgba(0,0,0,.35);overflow:hidden;border:1px solid rgba(255,255,255,.07)}.release-progress-fill{height:100%;width:0;background:linear-gradient(90deg,#d92f59,#ff9db5);border-radius:20px;transition:width .12s}.release-progress-label{display:flex;justify-content:space-between;gap:10px;margin-top:7px;color:#bdaeba;font-size:9px;font-weight:700}.release-download{padding:12px 15px;font-size:10px;box-shadow:0 6px 18px rgba(237,65,103,.2)}.release-download:disabled{opacity:.7}
 @media(max-width:700px){.ticket-panel{align-items:flex-start;flex-wrap:wrap;padding:20px}.ticket-panel-copy{flex-basis:calc(100% - 80px)}.ticket-panel>.btn{width:100%}.release-card{flex-wrap:wrap}.release-download{margin-left:63px}.dashboard-link{margin-top:12px}}
+
+/* FVREVER VISUAL REFINEMENT */
+:root{--pink:#f28eac;--red:#ed4167;--card-bg:linear-gradient(145deg,rgba(43,29,43,.88),rgba(20,16,24,.82))}
+.section{scroll-margin-top:26px}
+.section-heading{max-width:760px}
+.section-title{ text-wrap:balance }
+.feature-card,.gallery-card,.update-card,.download-panel{backdrop-filter:blur(14px)}
+.feature-card::before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,180,200,.38),transparent);opacity:.7}
+.ticket-section{overflow:hidden;isolation:isolate}
+.ticket-section::before{content:"";position:absolute;z-index:-1;width:520px;height:520px;right:-190px;top:5%;border-radius:50%;background:rgba(229,54,100,.09);filter:blur(100px);pointer-events:none}
+.ticket-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:34px}
+.ticket-heading .section-heading{margin:0}
+.ticket-heading-note{max-width:210px;color:#a99ca9;font-size:10px;line-height:1.7;text-align:right}
+.ticket-panel{position:relative;overflow:hidden;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:22px;padding:30px;border:1px solid rgba(240,138,168,.24);border-radius:24px;background:linear-gradient(115deg,rgba(111,34,61,.30),rgba(36,25,39,.83) 48%,rgba(22,17,27,.88));box-shadow:0 24px 70px rgba(0,0,0,.25)}
+.ticket-panel::after{content:"";position:absolute;right:13%;top:-100px;width:240px;height:240px;border:1px solid rgba(255,255,255,.055);border-radius:50%;box-shadow:0 0 0 28px rgba(255,255,255,.018),0 0 0 58px rgba(255,255,255,.012);pointer-events:none}
+.ticket-panel-icon{width:66px;height:66px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(145deg,rgba(255,127,162,.22),rgba(237,65,103,.09));border:1px solid rgba(255,174,196,.28);color:#ffc1d2;font-size:28px;box-shadow:0 12px 32px rgba(237,65,103,.16)}
+.ticket-panel-copy{position:relative;z-index:1;min-width:0}.ticket-panel-copy h3{font:700 21px "Space Grotesk";letter-spacing:-.5px;margin-bottom:8px}.ticket-panel-copy p{max-width:510px;color:#bcaebb;font-size:12px;line-height:1.8}
+.ticket-panel-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.ticket-panel-meta span{padding:6px 9px;border-radius:8px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);color:#d4c5d2;font-size:9px;font-weight:700;letter-spacing:.3px}
+.ticket-panel>.btn{z-index:1;white-space:nowrap;min-width:190px}
+.ticket-modal-box{width:min(590px,100%);border:1px solid rgba(255,160,188,.2);background:linear-gradient(145deg,#281d2a,#17121c);box-shadow:0 30px 100px #000b}
+.ticket-modal-box .modal-top h2{font-family:"Space Grotesk";letter-spacing:-.5px}
+.ticket-modal-box .modal-description{color:#b9aab8;line-height:1.8}
+.ticket-form{gap:15px}.ticket-form label{font-size:9px;letter-spacing:1.3px;color:#e2d2df}
+.ticket-form input,.ticket-form textarea,.ticket-form select{padding:13px 14px;border-radius:12px;border-color:rgba(255,255,255,.1);background:rgba(8,6,11,.42);transition:border-color .2s,box-shadow .2s,background .2s}
+.ticket-form input:focus,.ticket-form textarea:focus,.ticket-form select:focus{background:rgba(8,6,11,.62);border-color:#f08aa8;box-shadow:0 0 0 4px rgba(240,138,168,.09)}
+.ticket-form textarea{min-height:135px;line-height:1.6}
+.ticket-form .btn{margin-top:3px;min-height:52px}
+.ticket-created>strong{font-size:18px;letter-spacing:1.5px}
+@media(max-width:900px){.ticket-panel{grid-template-columns:auto minmax(0,1fr)}.ticket-panel>.btn{grid-column:1/-1;width:100%}.ticket-heading{align-items:flex-start;flex-direction:column}.ticket-heading-note{text-align:left;max-width:460px}}
+@media(max-width:700px){.ticket-panel{grid-template-columns:1fr;padding:22px;gap:15px}.ticket-panel-icon{width:56px;height:56px}.ticket-panel-copy h3{font-size:18px}.ticket-panel>.btn{grid-column:auto;min-width:0}.ticket-heading-note{display:none}}
+
 </style>
 </head>
 
@@ -697,16 +728,23 @@ body[data-theme="white"] .success-view>p{color:#786c77}
   <div class="update-list" id="postsList"><div class="post-empty" data-i18n="postsLoading">Loading publications...</div></div>
  </section>
 
- <section class="section" id="tickets">
-  <div class="section-heading">
-   <div class="section-kicker">SUPPORT CENTER</div>
-   <h2 class="section-title">We’re here to help.</h2>
-   <p class="section-description">¿Tienes algún problema con FVREVER Client? Crea un ticket y nuestro equipo podrá revisarlo.</p>
+ <section class="section ticket-section" id="tickets">
+  <div class="ticket-heading">
+   <div class="section-heading">
+    <div class="section-kicker">FVREVER SUPPORT CENTER</div>
+    <h2 class="section-title">We’re here to help.</h2>
+    <p class="section-description">¿Tienes algún problema con FVREVER Client? Nuestro equipo está aquí para ayudarte. Cuéntanos qué sucede y le daremos seguimiento.</p>
+   </div>
+   <p class="ticket-heading-note">Soporte directo, seguimiento claro y un código único para identificar tu solicitud.</p>
   </div>
   <div class="ticket-panel">
    <div class="ticket-panel-icon">✉</div>
-   <div class="ticket-panel-copy"><h3>Contacta con soporte</h3><p>Cuéntanos qué ocurre. Recibirás un código para identificar tu solicitud.</p></div>
-   <button class="btn btn-primary" id="openTicket">CREATE A TICKET <span>↗</span></button>
+   <div class="ticket-panel-copy">
+    <h3>Hablemos. Estamos para ayudarte.</h3>
+    <p>Abre una solicitud de soporte y describe el problema. Recibirás un código de referencia para consultar tu caso cuando contactes con nuestro equipo.</p>
+    <div class="ticket-panel-meta"><span>◈ Atención del equipo FVREVER</span><span>✓ Código de seguimiento</span><span>⌁ Respuesta personalizada</span></div>
+   </div>
+   <button class="btn btn-primary" id="openTicket">CREAR TICKET <span>↗</span></button>
   </div>
  </section>
 
@@ -1193,7 +1231,7 @@ async function downloadRelease(release,button,progress){
  let responseReceived=false;
  fill.style.width="0%";label.innerHTML='<span>Starting secure download</span><span>0%</span>';
  try{
-  const url="/api/releases?action=download&pathname="+encodeURIComponent(release.pathname)+"&filename="+encodeURIComponent(release.filename||"FVREVER-Client");
+  const url="/api/releases-download?pathname="+encodeURIComponent(release.pathname)+"&filename="+encodeURIComponent(release.filename||"FVREVER-Client");
   const response=await fetch(url,{method:"GET",cache:"no-store",credentials:"same-origin"});
   if(!response.ok){const message=await response.text().catch(()=>"");throw new Error(message||"Download failed ("+response.status+")");}
   responseReceived=true;
@@ -1222,7 +1260,7 @@ async function loadPrivateReleases(){
  box.className="downloads-empty";
  box.innerHTML='<div class="empty-icon">✧</div><strong>Loading releases...</strong><p>Checking your download access.</p>';
  try{
-  const response=await fetch("/api/releases?action=list",{method:"GET",cache:"no-store",credentials:"same-origin"});
+  const response=await fetch("/api/releases-list",{method:"GET",cache:"no-store",credentials:"same-origin"});
   const data=await response.json().catch(()=>({}));
   if(!response.ok||!data.success)throw new Error(data.error||"No releases are available.");
   if(!Array.isArray(data.releases)||!data.releases.length){box.className="downloads-empty";box.innerHTML='<div class="empty-icon">✧</div><strong>No downloads available yet.</strong><p>We&apos;re preparing something special. Check back soon!</p>';return;}
