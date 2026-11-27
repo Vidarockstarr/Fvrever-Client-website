@@ -1,4 +1,3 @@
-
 const { readSession } = require("../lib/auth");
 
 const DEFAULT_CONTENT = {
@@ -12,6 +11,8 @@ const DEFAULT_CONTENT = {
   features: [],
   gallery: [],
   changelog: [],
+  releases: [],
+  posts: [],
   lastUpdated: null
 };
 
@@ -56,7 +57,9 @@ async function readCurrentContent(list) {
     limit: 1
   });
 
-  if (!blobs?.length) return DEFAULT_CONTENT;
+  if (!blobs?.length) {
+    return { ...DEFAULT_CONTENT };
+  }
 
   const response = await fetch(blobs[0].url);
 
@@ -64,9 +67,26 @@ async function readCurrentContent(list) {
     throw new Error("Could not read existing website content");
   }
 
+  const storedContent = await response.json();
+
   return {
     ...DEFAULT_CONTENT,
-    ...(await response.json())
+    ...storedContent,
+    features: Array.isArray(storedContent.features)
+      ? storedContent.features
+      : [],
+    gallery: Array.isArray(storedContent.gallery)
+      ? storedContent.gallery
+      : [],
+    changelog: Array.isArray(storedContent.changelog)
+      ? storedContent.changelog
+      : [],
+    releases: Array.isArray(storedContent.releases)
+      ? storedContent.releases
+      : [],
+    posts: Array.isArray(storedContent.posts)
+      ? storedContent.posts
+      : []
   };
 }
 
@@ -104,12 +124,17 @@ module.exports = async function handler(req, res) {
 
       const content = {
         ...DEFAULT_CONTENT,
+        ...previous,
         ...submitted,
         lastUpdated: new Date().toISOString()
       };
 
       if (!Array.isArray(content.gallery)) {
         return send(res, 400, { error: "Invalid gallery" });
+      }
+
+      if (!Array.isArray(content.posts)) {
+        return send(res, 400, { error: "Invalid posts" });
       }
 
       const json = JSON.stringify(content);
