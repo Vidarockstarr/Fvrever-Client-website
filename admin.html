@@ -263,7 +263,7 @@ th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{co
 
 <section class="section" id="releases">
 <div class="heading"><div class="eyebrow">DISTRIBUCIÓN PRIVADA</div><h1>Subir launcher</h1><p class="subtitle">Publica el instalador en el Blob privado fvrever-releases.</p></div>
-<div class="panel"><div class="notice"><strong>Privado:</strong> los instaladores no se publican como imágenes ni reciben una URL pública permanente.</div><div class="form-grid"><div class="field"><label>Versión</label><input id="uploadVersion" placeholder="1.0.0"></div><div class="field"><label>Nombre de publicación</label><input id="uploadName" placeholder="FVREVER Client Setup"></div><div class="field"><label>Icono (emoji)</label><input id="uploadIcon" maxlength="12" placeholder="🚀"></div><div class="field full"><label>Descripción</label><textarea id="uploadDescription"></textarea></div><div class="field full"><label>Archivo (.exe, .msi, .zip)</label><input id="releaseFile" type="file" accept=".exe,.msi,.zip"><small>Máximo permitido por esta interfaz: 500 MB.</small></div></div><button class="btn primary" id="uploadRelease">SUBIR NUEVA VERSIÓN</button><div id="uploadProgressWrap" class="hidden"><div class="progress"><span id="uploadProgress"></span></div><p class="panel-desc" id="uploadStatus">Preparando...</p></div></div>
+<div class="panel"><div class="notice"><strong>Privado:</strong> los instaladores no se publican como imágenes ni reciben una URL pública permanente.</div><div class="form-grid"><div class="field"><label>Versión</label><input id="uploadVersion" placeholder="1.0.0"></div><div class="field"><label>Nombre de publicación</label><input id="uploadName" placeholder="FVREVER Client Setup"></div><div class="field"><label>Icono (emoji)</label><input id="uploadIcon" maxlength="12" placeholder="🚀"></div><div class="field full"><label>Descripción</label><textarea id="uploadDescription"></textarea></div><div class="field full"><label>Archivo (.exe, .msi, .zip)</label><input id="releaseFile" type="file" accept=".exe,.msi,.zip"><small id="releaseFileInfo">Máximo permitido: 500 MB.</small></div></div><button class="btn primary" id="uploadRelease">SUBIR NUEVA VERSIÓN</button><div id="uploadProgressWrap" class="hidden"><div class="progress"><span id="uploadProgress"></span></div><p class="panel-desc" id="uploadStatus">Preparando...</p></div></div>
 <div class="panel" style="margin-top:15px"><h2>Releases almacenadas</h2><p class="panel-desc">Administra las publicaciones privadas, sus iconos y descripciones.</p><div id="releaseList" class="empty">Cargando releases...</div></div>
 </section>
 
@@ -559,8 +559,6 @@ add("info","Máximo de registros en memoria: "+MAX_LOGS);
 </script>
 
 <script type="module">
-import { upload } from "https://esm.sh/@vercel/blob@2.9.0/client";
-
 const $=id=>document.getElementById(id);
 const sections=[...document.querySelectorAll(".section")];
 const nav=[...document.querySelectorAll("[data-section]")];
@@ -1032,7 +1030,7 @@ function renderReleaseList(releases){
   del.onclick=async()=>{
    if(!confirm("¿Eliminar esta release y su archivo privado? Esta acción no se puede deshacer."))return;
    del.disabled=true;
-   try{await api("/api/releases-manage",{method:"DELETE",body:JSON.stringify({pathname:release.pathname})});await loadReleases();toast("Release eliminada.");}
+   try{await api("/api/releases?action=manage",{method:"DELETE",body:JSON.stringify({pathname:release.pathname})});await loadReleases();toast("Release eliminada.");}
    catch(e){del.disabled=false;toast("No se pudo eliminar: "+e.message);}
   };
   row.append(info,del);box.append(row);
@@ -1040,8 +1038,43 @@ function renderReleaseList(releases){
 }
 
 async function loadReleases(){
- try{const data=await api("/api/releases-manage");renderReleaseList(data.releases||[]);}
+ try{const data=await api("/api/releases?action=manage");renderReleaseList(data.releases||[]);}
  catch(e){$("releaseList").className="empty";$("releaseList").textContent="No se pudieron cargar las releases: "+e.message;FVDEBUG.error("No se pudieron cargar las releases.",e);}
+}
+
+function formatFileSize(bytes){
+ if(!Number.isFinite(bytes)||bytes<0)return "Tamaño desconocido";
+ const units=["B","KB","MB","GB"];
+ let value=bytes,index=0;
+ while(value>=1024&&index<units.length-1){value/=1024;index++;}
+ return value.toFixed(index===0?0:2)+" "+units[index];
+}
+
+$("releaseFile").addEventListener("change",()=>{
+ const file=$("releaseFile").files[0];
+ $("releaseFileInfo").textContent=file
+  ? file.name+" · "+formatFileSize(file.size)+" · Máximo: 500 MB"
+  : "Máximo permitido: 500 MB.";
+});
+
+function uploadBlobWithProgress(url,file,onProgress){
+ return new Promise((resolve,reject)=>{
+  const xhr=new XMLHttpRequest();
+  xhr.open("PUT",url,true);
+  xhr.setRequestHeader("Content-Type",file.type||"application/octet-stream");
+  xhr.upload.onprogress=event=>{
+   if(!event.lengthComputable)return;
+   const percent=Math.min(100,Math.round(event.loaded/event.total*100));
+   onProgress({loaded:event.loaded,total:event.total,percent});
+  };
+  xhr.onload=()=>{
+   if(xhr.status>=200&&xhr.status<300)resolve(xhr);
+   else reject(Error("Vercel Blob rechazó la subida ("+xhr.status+")."));
+  };
+  xhr.onerror=()=>reject(Error("Error de red durante la transferencia a Vercel Blob."));
+  xhr.onabort=()=>reject(Error("La subida fue cancelada."));
+  xhr.send(file);
+ });
 }
 
 $("uploadRelease").onclick=async()=>{
@@ -1052,20 +1085,26 @@ $("uploadRelease").onclick=async()=>{
  if(file.size>500*1024*1024)return toast("El archivo supera 500 MB.");
  let btn=$("uploadRelease");btn.disabled=true;
  $("uploadProgressWrap").classList.remove("hidden");$("uploadProgress").style.width="0%";
- $("uploadStatus").textContent="Solicitando autorización privada...";
+ $("uploadStatus").textContent="Solicitando autorización privada... · "+formatFileSize(file.size);
  FVDEBUG.upload("Inicio de subida de launcher.",{filename:file.name,size:file.size,version});
  try{
-  let auth=await api("/api/releases-upload",{method:"POST",body:JSON.stringify({filename:file.name,version})});
+  let auth=await api("/api/releases?action=upload",{method:"POST",body:JSON.stringify({filename:file.name,version})});
   if(!auth.success||!auth.uploadUrl)throw Error("El servidor no devolvió una URL de subida.");
-  $("uploadStatus").textContent="Transfiriendo instalador...";FVDEBUG.upload("Autorización recibida. Iniciando transferencia.");
-  let put=await fetch(auth.uploadUrl,{method:"PUT",body:file,headers:{"Content-Type":file.type||"application/octet-stream"}});
-  if(!put.ok)throw Error("Vercel Blob rechazó la subida ("+put.status+").");
+  $("uploadStatus").textContent="Transfiriendo: 0% · 0 B / "+formatFileSize(file.size);
+  FVDEBUG.upload("Autorización recibida. Iniciando transferencia.");
+  await uploadBlobWithProgress(auth.uploadUrl,file,progress=>{
+   $("uploadProgress").style.width=progress.percent+"%";
+   $("uploadStatus").textContent="Subiendo: "+progress.percent+"% · "+formatFileSize(progress.loaded)+" / "+formatFileSize(progress.total);
+  });
   $("uploadProgress").style.width="100%";
-  await api("/api/releases-manage",{method:"PUT",body:JSON.stringify({version,name,description,icon,pathname:auth.pathname,filename:file.name,uploadedAt:new Date().toISOString()})});
+  $("uploadStatus").textContent="Transferencia completada. Guardando información...";
+  await api("/api/releases?action=manage",{method:"PUT",body:JSON.stringify({version,name,description,icon,pathname:auth.pathname,filename:file.name,uploadedAt:new Date().toISOString()})});
   await loadReleases();
-  $("uploadStatus").textContent="Subida completada. Archivo guardado como privado.";
-  $("releaseFile").value="";$("uploadStatus").textContent="Release publicada correctamente.";
-  FVDEBUG.upload("Launcher subido correctamente.",{version,filename:file.name});toast("Launcher subido correctamente.");
+  $("uploadStatus").textContent="Release publicada correctamente · "+formatFileSize(file.size);
+  $("releaseFile").value="";
+  $("releaseFileInfo").textContent="Máximo permitido: 500 MB.";
+  FVDEBUG.upload("Launcher subido correctamente.",{version,filename:file.name,size:file.size});
+  toast("Launcher subido correctamente.");
  }catch(e){$("uploadStatus").textContent="Error: "+e.message;FVDEBUG.error("Falló la subida del launcher.",e);toast("No se pudo subir el launcher: "+e.message);}
  finally{btn.disabled=false;}
 };
