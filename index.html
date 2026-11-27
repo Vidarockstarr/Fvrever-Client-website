@@ -731,20 +731,20 @@ body[data-theme="white"] .success-view>p{color:#786c77}
  <section class="section ticket-section" id="tickets">
   <div class="ticket-heading">
    <div class="section-heading">
-    <div class="section-kicker">FVREVER SUPPORT CENTER</div>
-    <h2 class="section-title">We’re here to help.</h2>
-    <p class="section-description">¿Tienes algún problema con FVREVER Client? Nuestro equipo está aquí para ayudarte. Cuéntanos qué sucede y le daremos seguimiento.</p>
+    <div class="section-kicker" data-i18n="ticketsKicker">FVREVER SUPPORT CENTER</div>
+    <h2 class="section-title" data-i18n="ticketsTitle">We’re here to help.</h2>
+    <p class="section-description" data-i18n="ticketsDescription">Having an issue with FVREVER Client? Tell us what’s happening and our team will follow up.</p>
    </div>
-   <p class="ticket-heading-note">Soporte directo, seguimiento claro y un código único para identificar tu solicitud.</p>
+   <p class="ticket-heading-note" data-i18n="ticketsNote">Direct support, clear follow-up, and a unique code to identify your request.</p>
   </div>
   <div class="ticket-panel">
    <div class="ticket-panel-icon">✉</div>
    <div class="ticket-panel-copy">
-    <h3>Hablemos. Estamos para ayudarte.</h3>
-    <p>Abre una solicitud de soporte y describe el problema. Recibirás un código de referencia para consultar tu caso cuando contactes con nuestro equipo.</p>
-    <div class="ticket-panel-meta"><span>◈ Atención del equipo FVREVER</span><span>✓ Código de seguimiento</span><span>⌁ Respuesta personalizada</span></div>
+    <h3 data-i18n="ticketsCardTitle">Let’s talk. We’re here for you.</h3>
+    <p data-i18n="ticketsCardDescription">Open a support request and describe the issue. You’ll receive a reference code for your case.</p>
+    <div class="ticket-panel-meta"><span>◈ <span data-i18n="ticketsMetaTeam">FVREVER team support</span></span><span>✓ <span data-i18n="ticketsMetaCode">Tracking code</span></span><span>⌁ <span data-i18n="ticketsMetaReply">Personalized response</span></span></div>
    </div>
-   <button class="btn btn-primary" id="openTicket">CREAR TICKET <span>↗</span></button>
+   <button class="btn btn-primary" id="openTicket"><span data-i18n="ticketsCreate">CREATE TICKET</span> <span>↗</span></button>
   </div>
  </section>
 
@@ -792,18 +792,19 @@ body[data-theme="white"] .success-view>p{color:#786c77}
 <!-- SUPPORT TICKET MODAL -->
 <div class="modal" id="ticketModal">
  <div class="modal-box ticket-modal-box">
-  <div class="modal-top"><h2>Create a support ticket</h2><button class="close-modal" id="closeTicket" aria-label="Close">×</button></div>
-  <p class="modal-description">Describe your issue with as much detail as you can. We’ll send your request to the FVREVER support team.</p>
+  <div class="modal-top"><h2 data-i18n="ticketModalTitle">Create a support ticket</h2><button class="close-modal" id="closeTicket" data-i18n-aria="ticketClose" aria-label="Close">×</button></div>
+  <p class="modal-description" data-i18n="ticketModalDescription">Describe your issue in as much detail as possible. We’ll send it to the FVREVER support team.</p>
   <form id="ticketForm" class="ticket-form">
-   <label>YOUR NAME<input name="name" maxlength="70" required placeholder="Your name"></label>
-   <label>EMAIL ADDRESS<input name="email" type="email" maxlength="160" required placeholder="you@example.com"></label>
-   <label>CATEGORY<select name="category" required><option value="">Choose a category</option><option>Launcher issue</option><option>Installation</option><option>Account / Gift Key</option><option>Bug report</option><option>Other</option></select></label>
-   <label>SUBJECT<input name="subject" maxlength="120" required placeholder="A short summary"></label>
-   <label>MESSAGE<textarea name="message" maxlength="4000" required placeholder="Tell us what happened..."></textarea></label>
-   <button class="btn btn-primary" id="submitTicket" type="submit">SEND TICKET</button>
+   <label><span data-i18n="ticketName">YOUR NAME</span><input name="name" maxlength="70" required data-i18n-placeholder="ticketNamePlaceholder" placeholder="Your name"></label>
+   <label><span data-i18n="ticketEmail">EMAIL ADDRESS</span><input name="email" type="email" maxlength="160" required data-i18n-placeholder="ticketEmailPlaceholder" placeholder="you@example.com"></label>
+   <label><span data-i18n="ticketCategory">CATEGORY</span><select name="category" required><option value="" data-i18n="ticketChoose">Choose a category</option><option value="Launcher issue" data-i18n="ticketLauncher">Launcher issue</option><option value="Installation" data-i18n="ticketInstall">Installation</option><option value="Account / Gift Key" data-i18n="ticketAccount">Account / Gift Key</option><option value="Bug report" data-i18n="ticketBug">Bug report</option><option value="Other" data-i18n="ticketOther">Other</option></select></label>
+   <label><span data-i18n="ticketSubject">SUBJECT</span><input name="subject" maxlength="120" required data-i18n-placeholder="ticketSubjectPlaceholder" placeholder="A short summary"></label>
+   <label><span data-i18n="ticketMessageLabel">MESSAGE</span><textarea name="message" maxlength="4000" required data-i18n-placeholder="ticketMessagePlaceholder" placeholder="Tell us what happened..."></textarea></label>
+   <button class="btn btn-primary" id="submitTicket" data-i18n="ticketSend" type="submit">SEND TICKET</button>
    <div class="modal-message" id="ticketMessage" aria-live="polite"></div>
+   <div class="modal-message" id="ticketCooldown" aria-live="polite" style="display:none"></div>
   </form>
-  <div class="ticket-created hidden" id="ticketCreated"><div class="success-icon">✓</div><h2>Ticket received!</h2><p>Keep this reference code so you can identify your request.</p><strong id="ticketCode"></strong></div>
+  <div class="ticket-created hidden" id="ticketCreated"><div class="success-icon">✓</div><h2 data-i18n="ticketReceived">Ticket received!</h2><p data-i18n="ticketReceivedDescription">Keep this reference code so you can identify your request.</p><strong id="ticketCode"></strong></div>
  </div>
 </div>
 
@@ -909,6 +910,13 @@ const translations={
   settingsNote:"Your preferences are saved automatically on this device.",
   modalTitle:"Unlock your download",modalDescription:"Enter your FVREVER gift code to continue.",
   continueButton:"CONTINUE",codePlaceholder:"Enter your gift code",latest:"LATEST",readMore:"READ MORE",readLess:"READ LESS",
+  ticketCooldownText:"You can send another ticket in {time}.",ticketCooldownChecking:"Checking ticket limit...",ticketsKicker:"FVREVER SUPPORT CENTER",ticketsTitle:"We’re here to help.",ticketsDescription:"Having an issue with FVREVER Client? Tell us what’s happening and our team will follow up.",
+  ticketsNote:"Direct support, clear follow-up, and a unique code to identify your request.",ticketsCardTitle:"Let’s talk. We’re here for you.",ticketsCardDescription:"Open a support request and describe the issue. You’ll receive a reference code for your case.",
+  ticketsMetaTeam:"FVREVER team support",ticketsMetaCode:"Tracking code",ticketsMetaReply:"Personalized response",ticketsCreate:"CREATE TICKET",
+  ticketModalTitle:"Create a support ticket",ticketModalDescription:"Describe your issue in as much detail as possible. We’ll send it to the FVREVER support team.",
+  ticketName:"YOUR NAME",ticketEmail:"EMAIL ADDRESS",ticketCategory:"CATEGORY",ticketChoose:"Choose a category",ticketLauncher:"Launcher issue",ticketInstall:"Installation",ticketAccount:"Account / Gift Key",ticketBug:"Bug report",ticketOther:"Other",
+  ticketSubject:"SUBJECT",ticketSubjectPlaceholder:"A short summary",ticketMessageLabel:"MESSAGE",ticketMessagePlaceholder:"Tell us what happened...",ticketNamePlaceholder:"Your name",ticketEmailPlaceholder:"you@example.com",
+  ticketSend:"SEND TICKET",ticketSending:"SENDING...",ticketReceived:"Ticket received!",ticketReceivedDescription:"Keep this reference code so you can identify your request.",ticketClose:"Close",ticketSendError:"Could not send ticket.",
   featured:"FEATURED",dateLocale:"en-US"
  },
  es:{
@@ -927,6 +935,13 @@ const translations={
   settingsNote:"Tus preferencias se guardan automáticamente en este dispositivo.",
   modalTitle:"Desbloquea tu descarga",modalDescription:"Introduce tu Gift Code de FVREVER para continuar.",
   continueButton:"CONTINUAR",codePlaceholder:"Introduce tu Gift Code",latest:"NUEVO",readMore:"LEER MÁS",readLess:"LEER MENOS",
+  ticketCooldownText:"Podrás enviar otro ticket en {time}.",ticketCooldownChecking:"Comprobando límite de tickets...",ticketsKicker:"CENTRO DE SOPORTE FVREVER",ticketsTitle:"Estamos aquí para ayudarte.",ticketsDescription:"¿Tienes algún problema con FVREVER Client? Cuéntanos qué sucede y nuestro equipo dará seguimiento.",
+  ticketsNote:"Soporte directo, seguimiento claro y un código único para identificar tu solicitud.",ticketsCardTitle:"Hablemos. Estamos para ayudarte.",ticketsCardDescription:"Abre una solicitud de soporte y describe el problema. Recibirás un código de referencia para consultar tu caso.",
+  ticketsMetaTeam:"Atención del equipo FVREVER",ticketsMetaCode:"Código de seguimiento",ticketsMetaReply:"Respuesta personalizada",ticketsCreate:"CREAR TICKET",
+  ticketModalTitle:"Crear un ticket de soporte",ticketModalDescription:"Describe tu problema con el mayor detalle posible. Enviaremos tu solicitud al equipo de soporte FVREVER.",
+  ticketName:"TU NOMBRE",ticketEmail:"CORREO ELECTRÓNICO",ticketCategory:"CATEGORÍA",ticketChoose:"Elige una categoría",ticketLauncher:"Problema con el launcher",ticketInstall:"Instalación",ticketAccount:"Cuenta / Gift Key",ticketBug:"Reporte de error",ticketOther:"Otro",
+  ticketSubject:"ASUNTO",ticketSubjectPlaceholder:"Un breve resumen",ticketMessageLabel:"MENSAJE",ticketMessagePlaceholder:"Cuéntanos qué ocurrió...",ticketNamePlaceholder:"Tu nombre",ticketEmailPlaceholder:"tu@correo.com",
+  ticketSend:"ENVIAR TICKET",ticketSending:"ENVIANDO...",ticketReceived:"¡Ticket recibido!",ticketReceivedDescription:"Guarda este código de referencia para identificar tu solicitud.",ticketClose:"Cerrar",ticketSendError:"No se pudo enviar el ticket.",
   featured:"DESTACADO",dateLocale:"es-SV"
  },
  fr:{
@@ -945,6 +960,13 @@ const translations={
   settingsNote:"Vos préférences sont enregistrées automatiquement.",
   modalTitle:"Débloquer le téléchargement",modalDescription:"Entrez votre code cadeau FVREVER pour continuer.",
   continueButton:"CONTINUER",codePlaceholder:"Entrez votre code cadeau",latest:"RÉCENT",readMore:"LIRE PLUS",readLess:"LIRE MOINS",
+  ticketCooldownText:"Vous pourrez envoyer un autre ticket dans {time}.",ticketCooldownChecking:"Vérification de la limite des tickets...",ticketsKicker:"CENTRE D’ASSISTANCE FVREVER",ticketsTitle:"Nous sommes là pour vous aider.",ticketsDescription:"Un problème avec FVREVER Client ? Expliquez-nous la situation et notre équipe vous répondra.",
+  ticketsNote:"Assistance directe, suivi clair et code unique pour identifier votre demande.",ticketsCardTitle:"Parlons-en. Nous sommes là pour vous.",ticketsCardDescription:"Ouvrez une demande d’assistance et décrivez le problème. Vous recevrez un code de référence.",
+  ticketsMetaTeam:"Assistance de l’équipe FVREVER",ticketsMetaCode:"Code de suivi",ticketsMetaReply:"Réponse personnalisée",ticketsCreate:"CRÉER UN TICKET",
+  ticketModalTitle:"Créer une demande d’assistance",ticketModalDescription:"Décrivez votre problème avec autant de détails que possible. Notre équipe FVREVER recevra votre demande.",
+  ticketName:"VOTRE NOM",ticketEmail:"ADRESSE E-MAIL",ticketCategory:"CATÉGORIE",ticketChoose:"Choisir une catégorie",ticketLauncher:"Problème du launcher",ticketInstall:"Installation",ticketAccount:"Compte / Gift Key",ticketBug:"Signaler un bug",ticketOther:"Autre",
+  ticketSubject:"SUJET",ticketSubjectPlaceholder:"Un bref résumé",ticketMessageLabel:"MESSAGE",ticketMessagePlaceholder:"Expliquez-nous ce qui s’est passé...",ticketNamePlaceholder:"Votre nom",ticketEmailPlaceholder:"vous@exemple.com",
+  ticketSend:"ENVOYER",ticketSending:"ENVOI...",ticketReceived:"Demande reçue !",ticketReceivedDescription:"Conservez ce code de référence pour retrouver votre demande.",ticketClose:"Fermer",ticketSendError:"Impossible d’envoyer la demande.",
   featured:"À LA UNE",dateLocale:"fr-FR"
  },
  pt:{
@@ -963,6 +985,13 @@ const translations={
   settingsNote:"Suas preferências são salvas automaticamente.",
   modalTitle:"Desbloqueie seu download",modalDescription:"Insira seu Gift Code FVREVER para continuar.",
   continueButton:"CONTINUAR",codePlaceholder:"Insira seu Gift Code",latest:"RECENTE",readMore:"LER MAIS",readLess:"LER MENOS",
+  ticketCooldownText:"Você poderá enviar outro ticket em {time}.",ticketCooldownChecking:"Verificando o limite de tickets...",ticketsKicker:"CENTRAL DE SUPORTE FVREVER",ticketsTitle:"Estamos aqui para ajudar.",ticketsDescription:"Está com algum problema no FVREVER Client? Conte o que aconteceu e nossa equipe dará retorno.",
+  ticketsNote:"Suporte direto, acompanhamento claro e um código único para identificar sua solicitação.",ticketsCardTitle:"Vamos conversar. Estamos aqui para ajudar.",ticketsCardDescription:"Abra uma solicitação de suporte e descreva o problema. Você receberá um código de referência.",
+  ticketsMetaTeam:"Atendimento da equipe FVREVER",ticketsMetaCode:"Código de acompanhamento",ticketsMetaReply:"Resposta personalizada",ticketsCreate:"CRIAR TICKET",
+  ticketModalTitle:"Criar um ticket de suporte",ticketModalDescription:"Descreva seu problema com o máximo de detalhes possível. Enviaremos sua solicitação à equipe FVREVER.",
+  ticketName:"SEU NOME",ticketEmail:"ENDEREÇO DE E-MAIL",ticketCategory:"CATEGORIA",ticketChoose:"Escolha uma categoria",ticketLauncher:"Problema no launcher",ticketInstall:"Instalação",ticketAccount:"Conta / Gift Key",ticketBug:"Relatar erro",ticketOther:"Outro",
+  ticketSubject:"ASSUNTO",ticketSubjectPlaceholder:"Um breve resumo",ticketMessageLabel:"MENSAGEM",ticketMessagePlaceholder:"Conte o que aconteceu...",ticketNamePlaceholder:"Seu nome",ticketEmailPlaceholder:"voce@exemplo.com",
+  ticketSend:"ENVIAR TICKET",ticketSending:"ENVIANDO...",ticketReceived:"Ticket recebido!",ticketReceivedDescription:"Guarde este código de referência para identificar sua solicitação.",ticketClose:"Fechar",ticketSendError:"Não foi possível enviar o ticket.",
   featured:"DESTAQUE",dateLocale:"pt-BR"
  }
 };
@@ -989,6 +1018,14 @@ function applyLanguage(lang){
  document.querySelectorAll("[data-i18n-html]").forEach(el=>{
   const key=el.dataset.i18nHtml;
   if(dict[key])el.innerHTML=dict[key];
+ });
+ document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
+  const key=el.dataset.i18nPlaceholder;
+  if(dict[key])el.placeholder=dict[key];
+ });
+ document.querySelectorAll("[data-i18n-aria]").forEach(el=>{
+  const key=el.dataset.i18nAria;
+  if(dict[key])el.setAttribute("aria-label",dict[key]);
  });
 
  $("modalTitle").textContent=dict.modalTitle;
@@ -1291,20 +1328,92 @@ async function loadPrivateReleases(){
 
 /* SUPPORT TICKETS */
 const ticketModal=$("ticketModal");
-$("openTicket").addEventListener("click",()=>{ticketModal.classList.add("show");$("ticketForm").classList.remove("hidden");$("ticketCreated").classList.add("hidden");$("ticketMessage").textContent="";});
+let ticketCooldownTimer=null;
+let ticketCooldownUntil=0;
+
+function formatTicketTime(ms){
+ const total=Math.max(0,Math.ceil(ms/1000));
+ const hours=Math.floor(total/3600),minutes=Math.floor((total%3600)/60),seconds=total%60;
+ return [hours,minutes,seconds].map(v=>String(v).padStart(2,"0")).join(":");
+}
+function showTicketCooldown(until){
+ ticketCooldownUntil=Number(until)||0;
+ const box=$("ticketCooldown"),button=$("submitTicket");
+ if(ticketCooldownTimer){clearInterval(ticketCooldownTimer);ticketCooldownTimer=null;}
+ if(!ticketCooldownUntil||ticketCooldownUntil<=Date.now()){
+  box.style.display="none";box.textContent="";button.disabled=false;return;
+ }
+ const update=()=>{
+  const remaining=ticketCooldownUntil-Date.now();
+  if(remaining<=0){
+   clearInterval(ticketCooldownTimer);ticketCooldownTimer=null;
+   ticketCooldownUntil=0;box.style.display="none";box.textContent="";button.disabled=false;
+   button.textContent=translations[currentLanguage].ticketSend;
+   return;
+  }
+  button.disabled=true;
+  box.style.display="block";
+  box.textContent=translations[currentLanguage].ticketCooldownText.replace("{time}",formatTicketTime(remaining));
+ };
+ update();
+ ticketCooldownTimer=setInterval(update,1000);
+}
+async function refreshTicketCooldown(){
+ const box=$("ticketCooldown");
+ box.style.display="block";
+ box.textContent=translations[currentLanguage].ticketCooldownChecking;
+ try{
+  const response=await fetch("/api/tickets?action=limit",{method:"GET",cache:"no-store",credentials:"same-origin"});
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(data.error||"Could not check ticket limit.");
+  if(data.retryAt)showTicketCooldown(new Date(data.retryAt).getTime());
+  else showTicketCooldown(0);
+ }catch(error){
+  box.style.display="none";
+  console.warn("Ticket cooldown status unavailable:",error);
+ }
+}
+$("openTicket").addEventListener("click",()=>{
+ ticketModal.classList.add("show");
+ $("ticketForm").classList.remove("hidden");
+ $("ticketCreated").classList.add("hidden");
+ $("ticketMessage").textContent="";
+ refreshTicketCooldown();
+});
 $("closeTicket").addEventListener("click",()=>ticketModal.classList.remove("show"));
 ticketModal.addEventListener("click",e=>{if(e.target===ticketModal)ticketModal.classList.remove("show")});
 $("ticketForm").addEventListener("submit",async e=>{
- e.preventDefault();const form=e.currentTarget,button=$("submitTicket"),message=$("ticketMessage");
- const payload=Object.fromEntries(new FormData(form).entries());button.disabled=true;button.textContent="SENDING...";message.textContent="";
+ e.preventDefault();
+ const form=e.currentTarget,button=$("submitTicket"),message=$("ticketMessage");
+ if(ticketCooldownUntil>Date.now())return;
+ const payload=Object.fromEntries(new FormData(form).entries());
+ button.disabled=true;
+ button.textContent=translations[currentLanguage].ticketSending;
+ message.textContent="";
+ message.classList.remove("error");
  try{
   const response=await fetch("/api/tickets",{method:"POST",headers:{"Content-Type":"application/json"},credentials:"same-origin",body:JSON.stringify(payload)});
-  const data=await response.json().catch(()=>({}));if(!response.ok||!data.success)throw new Error(data.error||"Could not send ticket.");
-  $("ticketCode").textContent=data.ticketCode;form.classList.add("hidden");$("ticketCreated").classList.remove("hidden");
- }catch(error){message.textContent=error.message;message.classList.add("error");}
- finally{button.disabled=false;button.textContent="SEND TICKET";}
+  const data=await response.json().catch(()=>({}));
+  if(response.status===429){
+   if(data.retryAt)showTicketCooldown(new Date(data.retryAt).getTime());
+   throw new Error(data.error||translations[currentLanguage].ticketCooldownText.replace("{time}",formatTicketTime((data.remainingSeconds||86400)*1000)));
+  }
+  if(!response.ok||!data.success)throw new Error(data.error||translations[currentLanguage].ticketSendError);
+  $("ticketCode").textContent=data.ticketCode;
+  form.classList.add("hidden");
+  $("ticketCreated").classList.remove("hidden");
+  if(data.retryAt)showTicketCooldown(new Date(data.retryAt).getTime());
+  else showTicketCooldown(Date.now()+24*60*60*1000);
+ }catch(error){
+  message.textContent=error.message;
+  message.classList.add("error");
+ }finally{
+  if(!ticketCooldownUntil||ticketCooldownUntil<=Date.now()){
+   button.disabled=false;
+   button.textContent=translations[currentLanguage].ticketSend;
+  }
+ }
 });
-
 /* REDEEM CODE */
 
 let redeeming=false;
