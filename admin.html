@@ -138,6 +138,21 @@ th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{co
 @media(max-width:680px){.sidebar{transform:translateX(-100%);width:260px;transition:.25s}.sidebar.open{transform:none}.main{margin:0;width:100%;padding:20px 15px}.mobile-menu{display:inline-block;border:1px solid var(--line);background:#211621;color:var(--pink);padding:9px 12px;border-radius:8px}.topbar{margin-bottom:24px}.cards{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.status{display:none}.slot-preview,.editor-preview{height:185px;min-height:185px}.slot-content{padding:13px}.post-list-top{flex-direction:column}.fvd-stats{grid-template-columns:repeat(2,1fr)}.fvd-head{align-items:flex-start;flex-direction:column}#fvDebugPanel{right:8px;bottom:70px;width:calc(100vw - 16px);height:75vh}}
 
 .ticket-admin-item{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;padding:15px;margin-top:9px;border:1px solid var(--line);border-radius:11px;background:#201923}.ticket-admin-item strong{font-size:12px}.ticket-admin-item p{font-size:10px;color:var(--muted);line-height:1.65;margin-top:5px;white-space:pre-wrap;overflow-wrap:anywhere}.ticket-admin-item button{flex-shrink:0}.ticket-state{display:inline-block;padding:5px 8px;border-radius:20px;font-size:9px;font-weight:800;background:#302a3d;color:#c8b8ff}.ticket-state.open{background:#382b1d;color:#f2c27d}.ticket-state.in_progress{background:#252b43;color:#b8c5ff}.ticket-state.closed{background:#173025;color:#83e0aa}
+
+.ticket-admin-item{align-items:center;padding:17px;border-radius:14px;background:linear-gradient(135deg,rgba(44,31,45,.96),rgba(27,21,31,.96));border-color:rgba(255,255,255,.09);transition:border-color .2s,transform .2s,background .2s}
+.ticket-admin-item:hover{border-color:rgba(240,138,168,.3);transform:translateY(-1px)}
+.ticket-admin-item>div:first-child{min-width:0;flex:1}
+.ticket-admin-item strong{font:700 13px "Space Grotesk";overflow-wrap:anywhere}
+.ticket-admin-item p{font-size:11px;line-height:1.75;margin:7px 0 9px}
+.ticket-country{display:inline-flex;align-items:center;gap:7px;margin:1px 0 8px;padding:6px 9px;border-radius:8px;background:rgba(240,138,168,.09);border:1px solid rgba(240,138,168,.16);color:#ffd0dc;font-size:10px;font-weight:800}
+.ticket-row-actions{display:flex;gap:7px;flex-shrink:0;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.ticket-row-actions button{min-height:38px;padding:0 13px;font-size:9px}
+.btn.danger{background:rgba(237,65,103,.12);border:1px solid rgba(237,65,103,.28);color:#ff9bb2}
+.btn.danger:hover{background:rgba(237,65,103,.23);border-color:#ed4167}
+.ticket-editor-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+#ticketDetails{white-space:pre-wrap;line-height:1.8;overflow-wrap:anywhere}
+@media(max-width:680px){.ticket-admin-item{align-items:stretch;flex-direction:column}.ticket-row-actions{justify-content:flex-start}.ticket-row-actions button{flex:1}}
+
 </style>
 </head>
 
@@ -261,7 +276,7 @@ th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{co
 <div class="heading"><div class="eyebrow">ATENCIÓN AL CLIENTE</div><h1>Tickets de soporte</h1><p class="subtitle">Revisa las solicitudes recibidas desde la página principal, responde y actualiza su estado.</p></div>
 <div class="cards"><div class="card"><div class="card-label">ABIERTOS</div><div class="card-value" id="ticketStatOpen">—</div></div><div class="card"><div class="card-label">EN PROCESO</div><div class="card-value" id="ticketStatProgress">—</div></div><div class="card"><div class="card-label">CERRADOS</div><div class="card-value" id="ticketStatClosed">—</div></div></div>
 <div class="panel"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div><h2>Bandeja de tickets</h2><p class="panel-desc">Las solicitudes más recientes aparecen primero.</p></div><button class="btn primary" id="refreshTickets">ACTUALIZAR</button></div><div class="form-grid"><div class="field"><label>FILTRAR POR ESTADO</label><select id="ticketFilter"><option value="all">Todos</option><option value="open">Abiertos</option><option value="in_progress">En proceso</option><option value="closed">Cerrados</option></select></div></div><div id="ticketList" class="empty">Cargando tickets...</div></div>
-<div class="panel hidden" id="ticketEditor" style="margin-top:15px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h2 id="ticketEditorTitle">Ticket</h2><button class="btn secondary" id="closeTicketEditor">CERRAR</button></div><div id="ticketDetails" class="notice"></div><div class="form-grid"><div class="field"><label>ESTADO</label><select id="ticketStatus"><option value="open">Abierto</option><option value="in_progress">En proceso</option><option value="closed">Cerrado</option></select></div><div class="field full"><label>RESPUESTA DEL EQUIPO</label><textarea id="ticketReply" placeholder="Escribe una respuesta para el usuario..."></textarea></div></div><button class="btn primary" id="saveTicket">GUARDAR CAMBIOS</button></div>
+<div class="panel hidden" id="ticketEditor" style="margin-top:15px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h2 id="ticketEditorTitle">Ticket</h2><button class="btn secondary" id="closeTicketEditor">CERRAR</button></div><div id="ticketDetails" class="notice"></div><div class="form-grid"><div class="field"><label>ESTADO</label><select id="ticketStatus"><option value="open">Abierto</option><option value="in_progress">En proceso</option><option value="closed">Cerrado</option></select></div><div class="field full"><label>RESPUESTA DEL EQUIPO</label><textarea id="ticketReply" placeholder="Escribe una respuesta para el usuario..."></textarea></div></div><div class="ticket-editor-actions"><button class="btn primary" id="saveTicket">GUARDAR CAMBIOS</button><button class="btn danger" id="deleteTicket">ELIMINAR TICKET</button></div></div>
 </section>
 
 <section class="section" id="keys">
@@ -1017,7 +1032,7 @@ function renderReleaseList(releases){
   del.onclick=async()=>{
    if(!confirm("¿Eliminar esta release y su archivo privado? Esta acción no se puede deshacer."))return;
    del.disabled=true;
-   try{await api("/api/releases?action=manage",{method:"DELETE",body:JSON.stringify({pathname:release.pathname})});await loadReleases();toast("Release eliminada.");}
+   try{await api("/api/releases-manage",{method:"DELETE",body:JSON.stringify({pathname:release.pathname})});await loadReleases();toast("Release eliminada.");}
    catch(e){del.disabled=false;toast("No se pudo eliminar: "+e.message);}
   };
   row.append(info,del);box.append(row);
@@ -1025,7 +1040,7 @@ function renderReleaseList(releases){
 }
 
 async function loadReleases(){
- try{const data=await api("/api/releases?action=manage");renderReleaseList(data.releases||[]);}
+ try{const data=await api("/api/releases-manage");renderReleaseList(data.releases||[]);}
  catch(e){$("releaseList").className="empty";$("releaseList").textContent="No se pudieron cargar las releases: "+e.message;FVDEBUG.error("No se pudieron cargar las releases.",e);}
 }
 
@@ -1040,13 +1055,13 @@ $("uploadRelease").onclick=async()=>{
  $("uploadStatus").textContent="Solicitando autorización privada...";
  FVDEBUG.upload("Inicio de subida de launcher.",{filename:file.name,size:file.size,version});
  try{
-  let auth=await api("/api/releases?action=upload",{method:"POST",body:JSON.stringify({filename:file.name,version})});
+  let auth=await api("/api/releases-upload",{method:"POST",body:JSON.stringify({filename:file.name,version})});
   if(!auth.success||!auth.uploadUrl)throw Error("El servidor no devolvió una URL de subida.");
   $("uploadStatus").textContent="Transfiriendo instalador...";FVDEBUG.upload("Autorización recibida. Iniciando transferencia.");
   let put=await fetch(auth.uploadUrl,{method:"PUT",body:file,headers:{"Content-Type":file.type||"application/octet-stream"}});
   if(!put.ok)throw Error("Vercel Blob rechazó la subida ("+put.status+").");
   $("uploadProgress").style.width="100%";
-  await api("/api/releases?action=manage",{method:"PUT",body:JSON.stringify({version,name,description,icon,pathname:auth.pathname,filename:file.name,uploadedAt:new Date().toISOString()})});
+  await api("/api/releases-manage",{method:"PUT",body:JSON.stringify({version,name,description,icon,pathname:auth.pathname,filename:file.name,uploadedAt:new Date().toISOString()})});
   await loadReleases();
   $("uploadStatus").textContent="Subida completada. Archivo guardado como privado.";
   $("releaseFile").value="";$("uploadStatus").textContent="Release publicada correctamente.";
@@ -1071,8 +1086,13 @@ function renderTickets(items){
   const row=document.createElement("div");row.className="ticket-admin-item";
   const info=document.createElement("div"),title=document.createElement("strong");title.textContent=t.ticket_code+" · "+t.subject;
   const desc=document.createElement("p");desc.textContent=t.name+" · "+t.email+"\n"+t.category+" · "+new Date(t.created_at).toLocaleString("es-SV")+"\n"+t.message;
+  const country=document.createElement("span");country.className="ticket-country";country.textContent=countryDisplay(t.country_code);
   const state=document.createElement("span");state.className="ticket-state "+t.status;state.textContent=ticketStatusLabel(t.status);
-  info.append(title,desc,state);const open=document.createElement("button");open.className="btn secondary";open.textContent="ABRIR";open.onclick=()=>openTicketRecord(t);row.append(info,open);box.append(row);
+  info.append(title,desc,country,state);
+  const actions=document.createElement("div");actions.className="ticket-row-actions";
+  const open=document.createElement("button");open.className="btn secondary";open.textContent="ABRIR";open.onclick=()=>openTicketRecord(t);
+  const del=document.createElement("button");del.className="btn danger";del.textContent="ELIMINAR";del.onclick=()=>deleteTicketRecord(t);
+  actions.append(open,del);row.append(info,actions);box.append(row);
  });
 }
 let ticketCache=[];
@@ -1081,12 +1101,34 @@ async function loadTickets(){
  try{const d=await api("/api/tickets");ticketCache=d.tickets||[];renderTickets(ticketCache);}
  catch(e){box.textContent="No se pudieron cargar los tickets: "+e.message;FVDEBUG.error("No se pudieron cargar tickets.",e);}
 }
+function countryDisplay(code){
+ const value=String(code||"").trim().toUpperCase();
+ if(!/^[A-Z]{2}$/.test(value))return "🌐 País no disponible";
+ let name=value;
+ try{name=new Intl.DisplayNames(["es"],{type:"region"}).of(value)||value;}catch{}
+ const flag=String.fromCodePoint(...[...value].map(c=>127397+c.charCodeAt(0)));
+ return flag+" "+name+" ("+value+")";
+}
+async function deleteTicketRecord(ticket){
+ if(!ticket||!ticket.id)return;
+ if(!confirm("¿Eliminar definitivamente el ticket "+ticket.ticket_code+"? Esta acción no se puede deshacer."))return;
+ try{
+  await api("/api/tickets",{method:"DELETE",body:JSON.stringify({id:Number(ticket.id)})});
+  ticketCache=ticketCache.filter(x=>String(x.id)!==String(ticket.id));
+  if(String(currentTicketId)===String(ticket.id)){$("ticketEditor").classList.add("hidden");currentTicketId=null;}
+  renderTickets(ticketCache);toast("Ticket eliminado correctamente.");
+ }catch(e){toast("No se pudo eliminar el ticket: "+e.message);}
+}
 function openTicketRecord(t){
  currentTicketId=t.id;$("ticketEditor").classList.remove("hidden");$("ticketEditorTitle").textContent=t.ticket_code+" · "+t.subject;
- $("ticketDetails").textContent=t.name+" · "+t.email+"\nCategoría: "+t.category+"\nFecha: "+new Date(t.created_at).toLocaleString("es-SV")+"\n\n"+t.message;
+ $("ticketDetails").textContent=t.name+" · "+t.email+"\nPaís: "+countryDisplay(t.country_code)+"\nCategoría: "+t.category+"\nFecha: "+new Date(t.created_at).toLocaleString("es-SV")+"\n\n"+t.message;
  $("ticketStatus").value=t.status;$("ticketReply").value=t.admin_reply||"";$("ticketEditor").scrollIntoView({behavior:"smooth",block:"start"});
 }
 $("refreshTickets").onclick=loadTickets;$("ticketFilter").onchange=()=>renderTickets(ticketCache);$("closeTicketEditor").onclick=()=>{$("ticketEditor").classList.add("hidden");currentTicketId=null;};
+$("deleteTicket").onclick=async()=>{
+ const ticket=ticketCache.find(x=>String(x.id)===String(currentTicketId));
+ if(ticket)await deleteTicketRecord(ticket);
+};
 $("saveTicket").onclick=async()=>{
  if(!currentTicketId)return;const btn=$("saveTicket");btn.disabled=true;
  try{await api("/api/tickets",{method:"PATCH",body:JSON.stringify({id:currentTicketId,status:$("ticketStatus").value,adminReply:$("ticketReply").value})});toast("Ticket actualizado.");await loadTickets();const updated=ticketCache.find(x=>x.id===currentTicketId);if(updated)openTicketRecord(updated);}
