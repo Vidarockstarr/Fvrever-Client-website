@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -245,8 +244,8 @@ th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{co
 
 <section class="section" id="releases">
 <div class="heading"><div class="eyebrow">DISTRIBUCIÓN PRIVADA</div><h1>Subir launcher</h1><p class="subtitle">Publica el instalador en el Blob privado fvrever-releases.</p></div>
-<div class="panel"><div class="notice"><strong>Privado:</strong> los instaladores no se publican como imágenes ni reciben una URL pública permanente.</div><div class="form-grid"><div class="field"><label>Versión</label><input id="uploadVersion" placeholder="1.0.0"></div><div class="field"><label>Nombre de publicación</label><input id="uploadName" placeholder="FVREVER Client Setup"></div><div class="field full"><label>Descripción</label><textarea id="uploadDescription"></textarea></div><div class="field full"><label>Archivo (.exe, .msi, .zip)</label><input id="releaseFile" type="file" accept=".exe,.msi,.zip"><small>Máximo permitido por esta interfaz: 500 MB.</small></div></div><button class="btn primary" id="uploadRelease">SUBIR NUEVA VERSIÓN</button><div id="uploadProgressWrap" class="hidden"><div class="progress"><span id="uploadProgress"></span></div><p class="panel-desc" id="uploadStatus">Preparando...</p></div></div>
-<div class="panel" style="margin-top:15px"><h2>Publicaciones de este navegador</h2><div id="releaseList" class="empty">Las publicaciones nuevas aparecerán aquí después de subirlas.</div></div>
+<div class="panel"><div class="notice"><strong>Privado:</strong> los instaladores no se publican como imágenes ni reciben una URL pública permanente.</div><div class="form-grid"><div class="field"><label>Versión</label><input id="uploadVersion" placeholder="1.0.0"></div><div class="field"><label>Nombre de publicación</label><input id="uploadName" placeholder="FVREVER Client Setup"></div><div class="field"><label>Icono (emoji)</label><input id="uploadIcon" maxlength="12" placeholder="🚀"></div><div class="field full"><label>Descripción</label><textarea id="uploadDescription"></textarea></div><div class="field full"><label>Archivo (.exe, .msi, .zip)</label><input id="releaseFile" type="file" accept=".exe,.msi,.zip"><small>Máximo permitido por esta interfaz: 500 MB.</small></div></div><button class="btn primary" id="uploadRelease">SUBIR NUEVA VERSIÓN</button><div id="uploadProgressWrap" class="hidden"><div class="progress"><span id="uploadProgress"></span></div><p class="panel-desc" id="uploadStatus">Preparando...</p></div></div>
+<div class="panel" style="margin-top:15px"><h2>Releases almacenadas</h2><p class="panel-desc">Administra las publicaciones privadas, sus iconos y descripciones.</p><div id="releaseList" class="empty">Cargando releases...</div></div>
 </section>
 
 <section class="section" id="downloads">
@@ -637,7 +636,7 @@ async function loadContent(){
   content={...content,...d};
   for(let k of ["features","changelog","releases","posts"])if(!Array.isArray(content[k]))content[k]=[];
   content.gallery=normalizeGallery(content.gallery);
-  fill();renderAll();renderPosts();
+  fill();renderAll();renderPosts();loadReleases();
   $("connectionStatus").textContent="Conectado correctamente.";
   $("statVersion").textContent=content.version||"—";
   $("statGallery").textContent=galleryCount()+" / 4";
@@ -992,44 +991,57 @@ function renderPosts(){
 }
 
 /* LAUNCHER PRIVADO */
+function renderReleaseList(releases){
+ const box=$("releaseList");
+ box.innerHTML="";
+ if(!Array.isArray(releases)||!releases.length){box.className="empty";box.textContent="No hay releases almacenadas.";return;}
+ box.className="";
+ releases.forEach(release=>{
+  const row=document.createElement("div");row.className="list-item";
+  const info=document.createElement("div");
+  const title=document.createElement("strong");title.textContent=(release.icon||"📦")+"  v"+release.version+" · "+release.name;
+  const desc=document.createElement("p");desc.textContent=(release.description||"Sin descripción")+"\n"+(release.filename||release.pathname)+" · "+(release.uploadedAt?new Date(release.uploadedAt).toLocaleString("es-SV"):"Fecha desconocida");
+  info.append(title,desc);
+  const del=document.createElement("button");del.className="danger";del.textContent="ELIMINAR";
+  del.onclick=async()=>{
+   if(!confirm("¿Eliminar esta release y su archivo privado? Esta acción no se puede deshacer."))return;
+   del.disabled=true;
+   try{await api("/api/releases-manage",{method:"DELETE",body:JSON.stringify({pathname:release.pathname})});await loadReleases();toast("Release eliminada.");}
+   catch(e){del.disabled=false;toast("No se pudo eliminar: "+e.message);}
+  };
+  row.append(info,del);box.append(row);
+ });
+}
+
+async function loadReleases(){
+ try{const data=await api("/api/releases-manage");renderReleaseList(data.releases||[]);}
+ catch(e){$("releaseList").className="empty";$("releaseList").textContent="No se pudieron cargar las releases: "+e.message;FVDEBUG.error("No se pudieron cargar las releases.",e);}
+}
+
 $("uploadRelease").onclick=async()=>{
- let file=$("releaseFile").files[0],version=$("uploadVersion").value.trim(),name=$("uploadName").value.trim(),description=$("uploadDescription").value.trim();
+ let file=$("releaseFile").files[0],version=$("uploadVersion").value.trim(),name=$("uploadName").value.trim(),description=$("uploadDescription").value.trim(),icon=$("uploadIcon").value.trim()||"📦";
  if(!file||!version||!name)return toast("Completa versión, nombre y archivo.");
  let ext=file.name.split(".").pop().toLowerCase();
  if(!["exe","msi","zip"].includes(ext))return toast("Solo EXE, MSI o ZIP.");
  if(file.size>500*1024*1024)return toast("El archivo supera 500 MB.");
  let btn=$("uploadRelease");btn.disabled=true;
- $("uploadProgressWrap").classList.remove("hidden");
+ $("uploadProgressWrap").classList.remove("hidden");$("uploadProgress").style.width="0%";
  $("uploadStatus").textContent="Solicitando autorización privada...";
  FVDEBUG.upload("Inicio de subida de launcher.",{filename:file.name,size:file.size,version});
  try{
   let auth=await api("/api/releases-upload",{method:"POST",body:JSON.stringify({filename:file.name,version})});
   if(!auth.success||!auth.uploadUrl)throw Error("El servidor no devolvió una URL de subida.");
-  $("uploadStatus").textContent="Transfiriendo instalador...";
-  FVDEBUG.upload("Autorización recibida. Iniciando transferencia.");
+  $("uploadStatus").textContent="Transfiriendo instalador...";FVDEBUG.upload("Autorización recibida. Iniciando transferencia.");
   let put=await fetch(auth.uploadUrl,{method:"PUT",body:file,headers:{"Content-Type":file.type||"application/octet-stream"}});
   if(!put.ok)throw Error("Vercel Blob rechazó la subida ("+put.status+").");
   $("uploadProgress").style.width="100%";
-  content.releases=Array.isArray(content.releases)?content.releases:[];
-  content.releases.unshift({
-   version,name,description,pathname:auth.pathname,
-   filename:file.name,uploadedAt:new Date().toISOString()
-  });
-  await saveContent("Instalador subido al almacenamiento privado.");
-  $("releaseList").className="";
-  let row=document.createElement("div");row.className="list-item";
-  let info=document.createElement("div"),strong=document.createElement("strong"),p=document.createElement("p");
-  strong.textContent="v"+version+" · "+name;
-  p.textContent=file.name+" · "+description+" · "+new Date().toLocaleString("es-SV");
-  info.append(strong,p);row.append(info);$("releaseList").prepend(row);
+  await api("/api/releases-manage",{method:"PUT",body:JSON.stringify({version,name,description,icon,pathname:auth.pathname,filename:file.name,uploadedAt:new Date().toISOString()})});
+  await loadReleases();
   $("uploadStatus").textContent="Subida completada. Archivo guardado como privado.";
-  FVDEBUG.upload("Launcher subido correctamente.",{version,filename:file.name});
-  toast("Launcher subido correctamente.");
- }catch(e){
-  $("uploadStatus").textContent="Error: "+e.message;
-  FVDEBUG.error("Falló la subida del launcher.",e);
-  toast("No se pudo subir el launcher: "+e.message);
- }finally{btn.disabled=false}
+  $("releaseFile").value="";$("uploadStatus").textContent="Release publicada correctamente.";
+  FVDEBUG.upload("Launcher subido correctamente.",{version,filename:file.name});toast("Launcher subido correctamente.");
+ }catch(e){$("uploadStatus").textContent="Error: "+e.message;FVDEBUG.error("Falló la subida del launcher.",e);toast("No se pudo subir el launcher: "+e.message);}
+ finally{btn.disabled=false;}
 };
 
 /* GIFT KEYS */
