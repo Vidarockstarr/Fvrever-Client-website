@@ -1,9 +1,12 @@
 
 const { readSession } = require("../lib/auth");
+const { issueSignedToken, presignUrl, list } = require("@vercel/blob");
 const path = require("path");
+const crypto = require("crypto");
 
 const MAX_FILE_SIZE = 500 * 1024 * 1024;
 const MAX_RELEASES = 3;
+const URL_VALIDITY = 10 * 60 * 1000;
 
 const ALLOWED_EXTENSIONS = [".exe", ".msi", ".zip"];
 
@@ -28,7 +31,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    // 1. Verificar sesión de administrador
+    // 1. Autenticación
     const session = await readSession(req);
 
     if (!session || session.sub !== "fvrever") {
@@ -38,135 +41,120 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // 2. Configuración del Blob privado
-    const storeId = process.env.REALSES_STORE_ID;
-    const webhookKey = process.env.REALSES_WEBHOOK_PUBLIC_KEY;
-
-    if (!storeId || !webhookKey) {
-      throw new Error("Private Blob configuration is missing");
+    // 2. Validar configuración
+    if (!process.env.BLOB_STORE_ID) {
+      throw new Error("BLOB_STORE_ID is missing");
     }
 
-    const {
-      handleUploadPresigned
-    } = await import("@vercel/blob/client");
+    // 3. Leer datos
+    let body = req.body;
 
-    const {
-      issueSignedToken,
-      list
-    } = await import("@vercel/blob");
+    if (typeof body === "string") {
+      body = JSON.parse(body);
+    }
 
-    // 3. Gestionar autorización de subida
-    const result = await handleUploadPresigned({
-      body: req.body,
-      request: req,
-      webhookPublicKey: webhookKey,
+    const filename = body?.filename;
+    const version = body?.version;
 
-      getSignedToken: async (pathname) => {
-        // Validar ruta
-        if (
-          typeof pathname !== "string" ||
-          !pathname.startsWith("releases/") ||
-          pathname.includes("..") ||
-          pathname.includes("\\")
-        ) {
-          throw new Error("Invalid file path");
-        }
+    if (
+      typeof filename !== "string" ||
+      typeof version !== "string" ||
+      !filename.trim() ||
+      !version.trim()
+    ) {
+      return res.status(400).json({
+        success: false,
+        error: "Invalid filename or version"
+      });
+    }
 
-        // Validar extensión
-        const filename = path.basename(pathname);
-        const extension = path.extname(filename).toLowerCase();
+    // 4. Validar nombre y extensión
+    const safeFilename = path.basename(filename.trim());
 
-        if (!ALLOWED_EXTENSIONS.includes(extension)) {
-          throw new Error("Only EXE, MSI and ZIP files are allowed");
-        }
+    if (
+      safeFilename !== filename.trim() ||
+      safeFilename.includes("..") ||
+      safeFilename.includes("/") ||
+      safeFilename.includes("\\")
+    ) {
+      return res.status(400).json({
+        success: false,
+        error: "Invalid filename"
+      });
+    }
 
-        // 4. Comprobar límite de archivos
-        const existing = await list({
-          prefix: "releases/",
-          limit: 100,
-          storeId
-        });
+    const extension = path.extname(safeFilename).toLowerCase();
 
-        if (existing.blobs.length >= MAX_RELEASES) {
-          throw new Error(
-            "MAX_RELEASES_REACHED: You can only store 3 launchers. Delete one before uploading another."
-          );
-        }
+    if (!ALLOWED_EXTENSIONS.includes(extension)) {
+      return res.status(400).json({
+        success: false,
+        error: "Only EXE, MSI and ZIP files are allowed"
+      });
+    }
 
-        // 5. Crear autorización temporal
-        const validUntil = Date.now() + 10 * 60 * 1000;
-
-        const token = await issueSignedToken({
-          pathname,
-          operations: ["put"],
-          storeId,
-          allowedContentTypes: ALLOWED_TYPES,
-          maximumSizeInBytes: MAX_FILE_SIZE,
-          validUntil
-        });
-
-        return {
-          token,
-          urlOptions: {
-            allowedContentTypes: ALLOWED_TYPES,
-            maximumSizeInBytes: MAX_FILE_SIZE,
-            addRandomSuffix: true,
-            allowOverwrite: false,
-            validUntil
-          }
-        };
-      },
-
-      // 6. Confirmar subida
-      onUploadCompleted: async ({ blob }) => {
-        console.log("Private release uploaded:", {
-          pathname: blob.pathname,
-          size: blob.size,
-          contentType: blob.contentType
-        });
-      }
+    // 5. Comprobar límite de releases
+    const existing = await list({
+      prefix: "releases/",
+      limit: MAX_RELEASES + 1
     });
 
-    return res.status(200).json({
-      success: true,
-      result
-    });
-
-  } catch (error) {
-    console.error("Private release upload error:", error);
-
-    const message = error.message || "";
-
-    if (message.includes("MAX_RELEASES_REACHED")) {
+    if (existing.blobs.length >= MAX_RELEASES) {
       return res.status(409).json({
         success: false,
         error: "Ya tienes 3 launchers almacenados. Elimina uno antes de subir otro."
       });
     }
 
-    if (
-      message === "Unauthorized" ||
-      message.includes("Unauthorized")
-    ) {
-      return res.status(401).json({
-        success: false,
-        error: "Unauthorized"
-      });
-    }
+    // 6. Crear una ruta única
+    const uniqueName = `${crypto.randomUUID()}-${safeFilename}`;
+    const pathname = `releases/${uniqueName}`;
 
-    if (
-      message.includes("Invalid file path") ||
-      message.includes("Only EXE")
-    ) {
-      return res.status(400).json({
-        success: false,
-        error: message
-      });
-    }
+    // 7. Generar token firmado
+    const validUntil = Date.now() + URL_VALIDITY;
+
+    const signedToken = await issueSignedToken({
+      pathname,
+      operations: ["put"],
+      validUntil,
+      allowedContentTypes: ALLOWED_TYPES,
+      maximumSizeInBytes: MAX_FILE_SIZE
+    });
+
+    // 8. Generar URL temporal de subida
+    const { presignedUrl } = await presignUrl(signedToken, {
+      pathname,
+      operation: "put",
+      access: "private",
+      validUntil,
+      allowedContentTypes: ALLOWED_TYPES,
+      maximumSizeInBytes: MAX_FILE_SIZE,
+      addRandomSuffix: false,
+      allowOverwrite: false
+    });
+
+    console.log("Release upload authorized:", {
+      filename: safeFilename,
+      version,
+      pathname
+    });
+
+    // 9. Respuesta compatible con admin.html
+    return res.status(200).json({
+      success: true,
+      uploadUrl: presignedUrl,
+      pathname,
+      filename: safeFilename,
+      version,
+      expiresAt: validUntil
+    });
+
+  } catch (error) {
+    console.error("Private release upload error:", error);
 
     return res.status(500).json({
       success: false,
-      error: "No se pudo autorizar la subida del launcher."
+      error: "No se pudo autorizar la subida del launcher.",
+      details: error.message || "Unknown error"
     });
   }
 };
