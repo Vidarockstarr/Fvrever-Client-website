@@ -564,6 +564,17 @@ body[data-theme="white"] .success-view>p{color:#786c77}
 .release-download{border:0;border-radius:8px;padding:10px 12px;background:#e84b75;color:white;font-size:10px;font-weight:800;cursor:pointer;white-space:nowrap}
 .release-download:disabled{opacity:.5;cursor:not-allowed}
 
+
+/* SUPPORT TICKETS + DOWNLOAD POLISH */
+.dashboard-link{display:flex;align-items:center;justify-content:center;gap:9px;margin:18px 4px 0;padding:13px 15px;border:1px solid rgba(240,138,168,.3);border-radius:12px;background:linear-gradient(110deg,rgba(237,65,103,.18),rgba(255,255,255,.035));color:#ffd3df;font-size:11px;font-weight:900;letter-spacing:1.2px;transition:.2s}
+.dashboard-link span{font-size:16px;color:#ff9db5}.dashboard-link:hover{transform:translateY(-2px);background:rgba(237,65,103,.25);border-color:rgba(240,138,168,.55)}
+.footer-dashboard{font-size:10px;opacity:.65;letter-spacing:1px}
+.ticket-panel{display:flex;align-items:center;gap:20px;padding:26px;border:1px solid rgba(240,138,168,.22);border-radius:20px;background:linear-gradient(120deg,rgba(237,65,103,.12),rgba(255,255,255,.025));box-shadow:0 18px 55px rgba(0,0,0,.16)}
+.ticket-panel-icon{width:55px;height:55px;flex:0 0 55px;display:grid;place-items:center;border-radius:17px;background:rgba(237,65,103,.16);border:1px solid rgba(240,138,168,.2);font-size:25px;color:#ffadc1}
+.ticket-panel-copy{flex:1;min-width:0}.ticket-panel-copy h3{font:700 17px "Space Grotesk";margin-bottom:7px}.ticket-panel-copy p{font-size:12px;color:var(--muted);line-height:1.7}
+.ticket-modal-box{width:min(560px,100%)}.ticket-form{display:grid;gap:13px}.ticket-form label{display:grid;gap:7px;color:#d8c8d4;font-size:9px;font-weight:900;letter-spacing:1.2px}.ticket-form input,.ticket-form textarea,.ticket-form select{width:100%;padding:12px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.2);color:white;outline:none;font:12px "DM Sans",sans-serif;letter-spacing:0}.ticket-form textarea{min-height:110px;resize:vertical}.ticket-form input:focus,.ticket-form textarea:focus,.ticket-form select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(240,138,168,.09)}.ticket-form select option{background:#211923;color:white}.ticket-form .btn{width:100%}.ticket-created{text-align:center;padding:12px 0 4px}.ticket-created p{color:var(--muted);font-size:12px;margin:10px 0}.ticket-created>strong{display:inline-block;padding:12px 18px;border-radius:10px;background:rgba(237,65,103,.13);border:1px solid rgba(240,138,168,.3);color:#ffc0d0;font:800 17px "Space Grotesk";letter-spacing:1px}
+.release-card{align-items:flex-start;padding:17px;border-radius:15px;background:linear-gradient(140deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border-color:rgba(240,138,168,.14);transition:.22s}.release-card:hover{transform:translateY(-2px);border-color:rgba(240,138,168,.38);box-shadow:0 12px 30px #0003}.release-icon{width:50px;height:50px;flex-basis:50px;border-radius:15px;font-size:25px}.release-info strong{font-size:13px}.release-info p{font-size:11px}.release-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.release-meta span{padding:5px 8px;border:1px solid rgba(255,255,255,.08);border-radius:7px;background:rgba(255,255,255,.035);color:#cdbbc9;font-size:9px}.release-progress{display:none;margin-top:12px}.release-progress.active{display:block}.release-progress-track{height:8px;border-radius:20px;background:rgba(0,0,0,.35);overflow:hidden;border:1px solid rgba(255,255,255,.07)}.release-progress-fill{height:100%;width:0;background:linear-gradient(90deg,#d92f59,#ff9db5);border-radius:20px;transition:width .12s}.release-progress-label{display:flex;justify-content:space-between;gap:10px;margin-top:7px;color:#bdaeba;font-size:9px;font-weight:700}.release-download{padding:12px 15px;font-size:10px;box-shadow:0 6px 18px rgba(237,65,103,.2)}.release-download:disabled{opacity:.7}
+@media(max-width:700px){.ticket-panel{align-items:flex-start;flex-wrap:wrap;padding:20px}.ticket-panel-copy{flex-basis:calc(100% - 80px)}.ticket-panel>.btn{width:100%}.release-card{flex-wrap:wrap}.release-download{margin-left:63px}.dashboard-link{margin-top:12px}}
 </style>
 </head>
 
@@ -609,6 +620,10 @@ body[data-theme="white"] .success-view>p{color:#786c77}
    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M5 17v3h14v-3"/></svg>
    <span data-i18n="download">Download</span>
   </a>
+  <a href="#tickets" class="nav-link">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-5 4v-4.5A2.5 2.5 0 0 1 4 13z"/><path d="M8 8h8M8 11.5h5"/></svg>
+   <span>Support tickets</span>
+  </a>
  </nav>
 
  <div class="sidebar-bottom">
@@ -616,7 +631,7 @@ body[data-theme="white"] .success-view>p{color:#786c77}
    <strong data-i18n="sidebarTitle">Made for your game.</strong>
    <p data-i18n="sidebarDescription">Your Minecraft PvP experience, with everything organized in one place.</p>
   </div>
-  <div class="sidebar-footer">FVREVER CLIENT · 2026</div>
+  <a class="dashboard-link" href="/dashboard.html"><span>⌘</span> DASHBOARD</a><div class="sidebar-footer">FVREVER CLIENT · 2026</div>
  </div>
 </aside>
 
@@ -682,6 +697,19 @@ body[data-theme="white"] .success-view>p{color:#786c77}
   <div class="update-list" id="postsList"><div class="post-empty" data-i18n="postsLoading">Loading publications...</div></div>
  </section>
 
+ <section class="section" id="tickets">
+  <div class="section-heading">
+   <div class="section-kicker">SUPPORT CENTER</div>
+   <h2 class="section-title">We’re here to help.</h2>
+   <p class="section-description">¿Tienes algún problema con FVREVER Client? Crea un ticket y nuestro equipo podrá revisarlo.</p>
+  </div>
+  <div class="ticket-panel">
+   <div class="ticket-panel-icon">✉</div>
+   <div class="ticket-panel-copy"><h3>Contacta con soporte</h3><p>Cuéntanos qué ocurre. Recibirás un código para identificar tu solicitud.</p></div>
+   <button class="btn btn-primary" id="openTicket">CREATE A TICKET <span>↗</span></button>
+  </div>
+ </section>
+
  <section class="section download-section" id="download">
   <div class="download-panel reveal">
    <div class="download-panel-content">
@@ -699,7 +727,7 @@ body[data-theme="white"] .success-view>p{color:#786c77}
  <footer class="footer">
   <span>© 2026 FVREVER CLIENT. All rights reserved.</span>
   <span>MADE FOR MINECRAFT PvP.</span>
-  <a class="footer-dashboard" href="/dashboard.html" aria-label="Administrator dashboard" title="Dashboard">•</a>
+  <a class="footer-dashboard" href="/dashboard.html">ADMIN DASHBOARD</a>
  </footer>
 </main>
 
@@ -721,6 +749,24 @@ body[data-theme="white"] .success-view>p{color:#786c77}
   </select>
  </div>
  <p class="settings-note" data-i18n="settingsNote">Your preferences are saved automatically on this device.</p>
+</div>
+
+<!-- SUPPORT TICKET MODAL -->
+<div class="modal" id="ticketModal">
+ <div class="modal-box ticket-modal-box">
+  <div class="modal-top"><h2>Create a support ticket</h2><button class="close-modal" id="closeTicket" aria-label="Close">×</button></div>
+  <p class="modal-description">Describe your issue with as much detail as you can. We’ll send your request to the FVREVER support team.</p>
+  <form id="ticketForm" class="ticket-form">
+   <label>YOUR NAME<input name="name" maxlength="70" required placeholder="Your name"></label>
+   <label>EMAIL ADDRESS<input name="email" type="email" maxlength="160" required placeholder="you@example.com"></label>
+   <label>CATEGORY<select name="category" required><option value="">Choose a category</option><option>Launcher issue</option><option>Installation</option><option>Account / Gift Key</option><option>Bug report</option><option>Other</option></select></label>
+   <label>SUBJECT<input name="subject" maxlength="120" required placeholder="A short summary"></label>
+   <label>MESSAGE<textarea name="message" maxlength="4000" required placeholder="Tell us what happened..."></textarea></label>
+   <button class="btn btn-primary" id="submitTicket" type="submit">SEND TICKET</button>
+   <div class="modal-message" id="ticketMessage" aria-live="polite"></div>
+  </form>
+  <div class="ticket-created hidden" id="ticketCreated"><div class="success-icon">✓</div><h2>Ticket received!</h2><p>Keep this reference code so you can identify your request.</p><strong id="ticketCode"></strong></div>
+ </div>
 </div>
 
 <!-- GIFT CODE MODAL -->
@@ -1136,6 +1182,41 @@ function playSuccessSound(){
 }
 
 /* PRIVATE RELEASES */
+function formatReleaseSize(bytes){
+ const n=Number(bytes||0);if(!Number.isFinite(n)||n<=0)return "Size unavailable";
+ return (n/1024/1024).toFixed(2)+" MB";
+}
+
+async function downloadRelease(release,button,progress){
+ button.disabled=true;button.textContent="DOWNLOADING...";progress.classList.add("active");
+ const fill=progress.querySelector(".release-progress-fill"),label=progress.querySelector(".release-progress-label");
+ let responseReceived=false;
+ fill.style.width="0%";label.innerHTML='<span>Starting secure download</span><span>0%</span>';
+ try{
+  const url="/api/releases-download?pathname="+encodeURIComponent(release.pathname)+"&filename="+encodeURIComponent(release.filename||"FVREVER-Client");
+  const response=await fetch(url,{method:"GET",cache:"no-store",credentials:"same-origin"});
+  if(!response.ok){const message=await response.text().catch(()=>"");throw new Error(message||"Download failed ("+response.status+")");}
+  responseReceived=true;
+  const total=Number(response.headers.get("Content-Length"))||Number(release.size)||0;
+  if(!response.body||!response.body.getReader)throw new Error("This browser does not support download progress.");
+  const reader=response.body.getReader(),chunks=[];let received=0;
+  while(true){
+   const part=await reader.read();if(part.done)break;
+   chunks.push(part.value);received+=part.value.byteLength;
+   const pct=total>0?Math.max(1,Math.min(100,Math.floor(received/total*100))):0;
+   fill.style.width=pct+"%";
+   label.innerHTML='<span>'+formatReleaseSize(received)+' / '+(total?formatReleaseSize(total):"calculating")+'</span><span>'+(total?pct+"%":"Receiving")+'</span>';
+  }
+  if(total&&received<total)throw new Error("The download ended before the complete file arrived. Please contact support.");
+  fill.style.width="100%";label.innerHTML='<span>'+formatReleaseSize(received)+' · Complete</span><span>100%</span>';
+  const blob=new Blob(chunks,{type:response.headers.get("Content-Type")||"application/octet-stream"});
+  const objectUrl=URL.createObjectURL(blob),link=document.createElement("a");link.href=objectUrl;link.download=release.filename||"FVREVER-Client";document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(objectUrl),60000);
+  button.textContent="DOWNLOADED";
+ }catch(error){
+  button.disabled=responseReceived;button.textContent=responseReceived?"DOWNLOAD INTERRUPTED":"RETRY DOWNLOAD";label.textContent=error.message+" · ERROR";label.style.color="#ff8ca5";
+ }
+}
+
 async function loadPrivateReleases(){
  const box=$("releaseItems");
  box.className="downloads-empty";
@@ -1152,14 +1233,15 @@ async function loadPrivateReleases(){
    const info=document.createElement("div");info.className="release-info";
    const title=document.createElement("strong");title.textContent="v"+release.version+" · "+release.name;
    const description=document.createElement("p");description.textContent=release.description||"FVREVER Client release";
-   info.append(title,description);
+   const meta=document.createElement("div");meta.className="release-meta";
+   const size=document.createElement("span");size.textContent=formatReleaseSize(release.size);
+   const filename=document.createElement("span");filename.textContent=release.filename||"Launcher file";
+   meta.append(size,filename);info.append(title,description,meta);
+   const action=document.createElement("div");action.className="release-action";
    const button=document.createElement("button");button.className="release-download";button.textContent="DOWNLOAD";
-   button.addEventListener("click",()=>{
-    button.disabled=true;button.textContent="STARTING...";
-    const link=document.createElement("a");link.href="/api/releases-download?pathname="+encodeURIComponent(release.pathname)+"&filename="+encodeURIComponent(release.filename||"FVREVER-Client");link.rel="noreferrer";link.download=release.filename||"";document.body.append(link);link.click();link.remove();
-    button.textContent="DOWNLOAD USED";
-   });
-   card.append(icon,info,button);box.append(card);
+   const progress=document.createElement("div");progress.className="release-progress";progress.innerHTML='<div class="release-progress-track"><div class="release-progress-fill"></div></div><div class="release-progress-label"><span>Ready</span><span>0%</span></div>';
+   button.addEventListener("click",()=>downloadRelease(release,button,progress));action.append(button,progress);
+   card.append(icon,info,action);box.append(card);
   });
  }catch(error){
   box.className="downloads-empty";box.innerHTML="";
@@ -1168,6 +1250,22 @@ async function loadPrivateReleases(){
   box.append(strong,p);
  }
 }
+
+/* SUPPORT TICKETS */
+const ticketModal=$("ticketModal");
+$("openTicket").addEventListener("click",()=>{ticketModal.classList.add("show");$("ticketForm").classList.remove("hidden");$("ticketCreated").classList.add("hidden");$("ticketMessage").textContent="";});
+$("closeTicket").addEventListener("click",()=>ticketModal.classList.remove("show"));
+ticketModal.addEventListener("click",e=>{if(e.target===ticketModal)ticketModal.classList.remove("show")});
+$("ticketForm").addEventListener("submit",async e=>{
+ e.preventDefault();const form=e.currentTarget,button=$("submitTicket"),message=$("ticketMessage");
+ const payload=Object.fromEntries(new FormData(form).entries());button.disabled=true;button.textContent="SENDING...";message.textContent="";
+ try{
+  const response=await fetch("/api/tickets",{method:"POST",headers:{"Content-Type":"application/json"},credentials:"same-origin",body:JSON.stringify(payload)});
+  const data=await response.json().catch(()=>({}));if(!response.ok||!data.success)throw new Error(data.error||"Could not send ticket.");
+  $("ticketCode").textContent=data.ticketCode;form.classList.add("hidden");$("ticketCreated").classList.remove("hidden");
+ }catch(error){message.textContent=error.message;message.classList.add("error");}
+ finally{button.disabled=false;button.textContent="SEND TICKET";}
+});
 
 /* REDEEM CODE */
 
