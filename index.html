@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -557,6 +556,14 @@ body[data-theme="white"] .success-view>p{color:#786c77}
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+
+.release-list{display:grid;gap:10px;margin-top:14px}
+.release-card{display:flex;align-items:center;gap:13px;padding:14px;border:1px solid var(--line,#ffffff20);border-radius:12px;background:rgba(255,255,255,.035);text-align:left}
+.release-icon{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center;border-radius:12px;background:rgba(240,138,168,.12);font-size:23px}
+.release-info{flex:1;min-width:0}.release-info strong{display:block;color:var(--text,#fff);font-size:12px}.release-info p{margin-top:5px;color:var(--muted,#a99ca9);font-size:10px;line-height:1.6;overflow-wrap:anywhere}
+.release-download{border:0;border-radius:8px;padding:10px 12px;background:#e84b75;color:white;font-size:10px;font-weight:800;cursor:pointer;white-space:nowrap}
+.release-download:disabled{opacity:.5;cursor:not-allowed}
+
 </style>
 </head>
 
@@ -788,10 +795,10 @@ body[data-theme="white"] .success-view>p{color:#786c77}
      <svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M5 17v3h14v-3"/></svg>
      <h3>FVREVER CLIENT DOWNLOADS</h3>
     </div>
-    <div class="downloads-empty">
+    <div class="downloads-empty" id="releaseItems">
      <div class="empty-icon">✧</div>
-     <strong>No downloads available yet.</strong>
-     <p>We're preparing something special. Check back soon!</p>
+     <strong>Loading available releases...</strong>
+     <p>Your private downloads will appear here.</p>
     </div>
    </div>
 
@@ -1128,6 +1135,40 @@ function playSuccessSound(){
  }
 }
 
+/* PRIVATE RELEASES */
+async function loadPrivateReleases(){
+ const box=$("releaseItems");
+ box.className="downloads-empty";
+ box.innerHTML='<div class="empty-icon">✧</div><strong>Loading releases...</strong><p>Checking your download access.</p>';
+ try{
+  const response=await fetch("/api/releases-list",{method:"GET",cache:"no-store",credentials:"same-origin"});
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok||!data.success)throw new Error(data.error||"No releases are available.");
+  if(!Array.isArray(data.releases)||!data.releases.length){box.className="downloads-empty";box.innerHTML='<div class="empty-icon">✧</div><strong>No downloads available yet.</strong><p>We're preparing something special. Check back soon!</p>';return;}
+  box.className="release-list";box.innerHTML="";
+  data.releases.forEach(release=>{
+   const card=document.createElement("div");card.className="release-card";
+   const icon=document.createElement("div");icon.className="release-icon";icon.textContent=release.icon||"📦";
+   const info=document.createElement("div");info.className="release-info";
+   const title=document.createElement("strong");title.textContent="v"+release.version+" · "+release.name;
+   const description=document.createElement("p");description.textContent=release.description||"FVREVER Client release";
+   info.append(title,description);
+   const button=document.createElement("button");button.className="release-download";button.textContent="DOWNLOAD";
+   button.addEventListener("click",()=>{
+    button.disabled=true;button.textContent="STARTING...";
+    const link=document.createElement("a");link.href="/api/releases-download?pathname="+encodeURIComponent(release.pathname)+"&filename="+encodeURIComponent(release.filename||"FVREVER-Client");link.rel="noreferrer";link.download=release.filename||"";document.body.append(link);link.click();link.remove();
+    button.textContent="DOWNLOAD USED";
+   });
+   card.append(icon,info,button);box.append(card);
+  });
+ }catch(error){
+  box.className="downloads-empty";box.innerHTML="";
+  const strong=document.createElement("strong");strong.textContent="Unable to load downloads.";
+  const p=document.createElement("p");p.textContent=error.message;
+  box.append(strong,p);
+ }
+}
+
 /* REDEEM CODE */
 
 let redeeming=false;
@@ -1180,6 +1221,7 @@ async function redeemCode(){
 
   $("redeemForm").classList.add("hidden");
   $("successView").classList.add("active");
+  await loadPrivateReleases();
 
   playSuccessSound();
 
