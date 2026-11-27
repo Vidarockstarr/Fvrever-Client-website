@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,15 +10,134 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{color-scheme:dark;--bg:#09090d;--surface:#111117;--panel:#15151d;--panel2:#1b1a24;--line:#ffffff12;--line2:#ffffff20;--text:#f7f4f7;--muted:#96919e;--pink:#f18aa8;--pink2:#e64c78;--green:#6fe0aa;--red:#ff6688;--gold:#efc27a;--shadow:0 18px 55px #0006}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{min-height:100vh;background:radial-gradient(ellipse at 80% -15%,#51253b38,transparent 42%),var(--bg);color:var(--text);font-family:"DM Sans",system-ui,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--pink);outline-offset:2px}.layout{display:flex;min-height:100vh}
-.sidebar{width:264px;position:fixed;inset:0 auto 0 0;z-index:30;display:flex;flex-direction:column;padding:25px 17px 18px;background:#101016f5;border-right:1px solid var(--line);backdrop-filter:blur(18px);overflow:auto}.brand{display:flex;gap:12px;align-items:center;padding:3px 8px 25px;border-bottom:1px solid var(--line)}.brand-mark{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#ff9bb6,#c62b58);box-shadow:0 8px 24px #ed416744;font:900 22px "Space Grotesk"}.brand-name{font:800 17px "Space Grotesk";letter-spacing:1.7px}.brand-sub{font-size:9px;color:var(--muted);letter-spacing:2.2px;margin-top:4px}.nav-title{font-size:9px;font-weight:800;letter-spacing:1.8px;color:#77717f;margin:25px 10px 10px}.nav{display:grid;gap:5px}.nav button{width:100%;padding:11px 12px;border:1px solid transparent;border-radius:11px;background:transparent;color:#b8b3bf;text-align:left;font-size:12px;font-weight:700;transition:.18s}.nav button:hover{background:#ffffff09;color:#fff;border-color:var(--line)}.nav button.active{background:linear-gradient(100deg,#e94e791e,#e94e7908);border-color:#ed789844;color:#ffb4c8;box-shadow:inset 3px 0 var(--pink)}.nav-icon{display:inline-flex;width:25px;align-items:center;font-size:15px}.nav-bottom{margin-top:auto;padding-top:18px}.profile{display:flex;gap:10px;align-items:center;padding:15px 7px;border-top:1px solid var(--line)}.avatar{width:36px;height:36px;border-radius:12px;background:#452235;color:#ffb2c8;display:grid;place-items:center;font-weight:900}.profile strong{font-size:12px}.profile small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.logout{width:100%;padding:11px;border:1px solid #71334a;background:#29151f;color:#ffabc0;border-radius:10px;font-size:10px;font-weight:900;transition:.18s}.logout:hover{background:#421d2d}
-.main{margin-left:264px;width:calc(100% - 264px);padding:30px clamp(20px,4vw,64px) 60px;min-width:0;max-width:1800px}.topbar{height:42px;display:flex;align-items:center;justify-content:space-between;margin-bottom:34px}.breadcrumb{font-size:11px;color:var(--muted)}.breadcrumb span{color:var(--pink);font-weight:700}.status{font-size:10px;color:#bdb7c2}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:8px;box-shadow:0 0 12px #6fe0aa88}.mobile-menu{display:none}.section{display:none}.section.active{display:block;animation:fade .22s ease}@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}.heading{margin-bottom:25px}.eyebrow{color:var(--pink);font-size:9px;letter-spacing:2.5px;font-weight:900;margin-bottom:10px}h1{font:700 clamp(26px,3vw,38px)/1.15 "Space Grotesk",sans-serif;letter-spacing:-.8px;margin-bottom:10px}.subtitle,.panel-desc{color:var(--muted);font-size:12px;line-height:1.8}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:17px}.card,.panel{background:linear-gradient(145deg,#191821,#121219);border:1px solid var(--line);border-radius:17px;padding:21px;min-width:0;box-shadow:0 8px 30px #0002}.card{position:relative;overflow:hidden}.card:after{content:"";position:absolute;width:100px;height:100px;border-radius:50%;right:-35px;top:-45px;background:#f18aa811;filter:blur(2px)}.card-label{font-size:9px;font-weight:800;letter-spacing:1.3px;color:#aaa4b0}.card-value{font:800 27px "Space Grotesk";margin-top:13px;overflow-wrap:anywhere}.card-note{font-size:10px;color:#898391;margin-top:6px}.grid{display:grid;grid-template-columns:1.25fr 1fr;gap:15px}.panel h2{font:700 15px "Space Grotesk";margin-bottom:8px}.panel-desc{margin-bottom:16px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:grid;gap:7px;margin-bottom:14px;min-width:0}.field.full{grid-column:1/-1}.field label{font-size:10px;font-weight:800;color:#c9c3ce}.field input,.field textarea,.field select{width:100%;padding:12px 13px;border:1px solid #ffffff1b;border-radius:10px;background:#0d0d13;color:#fff;outline:none;font-size:12px;transition:border .18s,background .18s}.field input:hover,.field textarea:hover,.field select:hover{border-color:#ffffff35}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--pink);background:#131019}.field textarea{min-height:100px;resize:vertical}.field small{font-size:10px;color:var(--muted);line-height:1.6}.field input[type=file]{padding:12px;background:#111018;border-style:dashed}.field input[type=checkbox]{accent-color:var(--pink)}.btn-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.btn{border:1px solid transparent;border-radius:10px;padding:11px 15px;font-size:10px;font-weight:900;letter-spacing:.45px;transition:transform .16s,filter .16s,border .16s}.btn:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.08)}.primary{color:white;background:linear-gradient(110deg,#ed557d,#c72d58);box-shadow:0 7px 22px #e1305b25}.secondary{color:#e9e3eb;background:#24222c;border-color:#ffffff17}.secondary:hover:not(:disabled){border-color:#f18aa866}.danger{color:#ff9db5;background:#301722;border:1px solid #693044;border-radius:8px;padding:8px 10px;font-size:9px;font-weight:800}.btn:disabled{opacity:.45;cursor:not-allowed}.notice,.status-box{padding:13px 15px;border-radius:11px;background:#251620;border:1px solid #694052;color:#c7b3c1;font-size:11px;line-height:1.7;margin:12px 0}.notice strong,.status-box strong{color:#ffabc0}.list-item{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;padding:14px;border:1px solid var(--line);background:#1b1922;border-radius:12px;margin-top:9px}.list-item strong{font-size:11px}.list-item p{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}.list-item button{flex-shrink:0}.empty{padding:25px;text-align:center;border:1px dashed #51404f;border-radius:12px;color:#a39aa8;font-size:11px;line-height:1.8;background:#ffffff03}.hidden{display:none!important}#toast{position:fixed;right:24px;bottom:24px;z-index:100;padding:13px 17px;background:#241b29;border:1px solid #654056;color:#ffe9f0;border-radius:11px;font-size:11px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none;box-shadow:var(--shadow)}#toast.show{opacity:1;transform:none}.progress{height:10px;background:#0c0b11;border:1px solid #ffffff14;border-radius:20px;overflow:hidden;margin-top:12px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ed4167,#f5a0b7);box-shadow:0 0 14px #ed416755;transition:width .12s linear}table{width:100%;border-collapse:collapse;min-width:650px;font-size:10px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line)}th{color:#bdb4c2;font-size:9px;letter-spacing:.6px}.table-wrap{overflow:auto;margin-top:15px;border:1px solid var(--line);border-radius:12px}.code{font-family:monospace;color:#ffb5c8;white-space:nowrap}.pill{display:inline-block;padding:5px 9px;border-radius:20px;background:#29202d;font-size:9px;font-weight:800}.available{background:#173025;color:#83e0aa}.used{background:#302a3d;color:#c8b8ff}.expired{background:#382b1d;color:#f2c27d}.revoked{background:#3b1d28;color:#ff9db5}.gallery-slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.gallery-slot{min-width:0;border:1px solid var(--line);border-radius:15px;background:#17151d;overflow:hidden}.slot-preview{height:215px;min-height:215px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:22px;background:linear-gradient(135deg,#30202e,#17121c 75%)}.slot-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}.slot-preview:after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,rgba(8,6,10,.9));pointer-events:none}.slot-preview .slot-placeholder{position:relative;z-index:2;text-align:left}.slot-placeholder span{color:#ffabc0;font-size:9px;font-weight:800;letter-spacing:2px}.slot-placeholder h3{font:700 20px "Space Grotesk";margin-top:7px}.slot-placeholder p{font-size:11px;color:#b7a9b7;margin-top:5px}.slot-number{position:absolute;top:12px;left:13px;z-index:3;padding:6px 9px;background:#100d14c9;border:1px solid #ffffff22;border-radius:7px;font-size:9px;font-weight:900;letter-spacing:1px}.slot-content{padding:15px}.slot-content h3{font:700 13px "Space Grotesk";margin-bottom:6px}.slot-content p{font-size:10px;color:var(--muted);line-height:1.6;margin-bottom:12px}.slot-actions{display:flex;gap:8px;flex-wrap:wrap}.slot-actions button,.slot-actions label{font-size:9px;padding:10px 11px}.editor{display:none;margin-top:14px;padding:15px;border:1px solid #704154;background:#211720;border-radius:12px}.editor.open{display:block}.editor h4{font:700 13px "Space Grotesk";margin-bottom:12px}.editor-preview{height:215px;position:relative;overflow:hidden;border-radius:10px;border:1px solid #ffffff20;background:#100d14;margin-bottom:15px}.editor-preview img{width:100%;height:100%;object-fit:cover;transform-origin:center;display:block}.editor-preview:after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,rgba(8,6,10,.6));pointer-events:none}.range-row{display:grid;grid-template-columns:1fr 55px;gap:12px;align-items:center;margin:12px 0}.range-row label{font-size:10px;color:#c4b6c4}.range-row input{width:100%;accent-color:#ed4167}.range-value{text-align:right;font-size:10px;color:#ffb2c5}.editor .field{margin-bottom:10px}.editor .field input{padding:10px}.editor-note{font-size:10px;color:#a99ca9;line-height:1.6;margin:8px 0 12px}.post-editor{border:1px solid #ffffff18;background:#111018;border-radius:12px;padding:18px;margin-top:15px}.post-editor h3{font:700 15px "Space Grotesk";margin-bottom:14px}.post-list-card{padding:15px;border:1px solid var(--line);background:#1b1922;border-radius:12px;margin-top:10px}.post-list-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.post-list-card strong{font-size:12px}.post-list-card p{font-size:10px;color:var(--muted);line-height:1.6;margin-top:6px;white-space:pre-wrap}.post-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.post-actions button{font-size:9px}.post-status{display:inline-block;padding:5px 8px;border-radius:6px;font-size:9px;font-weight:900}.post-status.published{background:#173025;color:#83e0aa}.post-status.draft{background:#302a3d;color:#c8b8ff}.lang-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.lang-tabs button{padding:8px 12px;border-radius:8px;border:1px solid #453547;background:#24222c;color:#cbbdca;font-size:10px;font-weight:800}.lang-tabs button.active{background:#6b2b43;border-color:#ed7898;color:white}.post-cover-preview{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0 14px;display:none}
-/* Consola de depuración */#fvDebugLauncher{position:fixed;right:22px;bottom:22px;z-index:99990;background:linear-gradient(110deg,#f04c70,#c92750);color:white;border:1px solid #ff9bb4;border-radius:12px;padding:13px 18px;font:900 11px "DM Sans",sans-serif;letter-spacing:1px;box-shadow:0 8px 30px #ed416755;cursor:pointer}#fvDebugPanel{position:fixed;z-index:99999;right:18px;bottom:78px;width:min(850px,calc(100vw - 36px));height:min(570px,75vh);background:#100d14;border:1px solid #704154;border-radius:15px;box-shadow:0 20px 80px #000b;display:none;overflow:hidden;color:#fff7fa;font:11px "DM Sans",sans-serif}#fvDebugPanel.open{display:flex;flex-direction:column}.fvd-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px;background:#1c1420;border-bottom:1px solid #ffffff18}.fvd-title{font:800 14px "Space Grotesk";letter-spacing:1px}.fvd-title span{color:#f08aa8}.fvd-actions{display:flex;gap:6px;flex-wrap:wrap}.fvd-btn{background:#30202e;border:1px solid #624052;color:#ffb5c8;border-radius:7px;padding:8px 10px;font-size:9px;font-weight:900;cursor:pointer}.fvd-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px}.fvd-stat{background:#1b1520;border:1px solid #ffffff12;border-radius:9px;padding:11px}.fvd-stat small{display:block;color:#a99ca9;font-size:8px;letter-spacing:1px}.fvd-stat strong{display:block;font:800 20px "Space Grotesk";margin-top:6px}.fvd-toolbar{display:flex;gap:7px;padding:0 12px 11px;flex-wrap:wrap}.fvd-toolbar input{flex:1;min-width:120px;background:#19131e;border:1px solid #453547;border-radius:7px;padding:9px;color:white;outline:none;font-size:10px}.fvd-toolbar select{background:#19131e;border:1px solid #453547;color:white;border-radius:7px;padding:8px;font-size:10px}#fvDebugLogs{overflow:auto;flex:1;padding:10px 12px;background:#0c0a10;font-family:Consolas,monospace}.fvd-log{padding:9px 10px;margin-bottom:6px;border-left:3px solid #777;background:#17121b;border-radius:4px;overflow-wrap:anywhere;line-height:1.6}.fvd-log.error{border-color:#ed4167}.fvd-log.warn{border-color:#f2c27d}.fvd-log.api{border-color:#8e8bff}.fvd-log.upload{border-color:#f08aa8}.fvd-log.info{border-color:#72d9a0}.fvd-meta{color:#887b8b;font-size:9px}.fvd-level{font-weight:900;margin-right:7px}.fvd-log.error .fvd-level{color:#ff7797}.fvd-log.warn .fvd-level{color:#f2c27d}.fvd-log.api .fvd-level{color:#aaa8ff}.fvd-log.upload .fvd-level{color:#ffabc0}.fvd-log.info .fvd-level{color:#72d9a0}.fvd-message{color:#f8edf3;white-space:pre-wrap}.fvd-empty{text-align:center;padding:35px;color:#887b8b}
-@media(max-width:1000px){.sidebar{width:235px}.main{margin-left:235px;width:calc(100% - 235px);padding:25px 24px 50px}.grid{grid-template-columns:1fr}}
-@media(max-width:760px){.gallery-slots{grid-template-columns:1fr}.cards{gap:10px}.card{padding:16px}}
-@media(max-width:680px){.sidebar{transform:translateX(-105%);width:270px;transition:transform .25s;box-shadow:var(--shadow)}.sidebar.open{transform:translateX(0)}.main{margin:0;width:100%;padding:18px 15px 45px}.mobile-menu{display:inline-block;border:1px solid var(--line2);background:#211621;color:var(--pink);padding:9px 12px;border-radius:9px}.topbar{margin-bottom:25px}.cards{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.status{display:none}.slot-preview,.editor-preview{height:185px;min-height:185px}.slot-content{padding:13px}.post-list-top{flex-direction:column}.fvd-stats{grid-template-columns:repeat(2,1fr)}.fvd-head{align-items:flex-start;flex-direction:column}#fvDebugPanel{right:8px;bottom:70px;width:calc(100vw - 16px);height:75vh}}
-@media(max-width:390px){.cards{grid-template-columns:1fr}.btn{padding:10px 12px}.main{padding-inline:12px}}
+:root{--bg:#0d0a10;--side:#120e16;--panel:#19131e;--pink:#f08aa8;--red:#ed4167;--text:#fff7fa;--muted:#a99ca9;--line:#ffffff17;--green:#72d9a0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;min-height:100vh}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:255px;position:fixed;inset:0 auto 0 0;z-index:20;display:flex;flex-direction:column;padding:25px 17px;background:#120e16f7;border-right:1px solid var(--line);overflow:auto}
+.brand{display:flex;gap:12px;align-items:center;padding:4px 8px 25px;border-bottom:1px solid var(--line)}
+.brand-mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#ff7896,#c5264d);font:900 21px "Space Grotesk"}
+.brand-name{font:800 16px "Space Grotesk";letter-spacing:1.5px}.brand-sub{font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:4px}
+.nav-title{font-size:9px;font-weight:800;letter-spacing:2px;color:#796d7d;margin:25px 10px 11px}
+.nav{display:grid;gap:5px}.nav button{width:100%;padding:12px;border:1px solid transparent;border-radius:10px;background:none;color:#b8acb9;text-align:left;font-size:12px;font-weight:700}
+.nav button:hover{background:#ffffff0b;color:white}.nav button.active{background:#ed41671c;border-color:#ed416744;color:#ffadc1}
+.nav-icon{display:inline-block;width:23px;font-size:16px}
+.nav-bottom{margin-top:auto;padding-top:20px}.profile{display:flex;gap:10px;align-items:center;padding:16px 7px;border-top:1px solid var(--line)}
+.avatar{width:35px;height:35px;border-radius:50%;background:#422032;color:#ffabc0;display:grid;place-items:center;font-weight:900}
+.profile strong{font-size:12px}.profile small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+.logout{width:100%;padding:12px;border:1px solid #71334a;background:#29151f;color:#ffabc0;border-radius:9px;font-size:10px;font-weight:900}
+.main{margin-left:255px;width:calc(100% - 255px);padding:34px 4.5%;min-width:0}
+.topbar{height:38px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+.breadcrumb{font-size:11px;color:#958796}.breadcrumb span{color:var(--pink)}
+.status{font-size:10px;color:#b3a7b3}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:7px}
+.mobile-menu{display:none}.section{display:none}.section.active{display:block;animation:fade .2s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.heading{margin-bottom:25px}.eyebrow{color:var(--pink);font-size:9px;letter-spacing:3px;font-weight:900;margin-bottom:10px}
+h1{font:700 clamp(25px,3vw,34px) "Space Grotesk";margin-bottom:9px}
+.subtitle,.panel-desc{color:var(--muted);font-size:12px;line-height:1.8}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:18px}
+.card,.panel{background:linear-gradient(145deg,#1b1520,#141019);border:1px solid #332633;border-radius:14px;padding:21px;min-width:0}
+.card-label{font-size:9px;font-weight:800;letter-spacing:1.3px;color:#a99ba9}
+.card-value{font:800 25px "Space Grotesk";margin-top:15px;overflow-wrap:anywhere}
+.card-note{font-size:10px;color:#897b8b;margin-top:6px}
+.grid{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+.panel h2{font:700 15px "Space Grotesk";margin-bottom:8px}.panel-desc{margin-bottom:17px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field{display:grid;gap:7px;margin-bottom:14px;min-width:0}.field.full{grid-column:1/-1}
+.field label{font-size:10px;font-weight:800;color:#c4b6c4}
+.field input,.field textarea,.field select{width:100%;padding:12px;border:1px solid #443344;border-radius:9px;background:#100d14;color:white;outline:none;font-size:12px}
+.field textarea{min-height:100px;resize:vertical}.field small{font-size:10px;color:#9c8c9b;line-height:1.5}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--pink)}
+.btn-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
+.btn{border:1px solid transparent;border-radius:9px;padding:12px 16px;font-size:10px;font-weight:900;letter-spacing:.5px}
+.primary{color:white;background:linear-gradient(110deg,#f04c70,#c92750);box-shadow:0 7px 22px #e1305b33}
+.secondary{color:#e9dce7;background:#29202d;border-color:#453547}
+.danger{color:#ff9db5;background:#301722;border:1px solid #693044;border-radius:7px;padding:8px 10px;font-size:9px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.notice,.status-box{padding:13px;border-radius:9px;background:#251620;border:1px solid #694052;color:#c7b3c1;font-size:11px;line-height:1.7;margin:12px 0}
+.notice strong,.status-box strong{color:#ffabc0}
+.list-item{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;padding:13px;border:1px solid var(--line);background:#201923;border-radius:10px;margin-top:9px}
+.list-item strong{font-size:11px}.list-item p{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.list-item button{flex-shrink:0}.empty{padding:24px;text-align:center;border:1px dashed #50394d;border-radius:11px;color:#9c8b9d;font-size:11px;line-height:1.8}
+.hidden{display:none!important}
+#toast{position:fixed;right:24px;bottom:24px;z-index:100;padding:13px 17px;background:#241b29;border:1px solid #654056;color:#ffe9f0;border-radius:10px;font-size:11px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}
+#toast.show{opacity:1;transform:none}
+.progress{height:8px;background:#100d14;border-radius:20px;overflow:hidden;margin-top:12px}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ed4167,#f08aa8);transition:width .2s}
+table{width:100%;border-collapse:collapse;min-width:650px;font-size:10px}
+th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{color:#bbaaba;font-size:9px}
+.table-wrap{overflow:auto;margin-top:15px}.code{font-family:monospace;color:#ffb5c8;white-space:nowrap}
+.pill{display:inline-block;padding:5px 8px;border-radius:20px;background:#29202d;font-size:9px}
+.available{background:#173025;color:#83e0aa}.used{background:#302a3d;color:#c8b8ff}.expired{background:#382b1d;color:#f2c27d}.revoked{background:#3b1d28;color:#ff9db5}
+.gallery-slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.gallery-slot{min-width:0;border:1px solid #ffffff17;border-radius:15px;background:#17121c;overflow:hidden}
+.slot-preview{height:215px;min-height:215px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:23px;background:linear-gradient(135deg,#30202e,#17121c 75%)}
+.slot-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.slot-preview:after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,rgba(8,6,10,.9));pointer-events:none}
+.slot-preview .slot-placeholder{position:relative;z-index:2;text-align:left}
+.slot-placeholder span{color:#ffabc0;font-size:9px;font-weight:800;letter-spacing:2px}
+.slot-placeholder h3{font:700 20px "Space Grotesk";margin-top:7px}
+.slot-placeholder p{font-size:11px;color:#b7a9b7;margin-top:5px}
+.slot-number{position:absolute;top:12px;left:13px;z-index:3;padding:6px 9px;background:#100d14c9;border:1px solid #ffffff22;border-radius:7px;font-size:9px;font-weight:900;letter-spacing:1px}
+.slot-content{padding:15px}.slot-content h3{font:700 13px "Space Grotesk";margin-bottom:6px}
+.slot-content p{font-size:10px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.slot-actions{display:flex;gap:8px;flex-wrap:wrap}
+.slot-actions button,.slot-actions label{font-size:9px;padding:10px 11px}
+.editor{display:none;margin-top:14px;padding:15px;border:1px solid #704154;background:#211720;border-radius:12px}
+.editor.open{display:block}
+.editor h4{font:700 13px "Space Grotesk";margin-bottom:12px}
+.editor-preview{height:215px;position:relative;overflow:hidden;border-radius:10px;border:1px solid #ffffff20;background:#100d14;margin-bottom:15px}
+.editor-preview img{width:100%;height:100%;object-fit:cover;transform-origin:center;display:block}
+.editor-preview:after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,rgba(8,6,10,.6));pointer-events:none}
+.range-row{display:grid;grid-template-columns:1fr 55px;gap:12px;align-items:center;margin:12px 0}
+.range-row label{font-size:10px;color:#c4b6c4}.range-row input{width:100%;accent-color:#ed4167}
+.range-value{text-align:right;font-size:10px;color:#ffb2c5}
+.editor .field{margin-bottom:10px}.editor .field input{padding:10px}
+.editor-note{font-size:10px;color:#a99ca9;line-height:1.6;margin:8px 0 12px}
+.post-editor{border:1px solid #704154;background:#211720;border-radius:12px;padding:18px;margin-top:15px}
+.post-editor h3{font:700 15px "Space Grotesk";margin-bottom:14px}
+.post-list-card{padding:15px;border:1px solid #ffffff17;background:#201923;border-radius:11px;margin-top:10px}
+.post-list-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.post-list-card strong{font-size:12px}
+.post-list-card p{font-size:10px;color:var(--muted);line-height:1.6;margin-top:6px;white-space:pre-wrap}
+.post-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.post-actions button{font-size:9px}
+.post-status{display:inline-block;padding:5px 8px;border-radius:6px;font-size:9px;font-weight:900}
+.post-status.published{background:#173025;color:#83e0aa}
+.post-status.draft{background:#302a3d;color:#c8b8ff}
+.lang-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.lang-tabs button{padding:8px 12px;border-radius:8px;border:1px solid #453547;background:#29202d;color:#cbbdca;font-size:10px;font-weight:800}
+.lang-tabs button.active{background:#6b2b43;border-color:#ed7898;color:white}
+.post-cover-preview{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0 14px;display:none}
+
+/* FVREVER DEBUG CONSOLE */
+#fvDebugLauncher{position:fixed;right:22px;bottom:22px;z-index:99990;background:linear-gradient(110deg,#f04c70,#c92750);color:white;border:1px solid #ff9bb4;border-radius:12px;padding:13px 18px;font:900 11px "DM Sans",sans-serif;letter-spacing:1px;box-shadow:0 8px 30px #ed416755;cursor:pointer}
+#fvDebugPanel{position:fixed;z-index:99999;right:18px;bottom:78px;width:min(850px,calc(100vw - 36px));height:min(570px,75vh);background:#100d14;border:1px solid #704154;border-radius:15px;box-shadow:0 20px 80px #000b;display:none;overflow:hidden;color:#fff7fa;font:11px "DM Sans",sans-serif}
+#fvDebugPanel.open{display:flex;flex-direction:column}
+.fvd-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px;background:#1c1420;border-bottom:1px solid #ffffff18}
+.fvd-title{font:800 14px "Space Grotesk";letter-spacing:1px}.fvd-title span{color:#f08aa8}
+.fvd-actions{display:flex;gap:6px;flex-wrap:wrap}
+.fvd-btn{background:#30202e;border:1px solid #624052;color:#ffb5c8;border-radius:7px;padding:8px 10px;font-size:9px;font-weight:900;cursor:pointer}
+.fvd-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px}
+.fvd-stat{background:#1b1520;border:1px solid #ffffff12;border-radius:9px;padding:11px}
+.fvd-stat small{display:block;color:#a99ca9;font-size:8px;letter-spacing:1px}
+.fvd-stat strong{display:block;font:800 20px "Space Grotesk";margin-top:6px}
+.fvd-toolbar{display:flex;gap:7px;padding:0 12px 11px;flex-wrap:wrap}
+.fvd-toolbar input{flex:1;min-width:120px;background:#19131e;border:1px solid #453547;border-radius:7px;padding:9px;color:white;outline:none;font-size:10px}
+.fvd-toolbar select{background:#19131e;border:1px solid #453547;color:white;border-radius:7px;padding:8px;font-size:10px}
+#fvDebugLogs{overflow:auto;flex:1;padding:10px 12px;background:#0c0a10;font-family:Consolas,monospace}
+.fvd-log{padding:9px 10px;margin-bottom:6px;border-left:3px solid #777;background:#17121b;border-radius:4px;overflow-wrap:anywhere;line-height:1.6}
+.fvd-log.error{border-color:#ed4167}.fvd-log.warn{border-color:#f2c27d}.fvd-log.api{border-color:#8e8bff}.fvd-log.upload{border-color:#f08aa8}.fvd-log.info{border-color:#72d9a0}
+.fvd-meta{color:#887b8b;font-size:9px}.fvd-level{font-weight:900;margin-right:7px}
+.fvd-log.error .fvd-level{color:#ff7797}.fvd-log.warn .fvd-level{color:#f2c27d}.fvd-log.api .fvd-level{color:#aaa8ff}.fvd-log.upload .fvd-level{color:#ffabc0}.fvd-log.info .fvd-level{color:#72d9a0}
+.fvd-message{color:#f8edf3;white-space:pre-wrap}.fvd-empty{text-align:center;padding:35px;color:#887b8b}
+
+@media(max-width:950px){.sidebar{width:220px}.main{margin-left:220px;width:calc(100% - 220px);padding:25px 3%}.grid{grid-template-columns:1fr}}
+@media(max-width:760px){.gallery-slots{grid-template-columns:1fr}}
+@media(max-width:680px){.sidebar{transform:translateX(-100%);width:260px;transition:.25s}.sidebar.open{transform:none}.main{margin:0;width:100%;padding:20px 15px}.mobile-menu{display:inline-block;border:1px solid var(--line);background:#211621;color:var(--pink);padding:9px 12px;border-radius:8px}.topbar{margin-bottom:24px}.cards{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.status{display:none}.slot-preview,.editor-preview{height:185px;min-height:185px}.slot-content{padding:13px}.post-list-top{flex-direction:column}.fvd-stats{grid-template-columns:repeat(2,1fr)}.fvd-head{align-items:flex-start;flex-direction:column}#fvDebugPanel{right:8px;bottom:70px;width:calc(100vw - 16px);height:75vh}}
+
+.ticket-admin-item{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;padding:15px;margin-top:9px;border:1px solid var(--line);border-radius:11px;background:#201923}.ticket-admin-item strong{font-size:12px}.ticket-admin-item p{font-size:10px;color:var(--muted);line-height:1.65;margin-top:5px;white-space:pre-wrap;overflow-wrap:anywhere}.ticket-admin-item button{flex-shrink:0}.ticket-state{display:inline-block;padding:5px 8px;border-radius:20px;font-size:9px;font-weight:800;background:#302a3d;color:#c8b8ff}.ticket-state.open{background:#382b1d;color:#f2c27d}.ticket-state.in_progress{background:#252b43;color:#b8c5ff}.ticket-state.closed{background:#173025;color:#83e0aa}
 </style>
 </head>
 
@@ -35,6 +155,7 @@
 <button data-section="versions"><span class="nav-icon">◈</span>Versiones</button>
 <button data-section="releases"><span class="nav-icon">📦</span>Subir launcher</button>
 <button data-section="downloads"><span class="nav-icon">↓</span>Descargas</button>
+<button data-section="tickets"><span class="nav-icon">✉</span>Tickets de soporte</button>
 </nav>
 <div class="nav-title">GESTIÓN DE ACCESO</div>
 <nav class="nav">
@@ -127,13 +248,20 @@
 
 <section class="section" id="releases">
 <div class="heading"><div class="eyebrow">DISTRIBUCIÓN PRIVADA</div><h1>Subir launcher</h1><p class="subtitle">Publica el instalador en el Blob privado fvrever-releases.</p></div>
-<div class="panel"><div class="notice"><strong>Privado:</strong> los instaladores no se publican como imágenes ni reciben una URL pública permanente.</div><div class="form-grid"><div class="field"><label>Versión</label><input id="uploadVersion" placeholder="1.0.0"></div><div class="field"><label>Nombre de publicación</label><input id="uploadName" placeholder="FVREVER Client Setup"></div><div class="field"><label>Icono (emoji)</label><input id="uploadIcon" maxlength="12" placeholder="🚀"></div><div class="field full"><label>Descripción</label><textarea id="uploadDescription"></textarea></div><div class="field full"><label>Archivo del launcher (.exe, .msi, .zip)</label><input id="releaseFile" type="file" accept=".exe,.msi,.zip"><small id="releaseFileInfo">Selecciona un archivo. Se mostrará su tamaño real antes de subirlo. Máximo: 500 MB.</small></div></div><button class="btn primary" id="uploadRelease">SUBIR NUEVA VERSIÓN</button><div id="uploadProgressWrap" class="hidden"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:16px"><strong id="uploadProgressPercent" style="font:800 18px Space Grotesk">0%</strong><span id="uploadProgressSize" class="panel-desc" style="margin:0">0 B / 0 B</span></div><div class="progress"><span id="uploadProgress"></span></div><p class="panel-desc" id="uploadStatus" style="margin:9px 0 0">Preparando...</p></div></div>
+<div class="panel"><div class="notice"><strong>Privado:</strong> los instaladores no se publican como imágenes ni reciben una URL pública permanente.</div><div class="form-grid"><div class="field"><label>Versión</label><input id="uploadVersion" placeholder="1.0.0"></div><div class="field"><label>Nombre de publicación</label><input id="uploadName" placeholder="FVREVER Client Setup"></div><div class="field"><label>Icono (emoji)</label><input id="uploadIcon" maxlength="12" placeholder="🚀"></div><div class="field full"><label>Descripción</label><textarea id="uploadDescription"></textarea></div><div class="field full"><label>Archivo (.exe, .msi, .zip)</label><input id="releaseFile" type="file" accept=".exe,.msi,.zip"><small>Máximo permitido por esta interfaz: 500 MB.</small></div></div><button class="btn primary" id="uploadRelease">SUBIR NUEVA VERSIÓN</button><div id="uploadProgressWrap" class="hidden"><div class="progress"><span id="uploadProgress"></span></div><p class="panel-desc" id="uploadStatus">Preparando...</p></div></div>
 <div class="panel" style="margin-top:15px"><h2>Releases almacenadas</h2><p class="panel-desc">Administra las publicaciones privadas, sus iconos y descripciones.</p><div id="releaseList" class="empty">Cargando releases...</div></div>
 </section>
 
 <section class="section" id="downloads">
 <div class="heading"><div class="eyebrow">DISTRIBUCIÓN</div><h1>Descargas</h1></div>
 <div class="panel"><h2>Configuración</h2><div class="notice">El sitio público no debe enlazar directamente a una URL permanente del instalador. La autorización debe pasar por el servidor.</div><p class="panel-desc">Versión configurada: <strong id="downloadSummary">No configurada</strong></p></div>
+</section>
+
+<section class="section" id="tickets">
+<div class="heading"><div class="eyebrow">ATENCIÓN AL CLIENTE</div><h1>Tickets de soporte</h1><p class="subtitle">Revisa las solicitudes recibidas desde la página principal, responde y actualiza su estado.</p></div>
+<div class="cards"><div class="card"><div class="card-label">ABIERTOS</div><div class="card-value" id="ticketStatOpen">—</div></div><div class="card"><div class="card-label">EN PROCESO</div><div class="card-value" id="ticketStatProgress">—</div></div><div class="card"><div class="card-label">CERRADOS</div><div class="card-value" id="ticketStatClosed">—</div></div></div>
+<div class="panel"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div><h2>Bandeja de tickets</h2><p class="panel-desc">Las solicitudes más recientes aparecen primero.</p></div><button class="btn primary" id="refreshTickets">ACTUALIZAR</button></div><div class="form-grid"><div class="field"><label>FILTRAR POR ESTADO</label><select id="ticketFilter"><option value="all">Todos</option><option value="open">Abiertos</option><option value="in_progress">En proceso</option><option value="closed">Cerrados</option></select></div></div><div id="ticketList" class="empty">Cargando tickets...</div></div>
+<div class="panel hidden" id="ticketEditor" style="margin-top:15px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h2 id="ticketEditorTitle">Ticket</h2><button class="btn secondary" id="closeTicketEditor">CERRAR</button></div><div id="ticketDetails" class="notice"></div><div class="form-grid"><div class="field"><label>ESTADO</label><select id="ticketStatus"><option value="open">Abierto</option><option value="in_progress">En proceso</option><option value="closed">Cerrado</option></select></div><div class="field full"><label>RESPUESTA DEL EQUIPO</label><textarea id="ticketReply" placeholder="Escribe una respuesta para el usuario..."></textarea></div></div><button class="btn primary" id="saveTicket">GUARDAR CAMBIOS</button></div>
 </section>
 
 <section class="section" id="keys">
@@ -901,73 +1029,68 @@ async function loadReleases(){
  catch(e){$("releaseList").className="empty";$("releaseList").textContent="No se pudieron cargar las releases: "+e.message;FVDEBUG.error("No se pudieron cargar las releases.",e);}
 }
 
-function formatFileSize(bytes){
- if(!Number.isFinite(bytes)||bytes<0)return "0 B";
- if(bytes<1024)return bytes+" B";
- const units=["KB","MB","GB","TB"];let size=bytes/1024,index=0;
- while(size>=1024&&index<units.length-1){size/=1024;index++;}
- return size.toFixed(2)+" "+units[index];
-}
-function updateReleaseProgress(loaded,total){
- const percent=total>0?Math.min(100,Math.floor((loaded/total)*100)):0;
- $("uploadProgress").style.width=percent+"%";
- $("uploadProgressPercent").textContent=percent+"%";
- $("uploadProgressSize").textContent=formatFileSize(loaded)+" / "+formatFileSize(total);
-}
-function putReleaseWithProgress(url,file){
- return new Promise((resolve,reject)=>{
-  const xhr=new XMLHttpRequest();xhr.open("PUT",url,true);
-  xhr.setRequestHeader("Content-Type",file.type||"application/octet-stream");
-  xhr.upload.addEventListener("progress",event=>{
-   if(!event.lengthComputable)return;
-   updateReleaseProgress(event.loaded,event.total);
-   $("uploadStatus").textContent="Subiendo archivo: "+formatFileSize(event.loaded)+" de "+formatFileSize(event.total);
-  });
-  xhr.addEventListener("load",()=>{
-   if(xhr.status>=200&&xhr.status<300){updateReleaseProgress(file.size,file.size);resolve(xhr);}
-   else reject(new Error("Vercel Blob rechazó la subida (HTTP "+xhr.status+")."));
-  });
-  xhr.addEventListener("error",()=>reject(new Error("Error de red durante la transferencia.")));
-  xhr.addEventListener("abort",()=>reject(new Error("La subida fue cancelada.")));
-  xhr.send(file);
- });
-}
-$("releaseFile").addEventListener("change",()=>{
- const file=$("releaseFile").files?.[0];
- $("releaseFileInfo").textContent=file?file.name+" · "+formatFileSize(file.size):"Selecciona un archivo. Se mostrará su tamaño real antes de subirlo. Máximo: 500 MB.";
- if(file)FVDEBUG.upload("Archivo seleccionado para release.",{filename:file.name,sizeBytes:file.size,size:formatFileSize(file.size),type:file.type});
-});
-
 $("uploadRelease").onclick=async()=>{
- const file=$("releaseFile").files[0],version=$("uploadVersion").value.trim(),name=$("uploadName").value.trim(),description=$("uploadDescription").value.trim(),icon=$("uploadIcon").value.trim()||"📦";
+ let file=$("releaseFile").files[0],version=$("uploadVersion").value.trim(),name=$("uploadName").value.trim(),description=$("uploadDescription").value.trim(),icon=$("uploadIcon").value.trim()||"📦";
  if(!file||!version||!name)return toast("Completa versión, nombre y archivo.");
- const ext=file.name.split(".").pop().toLowerCase();
+ let ext=file.name.split(".").pop().toLowerCase();
  if(!["exe","msi","zip"].includes(ext))return toast("Solo EXE, MSI o ZIP.");
- if(file.size<=0)return toast("El archivo seleccionado está vacío.");
- if(file.size>500*1024*1024)return toast("El archivo supera el límite de 500 MB.");
- const btn=$("uploadRelease");btn.disabled=true;
- $("uploadProgressWrap").classList.remove("hidden");updateReleaseProgress(0,file.size);
+ if(file.size>500*1024*1024)return toast("El archivo supera 500 MB.");
+ let btn=$("uploadRelease");btn.disabled=true;
+ $("uploadProgressWrap").classList.remove("hidden");$("uploadProgress").style.width="0%";
  $("uploadStatus").textContent="Solicitando autorización privada...";
- FVDEBUG.upload("Inicio de subida de launcher.",{filename:file.name,sizeBytes:file.size,size:formatFileSize(file.size),version});
+ FVDEBUG.upload("Inicio de subida de launcher.",{filename:file.name,size:file.size,version});
  try{
-  const auth=await api("/api/releases-upload",{method:"POST",body:JSON.stringify({filename:file.name,version})});
+  let auth=await api("/api/releases-upload",{method:"POST",body:JSON.stringify({filename:file.name,version})});
   if(!auth.success||!auth.uploadUrl)throw Error("El servidor no devolvió una URL de subida.");
-  $("uploadStatus").textContent="Conectando con el almacenamiento privado...";
-  FVDEBUG.upload("Autorización recibida. Iniciando transferencia.",{pathname:auth.pathname,expectedBytes:file.size});
-  await putReleaseWithProgress(auth.uploadUrl,file);
-  $("uploadStatus").textContent="Transferencia completada. Registrando versión...";
+  $("uploadStatus").textContent="Transfiriendo instalador...";FVDEBUG.upload("Autorización recibida. Iniciando transferencia.");
+  let put=await fetch(auth.uploadUrl,{method:"PUT",body:file,headers:{"Content-Type":file.type||"application/octet-stream"}});
+  if(!put.ok)throw Error("Vercel Blob rechazó la subida ("+put.status+").");
+  $("uploadProgress").style.width="100%";
   await api("/api/releases-manage",{method:"PUT",body:JSON.stringify({version,name,description,icon,pathname:auth.pathname,filename:file.name,uploadedAt:new Date().toISOString()})});
   await loadReleases();
-  $("uploadStatus").textContent="Release publicada correctamente · "+formatFileSize(file.size);
-  $("releaseFile").value="";
-  $("releaseFileInfo").textContent="Selecciona un archivo. Se mostrará su tamaño real antes de subirlo. Máximo: 500 MB.";
-  FVDEBUG.upload("Launcher subido correctamente.",{version,filename:file.name,sizeBytes:file.size,size:formatFileSize(file.size),pathname:auth.pathname});
-  toast("Launcher subido correctamente.");
- }catch(e){
-  $("uploadStatus").textContent="Error: "+e.message;
-  FVDEBUG.error("Falló la subida del launcher.",e);
-  toast("No se pudo subir el launcher: "+e.message);
- }finally{btn.disabled=false;}
+  $("uploadStatus").textContent="Subida completada. Archivo guardado como privado.";
+  $("releaseFile").value="";$("uploadStatus").textContent="Release publicada correctamente.";
+  FVDEBUG.upload("Launcher subido correctamente.",{version,filename:file.name});toast("Launcher subido correctamente.");
+ }catch(e){$("uploadStatus").textContent="Error: "+e.message;FVDEBUG.error("Falló la subida del launcher.",e);toast("No se pudo subir el launcher: "+e.message);}
+ finally{btn.disabled=false;}
+};
+
+/* SUPPORT TICKETS */
+let currentTicketId=null;
+function ticketStatusLabel(status){return status==="in_progress"?"EN PROCESO":status==="closed"?"CERRADO":"ABIERTO";}
+function renderTickets(items){
+ const box=$("ticketList"),filter=$("ticketFilter").value;box.innerHTML="";
+ const all=Array.isArray(items)?items:[];
+ $("ticketStatOpen").textContent=all.filter(x=>x.status==="open").length;
+ $("ticketStatProgress").textContent=all.filter(x=>x.status==="in_progress").length;
+ $("ticketStatClosed").textContent=all.filter(x=>x.status==="closed").length;
+ const visible=all.filter(x=>filter==="all"||x.status===filter);
+ if(!visible.length){box.className="empty";box.textContent="No hay tickets en esta categoría.";return;}
+ box.className="";
+ visible.forEach(t=>{
+  const row=document.createElement("div");row.className="ticket-admin-item";
+  const info=document.createElement("div"),title=document.createElement("strong");title.textContent=t.ticket_code+" · "+t.subject;
+  const desc=document.createElement("p");desc.textContent=t.name+" · "+t.email+"\n"+t.category+" · "+new Date(t.created_at).toLocaleString("es-SV")+"\n"+t.message;
+  const state=document.createElement("span");state.className="ticket-state "+t.status;state.textContent=ticketStatusLabel(t.status);
+  info.append(title,desc,state);const open=document.createElement("button");open.className="btn secondary";open.textContent="ABRIR";open.onclick=()=>openTicketRecord(t);row.append(info,open);box.append(row);
+ });
+}
+let ticketCache=[];
+async function loadTickets(){
+ const box=$("ticketList");box.className="empty";box.textContent="Cargando tickets...";
+ try{const d=await api("/api/tickets");ticketCache=d.tickets||[];renderTickets(ticketCache);}
+ catch(e){box.textContent="No se pudieron cargar los tickets: "+e.message;FVDEBUG.error("No se pudieron cargar tickets.",e);}
+}
+function openTicketRecord(t){
+ currentTicketId=t.id;$("ticketEditor").classList.remove("hidden");$("ticketEditorTitle").textContent=t.ticket_code+" · "+t.subject;
+ $("ticketDetails").textContent=t.name+" · "+t.email+"\nCategoría: "+t.category+"\nFecha: "+new Date(t.created_at).toLocaleString("es-SV")+"\n\n"+t.message;
+ $("ticketStatus").value=t.status;$("ticketReply").value=t.admin_reply||"";$("ticketEditor").scrollIntoView({behavior:"smooth",block:"start"});
+}
+$("refreshTickets").onclick=loadTickets;$("ticketFilter").onchange=()=>renderTickets(ticketCache);$("closeTicketEditor").onclick=()=>{$("ticketEditor").classList.add("hidden");currentTicketId=null;};
+$("saveTicket").onclick=async()=>{
+ if(!currentTicketId)return;const btn=$("saveTicket");btn.disabled=true;
+ try{await api("/api/tickets",{method:"PATCH",body:JSON.stringify({id:currentTicketId,status:$("ticketStatus").value,adminReply:$("ticketReply").value})});toast("Ticket actualizado.");await loadTickets();const updated=ticketCache.find(x=>x.id===currentTicketId);if(updated)openTicketRecord(updated);}
+ catch(e){toast("No se pudo actualizar: "+e.message);}finally{btn.disabled=false;}
 };
 
 /* GIFT KEYS */
@@ -1069,6 +1192,7 @@ async function verifySession(){
   FVDEBUG.info("Sesión administrativa verificada.");
   await loadContent();
   await refreshKeys();
+  await loadTickets();
  }catch(e){
   $("sessionInfo").textContent="No se pudo verificar la sesión.";
   FVDEBUG.error("No se pudo verificar la sesión.",e);
