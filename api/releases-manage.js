@@ -92,12 +92,21 @@ module.exports = async function handler(req, res) {
         readManifest(get)
       ]);
 
-      const present = new Set(
-        inventory.blobs.map(blob => blob.pathname)
+      const blobByPath = new Map(
+        inventory.blobs.map(blob => [blob.pathname, blob])
       );
 
       const releases = Object.values(manifest)
-        .filter(item => item && present.has(item.pathname))
+        .filter(item => item && blobByPath.has(item.pathname))
+        .map(item => {
+          const blob = blobByPath.get(item.pathname);
+
+          return {
+            ...item,
+            sizeBytes: blob.size,
+            sizeValid: Number(blob.size) > 0
+          };
+        })
         .sort(
           (a, b) =>
             new Date(b.uploadedAt || 0) -
@@ -143,10 +152,38 @@ module.exports = async function handler(req, res) {
         ...storeOptions()
       });
 
-      if (!inventory.blobs.some(blob => blob.pathname === pathname)) {
+      const blob = inventory.blobs.find(
+        item => item.pathname === pathname
+      );
+
+      if (!blob) {
         return res.status(404).json({
           success: false,
           error: "Uploaded release not found."
+        });
+      }
+
+      const storedSizeBytes = Number(blob.size);
+
+      console.log("Release storage verification:", {
+        pathname,
+        storedSizeBytes,
+        sizeValid:
+          Number.isFinite(storedSizeBytes) &&
+          storedSizeBytes > 0
+      });
+
+      if (
+        !Number.isFinite(storedSizeBytes) ||
+        storedSizeBytes <= 0
+      ) {
+        return res.status(409).json({
+          success: false,
+          error: "El archivo existe en Blob, pero está vacío o su tamaño no pudo verificarse.",
+          pathname,
+          storedSizeBytes: Number.isFinite(storedSizeBytes)
+            ? storedSizeBytes
+            : null
         });
       }
 
@@ -159,6 +196,7 @@ module.exports = async function handler(req, res) {
         description: String(description).slice(0, 1000),
         icon: String(icon).slice(0, 12),
         filename: String(filename).slice(0, 180),
+        sizeBytes: storedSizeBytes,
         uploadedAt
       };
 
@@ -166,7 +204,8 @@ module.exports = async function handler(req, res) {
 
       return res.status(200).json({
         success: true,
-        release: manifest[pathname]
+        release: manifest[pathname],
+        storedSizeBytes
       });
     }
 
