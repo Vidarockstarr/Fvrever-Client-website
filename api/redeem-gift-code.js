@@ -1,31 +1,57 @@
 const { redeemGiftKey } = require("../lib/gift-keys");
-const { createDownloadToken } = require("../lib/release-access");
 
 module.exports = async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
+
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
-    return res.status(405).json({ success: false, error: "Method not allowed" });
+
+    return res.status(405).json({
+      success: false,
+      error: "Method not allowed"
+    });
   }
+
   try {
     const code = String(req.body?.code || "").trim();
+
     if (!code || code.length > 32) {
-      return res.status(400).json({ success: false, error: "Please enter a valid gift code." });
+      return res.status(400).json({
+        success: false,
+        error: "Please enter a valid gift code."
+      });
     }
+
     const result = await redeemGiftKey(code);
+
     if (!result.success) {
       const messages = {
-        invalid: "This gift code is invalid.", expired: "This gift code has expired.",
-        used: "This gift code has already been redeemed.", revoked: "This gift code has been revoked.",
+        invalid: "This gift code is invalid.",
+        expired: "This gift code has expired.",
+        used: "This gift code has already been redeemed.",
+        revoked: "This gift code has been revoked.",
         available: "This gift code could not be redeemed."
       };
-      return res.status(409).json({ success: false, error: messages[result.reason] || "This gift code cannot be redeemed." });
+
+      return res.status(409).json({
+        success: false,
+        error: messages[result.reason] ||
+          "This gift code cannot be redeemed."
+      });
     }
-    const token = createDownloadToken(result.downloadId);
-    res.setHeader("Set-Cookie", `fvrever_download=${token}; HttpOnly; Secure; SameSite=Strict; Path=/api; Max-Age=1800`);
-    return res.status(200).json({ success: true, message: "You've redeemed a code!", downloadAuthorized: true });
+
+    return res.status(200).json({
+      success: true,
+      message: "You've redeemed a code!",
+      downloadAuthorized: true
+    });
+
   } catch (error) {
     console.error("Gift Code Redemption Error:", error);
-    return res.status(500).json({ success: false, error: "Something went wrong. Please try again later." });
+
+    return res.status(500).json({
+      success: false,
+      error: "Something went wrong. Please try again later."
+    });
   }
 };
