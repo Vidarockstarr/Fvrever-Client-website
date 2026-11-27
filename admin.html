@@ -1017,7 +1017,7 @@ function renderReleaseList(releases){
   del.onclick=async()=>{
    if(!confirm("¿Eliminar esta release y su archivo privado? Esta acción no se puede deshacer."))return;
    del.disabled=true;
-   try{await api("/api/releases-manage",{method:"DELETE",body:JSON.stringify({pathname:release.pathname})});await loadReleases();toast("Release eliminada.");}
+   try{await api("/api/releases?action=manage",{method:"DELETE",body:JSON.stringify({pathname:release.pathname})});await loadReleases();toast("Release eliminada.");}
    catch(e){del.disabled=false;toast("No se pudo eliminar: "+e.message);}
   };
   row.append(info,del);box.append(row);
@@ -1025,7 +1025,7 @@ function renderReleaseList(releases){
 }
 
 async function loadReleases(){
- try{const data=await api("/api/releases-manage");renderReleaseList(data.releases||[]);}
+ try{const data=await api("/api/releases?action=manage");renderReleaseList(data.releases||[]);}
  catch(e){$("releaseList").className="empty";$("releaseList").textContent="No se pudieron cargar las releases: "+e.message;FVDEBUG.error("No se pudieron cargar las releases.",e);}
 }
 
@@ -1040,13 +1040,13 @@ $("uploadRelease").onclick=async()=>{
  $("uploadStatus").textContent="Solicitando autorización privada...";
  FVDEBUG.upload("Inicio de subida de launcher.",{filename:file.name,size:file.size,version});
  try{
-  let auth=await api("/api/releases-upload",{method:"POST",body:JSON.stringify({filename:file.name,version})});
+  let auth=await api("/api/releases?action=upload",{method:"POST",body:JSON.stringify({filename:file.name,version})});
   if(!auth.success||!auth.uploadUrl)throw Error("El servidor no devolvió una URL de subida.");
   $("uploadStatus").textContent="Transfiriendo instalador...";FVDEBUG.upload("Autorización recibida. Iniciando transferencia.");
   let put=await fetch(auth.uploadUrl,{method:"PUT",body:file,headers:{"Content-Type":file.type||"application/octet-stream"}});
   if(!put.ok)throw Error("Vercel Blob rechazó la subida ("+put.status+").");
   $("uploadProgress").style.width="100%";
-  await api("/api/releases-manage",{method:"PUT",body:JSON.stringify({version,name,description,icon,pathname:auth.pathname,filename:file.name,uploadedAt:new Date().toISOString()})});
+  await api("/api/releases?action=manage",{method:"PUT",body:JSON.stringify({version,name,description,icon,pathname:auth.pathname,filename:file.name,uploadedAt:new Date().toISOString()})});
   await loadReleases();
   $("uploadStatus").textContent="Subida completada. Archivo guardado como privado.";
   $("releaseFile").value="";$("uploadStatus").textContent="Release publicada correctamente.";
