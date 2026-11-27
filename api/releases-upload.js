@@ -8,8 +8,6 @@ const MAX_FILE_SIZE = 500 * 1024 * 1024;
 const MAX_RELEASES = 3;
 const URL_VALIDITY = 10 * 60 * 1000;
 
-const MANIFEST = "release-manifest.json";
-
 const ALLOWED_EXTENSIONS = [".exe", ".msi", ".zip"];
 
 const ALLOWED_TYPES = [
@@ -20,36 +18,14 @@ const ALLOWED_TYPES = [
   "application/zip"
 ];
 
-function storeOptions() {
-  const storeId =
-    process.env.BLOB_STORE_ID ||
-    process.env.REALSES_STORE_ID;
+function getReleasesStoreId() {
+  const storeId = process.env.REALSES_STORE_ID;
 
-  return storeId ? { storeId } : {};
-}
-
-async function readManifest(get) {
-  const stored = await get(MANIFEST, {
-    access: "private"
-  });
-
-  if (!stored || stored.statusCode !== 200 || !stored.stream) {
-    return {};
+  if (!storeId) {
+    throw new Error("REALSES_STORE_ID is missing");
   }
 
-  const chunks = [];
-
-  for await (const chunk of stored.stream) {
-    chunks.push(Buffer.from(chunk));
-  }
-
-  try {
-    return JSON.parse(
-      Buffer.concat(chunks).toString("utf8")
-    );
-  } catch {
-    return {};
-  }
+  return storeId;
 }
 
 module.exports = async function handler(req, res) {
@@ -57,7 +33,6 @@ module.exports = async function handler(req, res) {
 
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
-
     return res.status(405).json({
       success: false,
       error: "Method not allowed"
@@ -74,15 +49,10 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    if (!process.env.BLOB_READ_WRITE_TOKEN) {
-      throw new Error("BLOB_READ_WRITE_TOKEN is missing");
-    }
+    const storeId = getReleasesStoreId();
 
     let body = req.body;
-
-    if (typeof body === "string") {
-      body = JSON.parse(body);
-    }
+    if (typeof body === "string") body = JSON.parse(body);
 
     const filename = body?.filename;
     const version = body?.version;
@@ -113,11 +83,7 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    if (
-      !ALLOWED_EXTENSIONS.includes(
-        path.extname(safeFilename).toLowerCase()
-      )
-    ) {
+    if (!ALLOWED_EXTENSIONS.includes(path.extname(safeFilename).toLowerCase())) {
       return res.status(400).json({
         success: false,
         error: "Only EXE, MSI and ZIP files are allowed"
@@ -126,24 +92,40 @@ module.exports = async function handler(req, res) {
 
     const { get } = await import("@vercel/blob");
 
-    const [inventory, manifest] = await Promise.all([
+    const [inventory, stored] = await Promise.all([
       list({
         prefix: "releases/",
         limit: 100,
-        ...storeOptions()
+        storeId
       }),
-      readManifest(get)
+      get("release-manifest.json", {
+        access: "private",
+        storeId
+      })
     ]);
+
+    let manifest = {};
+
+    if (stored?.statusCode === 200 && stored.stream) {
+      const chunks = [];
+
+      for await (const chunk of stored.stream) {
+        chunks.push(Buffer.from(chunk));
+      }
+
+      try {
+        manifest = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+      } catch {
+        manifest = {};
+      }
+    }
 
     const present = new Set(
       inventory.blobs.map(blob => blob.pathname)
     );
 
     const releases = Object.values(manifest).filter(
-      item =>
-        item &&
-        typeof item.pathname === "string" &&
-        present.has(item.pathname)
+      item => item && present.has(item.pathname)
     );
 
     if (releases.length >= MAX_RELEASES) {
@@ -154,7 +136,6 @@ module.exports = async function handler(req, res) {
     }
 
     const pathname = `releases/${crypto.randomUUID()}-${safeFilename}`;
-
     const validUntil = Date.now() + URL_VALIDITY;
 
     const signedToken = await issueSignedToken({
@@ -162,7 +143,8 @@ module.exports = async function handler(req, res) {
       operations: ["put"],
       validUntil,
       allowedContentTypes: ALLOWED_TYPES,
-      maximumSizeInBytes: MAX_FILE_SIZE
+      maximumSizeInBytes: MAX_FILE_SIZE,
+      storeId
     });
 
     const { presignedUrl } = await presignUrl(signedToken, {
