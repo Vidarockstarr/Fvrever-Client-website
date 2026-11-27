@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -47,7 +46,7 @@ h1{font:700 clamp(25px,3vw,34px) "Space Grotesk";margin-bottom:9px}
 .field label{font-size:10px;font-weight:800;color:#c4b6c4}
 .field input,.field textarea,.field select{width:100%;padding:12px;border:1px solid #443344;border-radius:9px;background:#100d14;color:white;outline:none;font-size:12px}
 .field textarea{min-height:100px;resize:vertical}.field small{font-size:10px;color:#9c8c9b;line-height:1.5}
-.field input:focus,.field textarea:focus{border-color:var(--pink)}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--pink)}
 .btn-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
 .btn{border:1px solid transparent;border-radius:9px;padding:12px 16px;font-size:10px;font-weight:900;letter-spacing:.5px}
 .primary{color:white;background:linear-gradient(110deg,#f04c70,#c92750);box-shadow:0 7px 22px #e1305b33}
@@ -69,8 +68,6 @@ th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{co
 .table-wrap{overflow:auto;margin-top:15px}.code{font-family:monospace;color:#ffb5c8;white-space:nowrap}
 .pill{display:inline-block;padding:5px 8px;border-radius:20px;background:#29202d;font-size:9px}
 .available{background:#173025;color:#83e0aa}.used{background:#302a3d;color:#c8b8ff}.expired{background:#382b1d;color:#f2c27d}.revoked{background:#3b1d28;color:#ff9db5}
-
-/* EDITOR DE GALERÍA: cuatro slots con las dimensiones de index */
 .gallery-slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
 .gallery-slot{min-width:0;border:1px solid #ffffff17;border-radius:15px;background:#17121c;overflow:hidden}
 .slot-preview{height:215px;min-height:215px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:23px;background:linear-gradient(135deg,#30202e,#17121c 75%)}
@@ -94,13 +91,26 @@ th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{co
 .range-row{display:grid;grid-template-columns:1fr 55px;gap:12px;align-items:center;margin:12px 0}
 .range-row label{font-size:10px;color:#c4b6c4}.range-row input{width:100%;accent-color:#ed4167}
 .range-value{text-align:right;font-size:10px;color:#ffb2c5}
-.editor .field{margin-bottom:10px}
-.editor .field input{padding:10px}
+.editor .field{margin-bottom:10px}.editor .field input{padding:10px}
 .editor-note{font-size:10px;color:#a99ca9;line-height:1.6;margin:8px 0 12px}
-.slot-empty{color:#a99ca9}
+.post-editor{border:1px solid #704154;background:#211720;border-radius:12px;padding:18px;margin-top:15px}
+.post-editor h3{font:700 15px "Space Grotesk";margin-bottom:14px}
+.post-list-card{padding:15px;border:1px solid #ffffff17;background:#201923;border-radius:11px;margin-top:10px}
+.post-list-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.post-list-card strong{font-size:12px}
+.post-list-card p{font-size:10px;color:var(--muted);line-height:1.6;margin-top:6px;white-space:pre-wrap}
+.post-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.post-actions button{font-size:9px}
+.post-status{display:inline-block;padding:5px 8px;border-radius:6px;font-size:9px;font-weight:900}
+.post-status.published{background:#173025;color:#83e0aa}
+.post-status.draft{background:#302a3d;color:#c8b8ff}
+.lang-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.lang-tabs button{padding:8px 12px;border-radius:8px;border:1px solid #453547;background:#29202d;color:#cbbdca;font-size:10px;font-weight:800}
+.lang-tabs button.active{background:#6b2b43;border-color:#ed7898;color:white}
+.post-cover-preview{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0 14px;display:none}
 @media(max-width:950px){.sidebar{width:220px}.main{margin-left:220px;width:calc(100% - 220px);padding:25px 3%}.grid{grid-template-columns:1fr}}
 @media(max-width:760px){.gallery-slots{grid-template-columns:1fr}}
-@media(max-width:680px){.sidebar{transform:translateX(-100%);width:260px;transition:.25s}.sidebar.open{transform:none}.main{margin:0;width:100%;padding:20px 15px}.mobile-menu{display:inline-block;border:1px solid var(--line);background:#211621;color:var(--pink);padding:9px 12px;border-radius:8px}.topbar{margin-bottom:24px}.cards{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.status{display:none}.slot-preview,.editor-preview{height:185px;min-height:185px}.slot-content{padding:13px}}
+@media(max-width:680px){.sidebar{transform:translateX(-100%);width:260px;transition:.25s}.sidebar.open{transform:none}.main{margin:0;width:100%;padding:20px 15px}.mobile-menu{display:inline-block;border:1px solid var(--line);background:#211621;color:var(--pink);padding:9px 12px;border-radius:8px}.topbar{margin-bottom:24px}.cards{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.status{display:none}.slot-preview,.editor-preview{height:185px;min-height:185px}.slot-content{padding:13px}.post-list-top{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -113,7 +123,7 @@ th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{co
 <button data-section="website"><span class="nav-icon">◫</span>Editor web</button>
 <button data-section="features"><span class="nav-icon">✧</span>Características</button>
 <button data-section="gallery"><span class="nav-icon">▧</span>Galería</button>
-<button data-section="changelog"><span class="nav-icon">≡</span>Registro de cambios</button>
+<button data-section="changelog"><span class="nav-icon">≡</span>Publicaciones</button>
 <button data-section="versions"><span class="nav-icon">◈</span>Versiones</button>
 <button data-section="releases"><span class="nav-icon">📦</span>Subir launcher</button>
 <button data-section="downloads"><span class="nav-icon">↓</span>Descargas</button>
@@ -131,9 +141,9 @@ th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{co
 <div class="cards">
 <div class="card"><div class="card-label">VERSIÓN ACTUAL</div><div class="card-value" id="statVersion">—</div></div>
 <div class="card"><div class="card-label">IMÁGENES EN GALERÍA</div><div class="card-value" id="statGallery">0 / 4</div></div>
-<div class="card"><div class="card-label">ESTADO DEL SITIO</div><div class="card-value" style="color:var(--green)">EN LÍNEA</div></div>
+<div class="card"><div class="card-label">PUBLICACIONES</div><div class="card-value" id="statPosts">0</div></div>
 </div>
-<div class="grid"><div class="panel"><h2>Administración rápida</h2><p class="panel-desc">Accesos directos a las funciones principales.</p><div class="btn-row"><button class="btn secondary" data-go="website">EDITOR WEB</button><button class="btn secondary" data-go="gallery">GALERÍA</button><button class="btn secondary" data-go="releases">SUBIR LAUNCHER</button><button class="btn secondary" data-go="keys">GIFT KEYS</button></div></div><div class="panel"><h2>Conexiones</h2><div class="status-box"><strong>Sesión</strong><br><span id="sessionInfo">Comprobando...</span></div><div class="status-box"><strong>Contenido</strong><br><span id="connectionStatus">Comprobando API...</span></div></div></div>
+<div class="grid"><div class="panel"><h2>Administración rápida</h2><p class="panel-desc">Accesos directos a las funciones principales.</p><div class="btn-row"><button class="btn secondary" data-go="website">EDITOR WEB</button><button class="btn secondary" data-go="gallery">GALERÍA</button><button class="btn secondary" data-go="changelog">PUBLICACIONES</button><button class="btn secondary" data-go="releases">SUBIR LAUNCHER</button><button class="btn secondary" data-go="keys">GIFT KEYS</button></div></div><div class="panel"><h2>Conexiones</h2><div class="status-box"><strong>Sesión</strong><br><span id="sessionInfo">Comprobando...</span></div><div class="status-box"><strong>Contenido</strong><br><span id="connectionStatus">Comprobando API...</span></div></div></div>
 </section>
 
 <section class="section" id="website">
@@ -159,16 +169,44 @@ th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{co
 <div class="panel">
 <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><h2>Los cuatro espacios de la portada</h2><span class="pill">2 columnas · 215 px escritorio · 185 px móvil</span></div>
 <p class="panel-desc">Los espacios no se desplazan. Si eliminas la imagen del Slot 2, los Slots 3 y 4 permanecen en su sitio.</p>
-<div class="gallery-slots" id="gallerySlots">
-<div class="empty">Cargando los cuatro slots...</div>
-</div>
+<div class="gallery-slots" id="gallerySlots"><div class="empty">Cargando los cuatro slots...</div></div>
 </div>
 </section>
 
 <section class="section" id="changelog">
-<div class="heading"><div class="eyebrow">NOTAS DE VERSIÓN</div><h1>Registro de cambios</h1></div>
-<div class="panel"><div class="form-grid"><div class="field"><label>Versión</label><input id="changeVersion" placeholder="1.2.0"></div><div class="field"><label>Título</label><input id="changeTitle"></div><div class="field full"><label>Descripción</label><textarea id="changeDescription"></textarea></div></div><button class="btn primary" id="addChangelog">PUBLICAR NOVEDADES</button></div>
-<div class="panel" style="margin-top:15px"><h2>Publicaciones actuales</h2><div id="changelogList" class="empty">Cargando...</div></div>
+<div class="heading"><div class="eyebrow">CONTENIDO DEL SITIO</div><h1>Publicaciones y novedades</h1><p class="subtitle">Crea anuncios, actualizaciones, correcciones y noticias. Puedes guardar borradores y publicar cuando estén listos.</p></div>
+<div class="notice"><strong>Publicación:</strong> solo los elementos con estado PUBLICADO aparecen en la página principal. Los borradores se guardan en el servidor, pero no son visibles para los visitantes.</div>
+<div class="panel">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><h2 id="postEditorHeading">Crear publicación</h2><span class="pill">ES · EN · FR · PT</span></div>
+<div class="form-grid">
+<div class="field"><label>Versión (opcional)</label><input id="postVersion" placeholder="1.2.0"></div>
+<div class="field"><label>Categoría</label><select id="postCategory"><option value="update">Update / Actualización</option><option value="announcement">Announcement / Anuncio</option><option value="fix">Fix / Corrección</option><option value="news">News / Noticias</option></select></div>
+<div class="field"><label>Fecha</label><input id="postDate" type="date"></div>
+<div class="field"><label>Estado</label><select id="postStatus"><option value="draft">Borrador</option><option value="published">Publicado</option></select></div>
+<div class="field full"><label>Imagen de portada opcional</label><input id="postImageFile" type="file" accept=".png,.jpg,.jpeg,.webp,.gif,image/png,image/jpeg,image/webp,image/gif"><small>PNG, JPG, JPEG, WEBP o GIF. Máximo 20 MB.</small><img id="postImagePreview" class="post-cover-preview" alt="Vista previa de portada"></div>
+<div class="field full"><label>O URL de imagen existente (opcional)</label><input id="postImageUrl" placeholder="https://..."></div>
+</div>
+<div class="field" style="margin-top:8px"><label>Traducciones del contenido</label></div>
+<div class="lang-tabs">
+<button type="button" class="active" data-post-lang="es">ESPAÑOL</button>
+<button type="button" data-post-lang="en">ENGLISH</button>
+<button type="button" data-post-lang="fr">FRANÇAIS</button>
+<button type="button" data-post-lang="pt">PORTUGUÊS</button>
+</div>
+<div class="post-editor">
+<div class="field"><label>Título</label><input id="postTitle" maxlength="140" placeholder="Título de la publicación"></div>
+<div class="field"><label>Descripción breve</label><textarea id="postExcerpt" maxlength="400" placeholder="Resumen que aparecerá en la tarjeta..."></textarea></div>
+<div class="field"><label>Contenido completo</label><textarea id="postBody" style="min-height:180px" placeholder="Escribe aquí el contenido completo..."></textarea></div>
+<p class="editor-note">Cambia de idioma para añadir las traducciones. Si una traducción queda vacía, la página utilizará el idioma original de la publicación.</p>
+</div>
+<div class="field" style="margin-top:15px"><label style="display:flex;align-items:center;gap:9px"><input type="checkbox" id="postFeatured" style="width:auto;accent-color:#ed4167"> Destacar esta publicación</label></div>
+<div class="btn-row">
+<button class="btn primary" id="savePost">GUARDAR PUBLICACIÓN</button>
+<button class="btn secondary" id="newPost">NUEVA PUBLICACIÓN</button>
+<button class="btn secondary" id="cancelPost">CANCELAR EDICIÓN</button>
+</div>
+</div>
+<div class="panel" style="margin-top:15px"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h2>Publicaciones guardadas</h2><span class="pill" id="postCount">0 publicaciones</span></div><div id="postList" class="empty">Cargando...</div></div>
 </section>
 
 <section class="section" id="versions">
@@ -198,7 +236,7 @@ th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{co
 
 <section class="section" id="settings">
 <div class="heading"><div class="eyebrow">SISTEMA</div><h1>Configuración</h1></div>
-<div class="panel"><div class="status-box"><strong>Autenticación</strong><br>Sesión protegida mediante /api/me.</div><div class="status-box"><strong>Imágenes</strong><br>Blob público fvrever-assets.</div><div class="status-box"><strong>Instaladores</strong><br>Blob privado fvrever-releases.</div><div class="status-box"><strong>Gift Keys</strong><br>Base de datos Neon y API protegida.</div></div>
+<div class="panel"><div class="status-box"><strong>Autenticación</strong><br>Sesión protegida mediante /api/me.</div><div class="status-box"><strong>Imágenes</strong><br>Blob público fvrever-assets.</div><div class="status-box"><strong>Instaladores</strong><br>Blob privado fvrever-releases.</div><div class="status-box"><strong>Gift Keys</strong><br>Base de datos Neon y API protegida.</div><div class="status-box"><strong>Publicaciones</strong><br>Contenido almacenado en /api/content.</div></div>
 </section>
 </main>
 </div>
@@ -206,7 +244,6 @@ th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{co
 
 <script type="module">
 import { upload } from "https://esm.sh/@vercel/blob@2.9.0/client";
-
 const $=id=>document.getElementById(id);
 const sections=[...document.querySelectorAll(".section")];
 const nav=[...document.querySelectorAll("[data-section]")];
@@ -220,11 +257,15 @@ const defaults=[
 let content={
  siteTitle:"FVREVER CLIENT",heroTitle:"ENTER THE FVREVER CLIENT",heroDescription:"",
  version:"",downloadUrl:"",downloadName:"FVREVER Client",discordUrl:"",
- features:[],gallery:[null,null,null,null],changelog:[],releases:[]
+ features:[],gallery:[null,null,null,null],changelog:[],releases:[],posts:[]
 };
 let generatedKeys=[];
 let editorFiles=[null,null,null,null];
 let editorValues=[null,null,null,null];
+let editingPostId=null;
+let postLanguage="es";
+let postTranslations={es:{title:"",excerpt:"",body:""},en:{title:"",excerpt:"",body:""},fr:{title:"",excerpt:"",body:""},pt:{title:"",excerpt:"",body:""}};
+let postImageFile=null;
 
 function toast(m){
  $("toast").textContent=m;$("toast").classList.add("show");
@@ -264,25 +305,26 @@ function fill(){
  for(const [id,key] of [["siteTitle","siteTitle"],["heroTitle","heroTitle"],["heroDescription","heroDescription"],["discordUrl","discordUrl"],["downloadName","downloadName"],["version","version"],["releaseName","downloadName"],["releaseUrl","downloadUrl"]])$(id).value=content[key]||"";
 }
 async function saveContent(msg="Cambios guardados."){
- try{
-  content.gallery=normalizeGallery(content.gallery);
-  await api("/api/content",{method:"PUT",body:JSON.stringify(content)});
-  $("statVersion").textContent=content.version||"—";
-  $("statGallery").textContent=galleryCount()+" / 4";
-  $("downloadSummary").textContent=content.downloadName||"No configurada";
-  toast(msg);
- }catch(e){toast("No se pudo guardar: "+e.message);throw e}
+ content.gallery=normalizeGallery(content.gallery);
+ content.posts=Array.isArray(content.posts)?content.posts:[];
+ await api("/api/content",{method:"PUT",body:JSON.stringify(content)});
+ $("statVersion").textContent=content.version||"—";
+ $("statGallery").textContent=galleryCount()+" / 4";
+ $("statPosts").textContent=content.posts.length;
+ $("downloadSummary").textContent=content.downloadName||"No configurada";
+ toast(msg);
 }
 async function loadContent(){
  try{
   let d=await api("/api/content");
   content={...content,...d};
-  for(let k of ["features","changelog","releases"])if(!Array.isArray(content[k]))content[k]=[];
+  for(let k of ["features","changelog","releases","posts"])if(!Array.isArray(content[k]))content[k]=[];
   content.gallery=normalizeGallery(content.gallery);
-  fill();renderAll();
+  fill();renderAll();renderPosts();
   $("connectionStatus").textContent="Conectado correctamente.";
   $("statVersion").textContent=content.version||"—";
   $("statGallery").textContent=galleryCount()+" / 4";
+  $("statPosts").textContent=content.posts.length;
   $("downloadSummary").textContent=content.downloadName||"No configurada";
  }catch(e){
   $("connectionStatus").textContent=e.message;
@@ -291,25 +333,23 @@ async function loadContent(){
 }
 $("saveWebsite").onclick=async()=>{
  for(let [id,key] of [["siteTitle","siteTitle"],["heroTitle","heroTitle"],["heroDescription","heroDescription"],["discordUrl","discordUrl"],["downloadName","downloadName"]])content[key]=$(id).value.trim();
- await saveContent();
+ try{await saveContent()}catch(e){toast("No se pudo guardar: "+e.message)}
 };
 $("saveVersion").onclick=async()=>{
  content.version=$("version").value.trim();
  content.downloadName=$("releaseName").value.trim();
  content.downloadUrl=$("releaseUrl").value.trim();
- await saveContent();
+ try{await saveContent()}catch(e){toast(e.message)}
 };
-
 $("addFeature").onclick=async()=>{
  let title=$("featureTitle").value.trim(),description=$("featureDescription").value.trim(),icon=$("featureIcon").value.trim()||"✧";
  if(!title||!description)return toast("Completa el título y la descripción.");
  content.features.push({title,description,icon});
  $("featureTitle").value=$("featureDescription").value=$("featureIcon").value="";
- renderFeatures();await saveContent();
+ renderFeatures();try{await saveContent()}catch(e){toast(e.message)}
 };
 
-/* EDITOR DE CUATRO SLOTS */
-function safeText(value){return String(value??"")}
+/* GALERÍA */
 function makeRange(label,id,value){
  const wrap=document.createElement("div");wrap.className="range-row";
  const left=document.createElement("div");
@@ -326,19 +366,16 @@ function updateEditorPreview(i){
  img.style.transform="scale("+v.zoom/100+")";
 }
 function renderGallery(){
- const box=$("gallerySlots");box.replaceChildren();
- content.gallery=normalizeGallery(content.gallery);
+ const box=$("gallerySlots");box.replaceChildren();content.gallery=normalizeGallery(content.gallery);
  for(let i=0;i<4;i++){
-  const item=content.gallery[i];
-  const d=defaults[i];
+  const item=content.gallery[i],d=defaults[i];
   const slot=document.createElement("article");slot.className="gallery-slot";
   const preview=document.createElement("div");preview.className="slot-preview";
   const number=document.createElement("span");number.className="slot-number";number.textContent="SLOT "+(i+1);
   if(item?.url){
    const img=document.createElement("img");img.src=item.url;img.alt=item.title||"Imagen del slot "+(i+1);
    img.style.objectPosition=(item.positionX??50)+"% "+(item.positionY??50)+"%";
-   img.style.transform="scale("+(item.zoom??100)/100+")";
-   preview.append(img);
+   img.style.transform="scale("+(item.zoom??100)/100+")";preview.append(img);
   }
   const details=document.createElement("div");details.className="slot-placeholder";
   const cat=document.createElement("span");cat.textContent=(item?.category||d.category).toUpperCase();
@@ -349,17 +386,14 @@ function renderGallery(){
   const heading=document.createElement("h3");heading.textContent=item?.url?(item.title||"Imagen publicada"):"Espacio disponible";
   const info=document.createElement("p");info.textContent=item?.url?"Imagen guardada en este slot. Puedes editar el recorte o reemplazarla.":"Todavía no hay una imagen publicada en este espacio.";
   const actions=document.createElement("div");actions.className="slot-actions";
-  const edit=document.createElement("button");edit.className="btn secondary";edit.textContent=item?.url?"EDITAR IMAGEN":"AÑADIR IMAGEN";
-  edit.onclick=()=>openEditor(i);
-  actions.append(edit);
+  const edit=document.createElement("button");edit.className="btn secondary";edit.textContent=item?.url?"EDITAR IMAGEN":"AÑADIR IMAGEN";edit.onclick=()=>openEditor(i);actions.append(edit);
   if(item?.url){
    const del=document.createElement("button");del.className="danger";del.textContent="VACIAR SLOT";
    del.onclick=async()=>{
     if(!confirm("¿Quieres quitar la imagen del Slot "+(i+1)+"?"))return;
-    content.gallery[i]=null;
-    try{await saveContent("Slot "+(i+1)+" vaciado.");renderGallery()}catch(e){content.gallery[i]=item;renderGallery()}
-   };
-   actions.append(del);
+    const old=content.gallery[i];content.gallery[i]=null;
+    try{await saveContent("Slot "+(i+1)+" vaciado.");renderGallery()}catch(e){content.gallery[i]=old;renderGallery();toast(e.message)}
+   };actions.append(del);
   }
   body.append(heading,info,actions);
   const editor=document.createElement("div");editor.className="editor";editor.id="slotEditor"+i;
@@ -367,27 +401,15 @@ function renderGallery(){
  }
 }
 function openEditor(i){
- const item=content.gallery[i]||{};
- const editor=$("slotEditor"+i);
+ const item=content.gallery[i]||{},editor=$("slotEditor"+i);
  document.querySelectorAll(".editor.open").forEach(x=>{if(x!==editor)x.classList.remove("open")});
  if(editor.classList.contains("open")){editor.classList.remove("open");return}
- editor.classList.add("open");
- editorFiles[i]=null;
- editorValues[i]={
-  zoom:Number(item.zoom)||100,
-  positionX:Number.isFinite(Number(item.positionX))?Number(item.positionX):50,
-  positionY:Number.isFinite(Number(item.positionY))?Number(item.positionY):50,
-  title:item.title||defaults[i].title,
-  category:item.category||defaults[i].category,
-  description:item.description||defaults[i].description
- };
+ editor.classList.add("open");editorFiles[i]=null;
+ editorValues[i]={zoom:Number(item.zoom)||100,positionX:Number.isFinite(Number(item.positionX))?Number(item.positionX):50,positionY:Number.isFinite(Number(item.positionY))?Number(item.positionY):50,title:item.title||defaults[i].title,category:item.category||defaults[i].category,description:item.description||defaults[i].description};
  editor.replaceChildren();
  const h=document.createElement("h4");h.textContent="EDITOR · SLOT "+(i+1);
  const preview=document.createElement("div");preview.className="editor-preview";
- const img=document.createElement("img");img.id="editorImage"+i;
- img.src=item.url||"";
- if(!item.url)img.style.display="none";
- preview.append(img);
+ const img=document.createElement("img");img.id="editorImage"+i;img.src=item.url||"";if(!item.url)img.style.display="none";preview.append(img);
  const fileField=document.createElement("div");fileField.className="field";
  const fileLabel=document.createElement("label");fileLabel.textContent=item.url?"Reemplazar imagen (opcional)":"Seleccionar imagen";
  const file=document.createElement("input");file.type="file";file.accept=".png,.jpg,.jpeg,.webp,.gif,image/png,image/jpeg,image/webp,image/gif";
@@ -396,22 +418,13 @@ function openEditor(i){
   const ext=f.name.split(".").pop().toLowerCase();
   if(!["png","jpg","jpeg","webp","gif"].includes(ext)){toast("Formato no permitido.");file.value="";return}
   if(f.size>20*1024*1024){toast("La imagen supera el límite de 20 MB.");file.value="";return}
-  editorFiles[i]=f;
-  const url=URL.createObjectURL(f);img.src=url;img.style.display="block";
-  toast("Vista previa lista. Aún no se ha subido.");
+  editorFiles[i]=f;img.src=URL.createObjectURL(f);img.style.display="block";toast("Vista previa lista. Aún no se ha subido.");
  });
  fileField.append(fileLabel,file);
  const note=document.createElement("p");note.className="editor-note";note.textContent="Formatos: PNG, JPG, JPEG, WEBP o GIF. Máximo 20 MB. La imagen no se sube hasta publicar.";
  const ranges=document.createElement("div");
- const zoom=makeRange("Zoom","zoomRange"+i,Math.max(100,Math.min(250,editorValues[i].zoom-100))*100/150);
- // El control de zoom se convierte de 0–100 a 100–250%.
- zoom.querySelector("input").min="0";zoom.querySelector("input").max="100";
- zoom.querySelector("input").value=(editorValues[i].zoom-100)/1.5;
- zoom.querySelector("input").addEventListener("input",e=>{
-  editorValues[i].zoom=100+Number(e.target.value)*1.5;
-  zoom.querySelector(".range-value").textContent=Math.round(editorValues[i].zoom)+"%";
-  updateEditorPreview(i);
- });
+ const zoom=makeRange("Zoom","zoomRange"+i,(editorValues[i].zoom-100)/1.5);
+ zoom.querySelector("input").addEventListener("input",e=>{editorValues[i].zoom=100+Number(e.target.value)*1.5;zoom.querySelector(".range-value").textContent=Math.round(editorValues[i].zoom)+"%";updateEditorPreview(i)});
  const posX=makeRange("Posición horizontal","xRange"+i,editorValues[i].positionX);
  posX.querySelector("input").addEventListener("input",e=>{editorValues[i].positionX=Number(e.target.value);updateEditorPreview(i)});
  const posY=makeRange("Posición vertical","yRange"+i,editorValues[i].positionY);
@@ -419,26 +432,19 @@ function openEditor(i){
  ranges.append(zoom,posX,posY);
  const fields=document.createElement("div");fields.className="form-grid";
  const makeField=(label,value,key)=>{
-  const f=document.createElement("div");f.className="field";
-  const l=document.createElement("label");l.textContent=label;
-  const input=document.createElement("input");input.value=value;
-  input.addEventListener("input",()=>editorValues[i][key]=input.value);
-  f.append(l,input);return f;
+  const f=document.createElement("div");f.className="field";const l=document.createElement("label");l.textContent=label;
+  const input=document.createElement("input");input.value=value;input.addEventListener("input",()=>editorValues[i][key]=input.value);f.append(l,input);return f;
  };
  fields.append(makeField("Título",editorValues[i].title,"title"),makeField("Categoría",editorValues[i].category,"category"));
- const desc=makeField("Descripción",editorValues[i].description,"description");desc.classList.add("field");desc.style.gridColumn="1/-1";fields.append(desc);
+ const desc=makeField("Descripción",editorValues[i].description,"description");desc.style.gridColumn="1/-1";fields.append(desc);
  const actions=document.createElement("div");actions.className="btn-row";
- const publish=document.createElement("button");publish.className="btn primary";publish.textContent="PUBLICAR CAMBIOS";
- publish.onclick=()=>publishSlot(i,publish);
+ const publish=document.createElement("button");publish.className="btn primary";publish.textContent="PUBLICAR CAMBIOS";publish.onclick=()=>publishSlot(i,publish);
  const cancel=document.createElement("button");cancel.className="btn secondary";cancel.textContent="CERRAR EDITOR";cancel.onclick=()=>editor.classList.remove("open");
- actions.append(publish,cancel);
- editor.append(h,preview,fileField,note,ranges,fields,actions);
- updateEditorPreview(i);
+ actions.append(publish,cancel);editor.append(h,preview,fileField,note,ranges,fields,actions);updateEditorPreview(i);
 }
 async function publishSlot(i,button){
  const values=editorValues[i];if(!values)return;
- const file=editorFiles[i];
- const current=content.gallery[i];
+ const file=editorFiles[i],current=content.gallery[i];
  if(!current?.url&&!file)return toast("Selecciona una imagen para este slot.");
  if(file&&file.size>20*1024*1024)return toast("La imagen supera el límite de 20 MB.");
  button.disabled=true;button.textContent=file?"SUBIENDO Y PUBLICANDO...":"GUARDANDO...";
@@ -446,30 +452,13 @@ async function publishSlot(i,button){
   let imageData=current?{...current}:{};
   if(file){
    const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-   const blob=await upload("gallery/slot-"+(i+1)+"-"+Date.now()+"-"+safeName,file,{
-    access:"public",
-    handleUploadUrl:"/api/upload"
-   });
+   const blob=await upload("gallery/slot-"+(i+1)+"-"+Date.now()+"-"+safeName,file,{access:"public",handleUploadUrl:"/api/upload"});
    imageData.url=blob.url;imageData.pathname=blob.pathname;
   }
-  content.gallery[i]={
-   ...imageData,
-   slot:i+1,
-   title:String(values.title||"").trim(),
-   category:String(values.category||"FVREVER").trim(),
-   description:String(values.description||"").trim(),
-   zoom:Math.round(values.zoom),
-   positionX:Math.round(values.positionX),
-   positionY:Math.round(values.positionY)
-  };
-  await saveContent("Slot "+(i+1)+" publicado correctamente.");
-  editorFiles[i]=null;
-  renderGallery();
- }catch(e){
-  toast("No se pudo publicar el Slot "+(i+1)+": "+e.message);
- }finally{
-  button.disabled=false;button.textContent="PUBLICAR CAMBIOS";
- }
+  content.gallery[i]={...imageData,slot:i+1,title:String(values.title||"").trim(),category:String(values.category||"FVREVER").trim(),description:String(values.description||"").trim(),zoom:Math.round(values.zoom),positionX:Math.round(values.positionX),positionY:Math.round(values.positionY)};
+  await saveContent("Slot "+(i+1)+" publicado correctamente.");editorFiles[i]=null;renderGallery();
+ }catch(e){toast("No se pudo publicar el Slot "+(i+1)+": "+e.message)}
+ finally{button.disabled=false;button.textContent="PUBLICAR CAMBIOS"}
 }
 
 function renderFeatures(){
@@ -481,33 +470,155 @@ function renderFeatures(){
   let t=document.createElement("div"),strong=document.createElement("strong"),p=document.createElement("p");
   strong.textContent=(x.icon||"✧")+" "+x.title;p.textContent=x.description;t.append(strong,p);
   let del=document.createElement("button");del.className="danger";del.textContent="ELIMINAR";
-  del.onclick=async()=>{content.features.splice(i,1);renderFeatures();await saveContent()};
+  del.onclick=async()=>{const old=content.features.splice(i,1)[0];renderFeatures();try{await saveContent()}catch(e){content.features.splice(i,0,old);renderFeatures();toast(e.message)}};
   row.append(t,del);box.append(row);
  });
 }
 function renderChangelog(){
- let box=$("changelogList");box.replaceChildren();
- if(!content.changelog.length){box.className="empty";box.textContent="Todavía no hay publicaciones.";return}
+ let box=$("changelogList");if(!box)return;box.replaceChildren();
+ if(!content.changelog.length){box.className="empty";box.textContent="Todavía no hay publicaciones antiguas.";return}
  box.className="";
  content.changelog.forEach((x,i)=>{
   let row=document.createElement("div");row.className="list-item";
   let t=document.createElement("div"),s=document.createElement("strong"),p=document.createElement("p");
   s.textContent="v"+x.version+" · "+x.title;p.textContent=x.description;t.append(s,p);
   let b=document.createElement("button");b.className="danger";b.textContent="ELIMINAR";
-  b.onclick=async()=>{content.changelog.splice(i,1);renderChangelog();await saveContent()};
+  b.onclick=async()=>{const old=content.changelog.splice(i,1)[0];renderChangelog();try{await saveContent()}catch(e){content.changelog.splice(i,0,old);renderChangelog();toast(e.message)}};
   row.append(t,b);box.append(row);
  });
 }
 function renderAll(){renderFeatures();renderGallery();renderChangelog()}
 
-$("addChangelog").onclick=async()=>{
- let version=$("changeVersion").value.trim(),title=$("changeTitle").value.trim(),description=$("changeDescription").value.trim();
- if(!version||!title||!description)return toast("Completa todos los campos.");
- content.changelog.unshift({version,title,description,date:new Date().toISOString()});
- $("changeVersion").value=$("changeTitle").value=$("changeDescription").value="";
- renderChangelog();await saveContent("Novedades publicadas.");
-};
+/* EDITOR DE PUBLICACIONES */
+function setPostLanguage(lang){
+ if(!["es","en","fr","pt"].includes(lang))return;
+ saveCurrentPostLanguage();
+ postLanguage=lang;
+ document.querySelectorAll("[data-post-lang]").forEach(b=>b.classList.toggle("active",b.dataset.postLang===lang));
+ const t=postTranslations[lang]||{title:"",excerpt:"",body:""};
+ $("postTitle").value=t.title||"";$("postExcerpt").value=t.excerpt||"";$("postBody").value=t.body||"";
+}
+function saveCurrentPostLanguage(){
+ postTranslations[postLanguage]={
+  title:$("postTitle").value.trim(),
+  excerpt:$("postExcerpt").value.trim(),
+  body:$("postBody").value.trim()
+ };
+}
+document.querySelectorAll("[data-post-lang]").forEach(b=>b.addEventListener("click",()=>setPostLanguage(b.dataset.postLang)));
+function resetPostEditor(){
+ editingPostId=null;
+ postTranslations={es:{title:"",excerpt:"",body:""},en:{title:"",excerpt:"",body:""},fr:{title:"",excerpt:"",body:""},pt:{title:"",excerpt:"",body:""}};
+ postImageFile=null;
+ $("postVersion").value="";$("postCategory").value="update";
+ $("postDate").value=new Date().toISOString().slice(0,10);
+ $("postStatus").value="draft";$("postFeatured").checked=false;
+ $("postImageFile").value="";$("postImageUrl").value="";
+ $("postImagePreview").src="";$("postImagePreview").style.display="none";
+ $("postEditorHeading").textContent="Crear publicación";
+ $("savePost").textContent="GUARDAR PUBLICACIÓN";
+ $("postTitle").value="";$("postExcerpt").value="";$("postBody").value="";
+ postLanguage="es";setPostLanguage("es");
+}
+$("newPost").onclick=resetPostEditor;
+$("cancelPost").onclick=resetPostEditor;
+$("postImageFile").addEventListener("change",()=>{
+ const file=$("postImageFile").files?.[0];if(!file)return;
+ const ext=file.name.split(".").pop().toLowerCase();
+ if(!["png","jpg","jpeg","webp","gif"].includes(ext)){toast("Formato de imagen no permitido.");$("postImageFile").value="";return}
+ if(file.size>20*1024*1024){toast("La imagen supera 20 MB.");$("postImageFile").value="";return}
+ postImageFile=file;$("postImagePreview").src=URL.createObjectURL(file);$("postImagePreview").style.display="block";
+});
+$("postImageUrl").addEventListener("input",()=>{
+ if($("postImageUrl").value.trim()&&!postImageFile){$("postImagePreview").src=$("postImageUrl").value.trim();$("postImagePreview").style.display="block"}
+});
+function editPost(id){
+ const post=content.posts.find(p=>p.id===id);if(!post)return;
+ editingPostId=id;
+ postTranslations=JSON.parse(JSON.stringify(post.translations||{}));
+ for(const lang of ["es","en","fr","pt"])if(!postTranslations[lang])postTranslations[lang]={title:"",excerpt:"",body:""};
+ $("postVersion").value=post.version||"";$("postCategory").value=post.category||"update";
+ $("postDate").value=(post.date||new Date().toISOString().slice(0,10)).slice(0,10);
+ $("postStatus").value=post.status||"draft";$("postFeatured").checked=!!post.featured;
+ $("postImageUrl").value=post.image||"";postImageFile=null;$("postImageFile").value="";
+ if(post.image){$("postImagePreview").src=post.image;$("postImagePreview").style.display="block"}else $("postImagePreview").style.display="none";
+ $("postEditorHeading").textContent="Editar publicación";
+ $("savePost").textContent="GUARDAR CAMBIOS";
+ postLanguage="es";setPostLanguage("es");showSection("changelog");
+ document.querySelector("#changelog .panel").scrollIntoView({behavior:"smooth"});
+}
+async function savePost(){
+ saveCurrentPostLanguage();
+ const originalLanguage=["es","en","fr","pt"].find(lang=>postTranslations[lang].title||postTranslations[lang].excerpt||postTranslations[lang].body);
+ if(!originalLanguage)return toast("Añade al menos un título y contenido.");
+ if(!postTranslations[originalLanguage].title)return toast("El título es obligatorio.");
+ const button=$("savePost");button.disabled=true;button.textContent="GUARDANDO...";
+ try{
+  let image=$("postImageUrl").value.trim();
+  if(postImageFile){
+   const safeName=postImageFile.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+   const blob=await upload("posts/"+Date.now()+"-"+safeName,postImageFile,{access:"public",handleUploadUrl:"/api/upload"});
+   image=blob.url;
+  }
+  const post={
+   id:editingPostId||("post-"+Date.now()+"-"+Math.random().toString(36).slice(2,9)),
+   status:$("postStatus").value,
+   featured:$("postFeatured").checked,
+   category:$("postCategory").value,
+   version:$("postVersion").value.trim(),
+   date:$("postDate").value||new Date().toISOString().slice(0,10),
+   image,
+   originalLanguage,
+   translations:postTranslations
+  };
+  const index=content.posts.findIndex(p=>p.id===post.id);
+  if(index>=0)content.posts[index]=post;else content.posts.unshift(post);
+  await saveContent(post.status==="published"?"Publicación publicada.":"Borrador guardado.");
+  renderPosts();resetPostEditor();
+ }catch(e){toast("No se pudo guardar la publicación: "+e.message)}
+ finally{button.disabled=false;button.textContent=editingPostId?"GUARDAR CAMBIOS":"GUARDAR PUBLICACIÓN"}
+}
+$("savePost").onclick=savePost;
+async function deletePost(id){
+ if(!confirm("¿Eliminar esta publicación permanentemente?"))return;
+ const index=content.posts.findIndex(p=>p.id===id);if(index<0)return;
+ const old=content.posts.splice(index,1)[0];renderPosts();
+ try{await saveContent("Publicación eliminada.");}
+ catch(e){content.posts.splice(index,0,old);renderPosts();toast("No se pudo eliminar: "+e.message)}
+}
+async function togglePostStatus(id){
+ const post=content.posts.find(p=>p.id===id);if(!post)return;
+ post.status=post.status==="published"?"draft":"published";
+ try{await saveContent(post.status==="published"?"Publicación publicada.":"Publicación movida a borradores.");renderPosts()}
+ catch(e){toast(e.message)}
+}
+function renderPosts(){
+ const box=$("postList");box.replaceChildren();
+ $("postCount").textContent=content.posts.length+" publicaciones";
+ $("statPosts").textContent=content.posts.length;
+ if(!content.posts.length){box.className="empty";box.textContent="Todavía no has creado publicaciones.";return}
+ box.className="";
+ content.posts.slice().sort((a,b)=>new Date(b.date||0)-new Date(a.date||0)).forEach(post=>{
+  const row=document.createElement("article");row.className="post-list-card";
+  const top=document.createElement("div");top.className="post-list-top";
+  const info=document.createElement("div");
+  const title=document.createElement("strong");
+  const main=post.translations?.[post.originalLanguage]||post.translations?.es||post.translations?.en||{};
+  title.textContent=(post.version?"v"+post.version+" · ":"")+(main.title||"Publicación sin título");
+  const desc=document.createElement("p");desc.textContent=(main.excerpt||main.body||"").slice(0,220);
+  const meta=document.createElement("p");meta.textContent=(post.category||"news").toUpperCase()+" · "+(post.date||"Sin fecha")+(post.featured?" · DESTACADA":"");
+  info.append(title,desc,meta);
+  const status=document.createElement("span");status.className="post-status "+(post.status==="published"?"published":"draft");status.textContent=post.status==="published"?"PUBLICADO":"BORRADOR";
+  top.append(info,status);row.append(top);
+  const actions=document.createElement("div");actions.className="post-actions";
+  const edit=document.createElement("button");edit.className="btn secondary";edit.textContent="EDITAR";edit.onclick=()=>editPost(post.id);
+  const publish=document.createElement("button");publish.className="btn secondary";publish.textContent=post.status==="published"?"PASAR A BORRADOR":"PUBLICAR";publish.onclick=()=>togglePostStatus(post.id);
+  const del=document.createElement("button");del.className="danger";del.textContent="ELIMINAR";del.onclick=()=>deletePost(post.id);
+  actions.append(edit,publish,del);row.append(actions);box.append(row);
+ });
+}
 
+/* LAUNCHER PRIVADO */
 $("uploadRelease").onclick=async()=>{
  let file=$("releaseFile").files[0],version=$("uploadVersion").value.trim(),name=$("uploadName").value.trim(),description=$("uploadDescription").value.trim();
  if(!file||!version||!name)return toast("Completa versión, nombre y archivo.");
@@ -530,12 +641,12 @@ $("uploadRelease").onclick=async()=>{
   let info=document.createElement("div"),strong=document.createElement("strong"),p=document.createElement("p");
   strong.textContent="v"+version+" · "+name;p.textContent=file.name+" · "+description+" · "+new Date().toLocaleString("es-SV");
   info.append(strong,p);row.append(info);$("releaseList").prepend(row);
-  $("uploadStatus").textContent="Subida completada. Archivo guardado como privado.";
-  toast("Launcher subido correctamente.");
+  $("uploadStatus").textContent="Subida completada. Archivo guardado como privado.";toast("Launcher subido correctamente.");
  }catch(e){$("uploadStatus").textContent="Error: "+e.message;toast("No se pudo subir el launcher: "+e.message)}
  finally{btn.disabled=false}
 };
 
+/* GIFT KEYS */
 async function loadKeyStats(){
  try{
   let d=await api("/api/gift-keys?action=stats"),s=d.stats||{};
@@ -612,6 +723,7 @@ $("logoutButton").onclick=async()=>{
  try{await fetch("/api/logout",{method:"POST",credentials:"same-origin"})}
  finally{location.replace("/dashboard.html")}
 };
+resetPostEditor();
 verifySession();
 </script>
 </body>
