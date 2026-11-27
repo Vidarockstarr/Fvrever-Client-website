@@ -1,7 +1,7 @@
-
 {
   "private": true,
   "dependencies": {
-    "@vercel/blob": "2.9.0"
+    "@vercel/blob": "2.9.0",
+    "@neondatabase/serverless": "^1.0.2"
   }
 }
