@@ -20,8 +20,10 @@ async function ensureTable(sql){
     status VARCHAR(20) NOT NULL DEFAULT 'open',
     admin_reply TEXT NOT NULL DEFAULT '',
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    country_code VARCHAR(2)
   )`;
+  await sql`ALTER TABLE support_tickets ADD COLUMN IF NOT EXISTS country_code VARCHAR(2)`;
   await sql`CREATE INDEX IF NOT EXISTS support_tickets_created_at_idx ON support_tickets (created_at DESC)`;
 }
 module.exports=async function handler(req,res){
@@ -36,13 +38,16 @@ module.exports=async function handler(req,res){
       if(!name||!email||!category||!subject||message.length<10)return res.status(400).json({success:false,error:"Completa todos los campos y escribe un mensaje de al menos 10 caracteres."});
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return res.status(400).json({success:false,error:"Introduce un correo electrónico válido."});
       const ticketCode="FVR-"+crypto.randomBytes(4).toString("hex").toUpperCase();
-      const rows=await sql`INSERT INTO support_tickets (ticket_code,name,email,category,subject,message) VALUES (${ticketCode},${name},${email},${category},${subject},${message}) RETURNING ticket_code`;
+      const rawCountry=req.headers["x-vercel-ip-country"];
+      const countryCode=clean(Array.isArray(rawCountry)?rawCountry[0]:rawCountry,2).toUpperCase();
+      const safeCountryCode=/^[A-Z]{2}$/.test(countryCode)?countryCode:null;
+      const rows=await sql`INSERT INTO support_tickets (ticket_code,name,email,category,subject,message,country_code) VALUES (${ticketCode},${name},${email},${category},${subject},${message},${safeCountryCode}) RETURNING ticket_code`;
       return res.status(201).json({success:true,ticketCode:rows[0].ticket_code});
     }
     const session=await readSession(req);
     if(!session||session.sub!=="fvrever")return res.status(401).json({success:false,error:"Unauthorized"});
     if(req.method==="GET"){
-      const tickets=await sql`SELECT id,ticket_code,name,email,category,subject,message,status,admin_reply,created_at,updated_at FROM support_tickets ORDER BY created_at DESC LIMIT 200`;
+      const tickets=await sql`SELECT id,ticket_code,name,email,category,subject,message,status,admin_reply,created_at,updated_at,country_code FROM support_tickets ORDER BY created_at DESC LIMIT 200`;
       return res.status(200).json({success:true,tickets});
     }
     if(req.method==="PATCH"){
@@ -53,7 +58,15 @@ module.exports=async function handler(req,res){
       if(!rows.length)return res.status(404).json({success:false,error:"Ticket not found."});
       return res.status(200).json({success:true,ticket:rows[0]});
     }
-    res.setHeader("Allow","GET, POST, PATCH");
+    if(req.method==="DELETE"){
+      let body=req.body;if(typeof body==="string")body=JSON.parse(body);
+      const id=Number(body?.id);
+      if(!Number.isSafeInteger(id)||id<1)return res.status(400).json({success:false,error:"Invalid ticket ID."});
+      const rows=await sql`DELETE FROM support_tickets WHERE id=${id} RETURNING id,ticket_code`;
+      if(!rows.length)return res.status(404).json({success:false,error:"Ticket not found."});
+      return res.status(200).json({success:true,deleted:rows[0]});
+    }
+    res.setHeader("Allow","GET, POST, PATCH, DELETE");
     return res.status(405).json({success:false,error:"Method not allowed"});
   }catch(error){
     console.error("Support tickets API error:",error);
