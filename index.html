@@ -1144,7 +1144,7 @@ async function loadPrivateReleases(){
   const response=await fetch("/api/releases-list",{method:"GET",cache:"no-store",credentials:"same-origin"});
   const data=await response.json().catch(()=>({}));
   if(!response.ok||!data.success)throw new Error(data.error||"No releases are available.");
-  if(!Array.isArray(data.releases)||!data.releases.length){box.className="downloads-empty";box.innerHTML='<div class="empty-icon">✧</div><strong>No downloads available yet.</strong><p>We're preparing something special. Check back soon!</p>';return;}
+  if(!Array.isArray(data.releases)||!data.releases.length){box.className="downloads-empty";box.innerHTML='<div class="empty-icon">✧</div><strong>No downloads available yet.</strong><p>We&apos;re preparing something special. Check back soon!</p>';return;}
   box.className="release-list";box.innerHTML="";
   data.releases.forEach(release=>{
    const card=document.createElement("div");card.className="release-card";
