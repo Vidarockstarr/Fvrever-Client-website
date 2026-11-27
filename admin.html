@@ -1,26 +1,19 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#100d13">
-<title>FVREVER | Administration</title>
+<title>FVREVER | Administración</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#0d0a10;
-  --sidebar:#120e16;
-  --panel:#19131e;
-  --panel2:#211923;
-  --pink:#f08aa8;
-  --red:#ed4167;
-  --text:#fff7fa;
-  --muted:#a99ca9;
-  --line:rgba(255,255,255,.09);
-  --green:#72d9a0;
+  --bg:#0d0a10;--sidebar:#120e16;--panel:#19131e;--panel2:#211923;
+  --pink:#f08aa8;--red:#ed4167;--text:#fff7fa;--muted:#a99ca9;
+  --line:rgba(255,255,255,.09);--green:#72d9a0;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:"DM Sans",Arial,sans-serif;min-height:100vh}
@@ -28,10 +21,10 @@ button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 .layout{display:flex;min-height:100vh}
 .sidebar{
-  width:255px;position:fixed;inset:0 auto 0 0;z-index:20;
-  display:flex;flex-direction:column;padding:25px 17px;
-  background:rgba(18,14,22,.97);border-right:1px solid var(--line);
-  backdrop-filter:blur(20px);overflow-y:auto
+ width:255px;position:fixed;inset:0 auto 0 0;z-index:20;
+ display:flex;flex-direction:column;padding:25px 17px;
+ background:rgba(18,14,22,.97);border-right:1px solid var(--line);
+ backdrop-filter:blur(20px);overflow-y:auto
 }
 .brand{display:flex;align-items:center;gap:12px;padding:4px 8px 27px;border-bottom:1px solid var(--line)}
 .brand-mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#ff7896,#c5264d);font-family:"Space Grotesk";font-size:21px;font-weight:900;box-shadow:0 7px 24px #ed416733}
@@ -39,12 +32,7 @@ button{cursor:pointer}
 .brand-sub{color:var(--muted);font-size:9px;letter-spacing:2px;margin-top:4px}
 .nav-title{font-size:9px;font-weight:800;letter-spacing:2px;color:#796d7d;margin:26px 10px 11px}
 .nav{display:grid;gap:5px}
-.nav button{
-  width:100%;display:flex;align-items:center;gap:12px;
-  padding:12px;border-radius:10px;border:1px solid transparent;
-  color:#b8acb9;background:transparent;text-align:left;font-size:12px;font-weight:700;
-  transition:.2s
-}
+.nav button{width:100%;display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;border:1px solid transparent;color:#b8acb9;background:transparent;text-align:left;font-size:12px;font-weight:700;transition:.2s}
 .nav button:hover{background:#ffffff0b;color:white}
 .nav button.active{background:linear-gradient(100deg,#ed41672b,#ed416708);border-color:#ed416744;color:#ffadc1}
 .nav-icon{width:21px;text-align:center;font-size:16px}
@@ -72,7 +60,7 @@ h1{font-family:"Space Grotesk";font-size:clamp(25px,3vw,34px);letter-spacing:-1p
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:20px}
 .card,.panel{background:linear-gradient(145deg,#1b1520,#141019);border:1px solid #332633;border-radius:14px;padding:21px;min-width:0}
 .card-label{font-size:9px;font-weight:800;letter-spacing:1.3px;color:#a99ba9}
-.card-value{font-family:"Space Grotesk";font-size:25px;font-weight:800;margin-top:15px}
+.card-value{font-family:"Space Grotesk";font-size:25px;font-weight:800;margin-top:15px;overflow-wrap:anywhere}
 .card-note{font-size:10px;color:#897b8b;margin-top:6px}
 .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
 .panel h2{font-family:"Space Grotesk";font-size:15px;margin-bottom:8px}
@@ -86,10 +74,7 @@ h1{font-family:"Space Grotesk";font-size:clamp(25px,3vw,34px);letter-spacing:-1p
 .field{display:grid;gap:7px;margin-bottom:15px;min-width:0}
 .field.full{grid-column:1/-1}
 .field label{font-size:10px;font-weight:800;letter-spacing:.5px;color:#c4b6c4}
-.field input,.field textarea,.field select{
-  width:100%;min-width:0;padding:12px 13px;border:1px solid #443344;
-  border-radius:9px;background:#100d14;color:white;outline:none;font-size:12px
-}
+.field input,.field textarea,.field select{width:100%;min-width:0;padding:12px 13px;border:1px solid #443344;border-radius:9px;background:#100d14;color:white;outline:none;font-size:12px}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--pink);box-shadow:0 0 0 3px #f08aa815}
 .field textarea{min-height:115px;resize:vertical;line-height:1.6}
 .field small{font-size:10px;color:#897b8b;line-height:1.5}
@@ -99,210 +84,292 @@ h1{font-family:"Space Grotesk";font-size:clamp(25px,3vw,34px);letter-spacing:-1p
 .btn-primary:hover{filter:brightness(1.15);transform:translateY(-1px)}
 .btn-secondary{color:#e9dce7;background:#29202d;border-color:#453547}
 .btn-danger{color:#ff9db5;background:#301722;border-color:#693044}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
 .status-box{padding:13px;border-radius:9px;background:#20151e;border-left:2px solid var(--pink);color:#b9aab8;font-size:11px;line-height:1.7;margin-top:15px}
 .status-box strong{color:#ffabc0}
 .notice{padding:14px;border:1px solid #694052;background:#251620;border-radius:10px;color:#c7b3c1;font-size:11px;line-height:1.7;margin-bottom:17px}
 .notice strong{color:#ffabc0}
-.list-item{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px;border:1px solid var(--line);background:#201923;border-radius:10px;margin-top:9px}
-.list-item strong{font-size:11px}
-.list-item p{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.6;white-space:pre-wrap}
-.list-item button{padding:7px 10px;border:1px solid #633348;background:#321b27;color:#ff9db5;border-radius:7px;font-size:9px}
+.list-item{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px;border:1px solid var(--line);background:#201923;border-radius:10px;margin-top:9px;min-width:0}
+.list-item strong{font-size:11px;overflow-wrap:anywhere}
+.list-item p{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.list-item button{padding:7px 10px;border:1px solid #633348;background:#321b27;color:#ff9db5;border-radius:7px;font-size:9px;flex-shrink:0}
 .empty{padding:25px;text-align:center;border:1px dashed #50394d;border-radius:11px;color:#9c8b9d;font-size:11px;line-height:1.8}
 .preview-image{width:100%;max-height:170px;object-fit:cover;border-radius:9px;margin-top:10px}
 .hidden{display:none!important}
+.table-wrap{overflow-x:auto;margin-top:15px}
+table{width:100%;border-collapse:collapse;min-width:650px;font-size:10px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{color:#bbaaba;font-size:9px;letter-spacing:.8px}
+td{color:#e9dce7}
+.code{font-family:monospace;color:#ffb5c8;white-space:nowrap}
+.pill{display:inline-block;padding:5px 8px;border-radius:20px;background:#29202d;color:#e9dce7;font-size:9px}
+.pill.available{background:#173025;color:#83e0aa}
+.pill.used{background:#302a3d;color:#c8b8ff}
+.pill.expired{background:#382b1d;color:#f2c27d}
+.pill.revoked{background:#3b1d28;color:#ff9db5}
 #toast{position:fixed;right:25px;bottom:25px;z-index:100;padding:13px 17px;background:#241b29;border:1px solid #654056;color:#ffe9f0;border-radius:10px;font-size:11px;box-shadow:0 10px 40px #0008;opacity:0;transform:translateY(10px);pointer-events:none;transition:.25s}
 #toast.show{opacity:1;transform:translateY(0)}
+.progress{height:8px;background:#100d14;border-radius:20px;overflow:hidden;margin-top:12px}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ed4167,#f08aa8);transition:width .2s}
 @media(max-width:950px){.sidebar{width:220px}.main{margin-left:220px;width:calc(100% - 220px);padding:27px 3%}.grid{grid-template-columns:1fr}}
 @media(max-width:680px){
  .sidebar{transform:translateX(-100%);width:260px;transition:transform .25s}
  .sidebar.open{transform:translateX(0)}
  .main{margin-left:0;width:100%;padding:20px 15px}
- .mobile-menu{display:block}
- .topbar{margin-bottom:24px}
- .cards{grid-template-columns:1fr 1fr}
- .form-grid{grid-template-columns:1fr}
- .field.full{grid-column:auto}
- .status{display:none}
+ .mobile-menu{display:block}.topbar{margin-bottom:24px}
+ .cards{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}.status{display:none}
 }
 </style>
 </head>
 <body>
-
 <div class="layout">
 <aside class="sidebar" id="sidebar">
   <div class="brand">
     <div class="brand-mark">F</div>
-    <div><div class="brand-name">FVREVER</div><div class="brand-sub">ADMINISTRATION</div></div>
+    <div><div class="brand-name">FVREVER</div><div class="brand-sub">ADMINISTRACIÓN</div></div>
   </div>
 
-  <div class="nav-title">WORKSPACE</div>
+  <div class="nav-title">ESPACIO DE TRABAJO</div>
   <nav class="nav">
-    <button class="active" data-section="overview"><span class="nav-icon">⌂</span>Overview</button>
-    <button data-section="website"><span class="nav-icon">◫</span>Website Editor</button>
-    <button data-section="features"><span class="nav-icon">✧</span>Features</button>
-    <button data-section="gallery"><span class="nav-icon">▧</span>Gallery</button>
-    <button data-section="changelog"><span class="nav-icon">≡</span>Changelog</button>
-    <button data-section="versions"><span class="nav-icon">◈</span>Versions</button>
-    <button data-section="downloads"><span class="nav-icon">↓</span>Downloads</button>
+    <button class="active" data-section="overview"><span class="nav-icon">⌂</span>Resumen</button>
+    <button data-section="website"><span class="nav-icon">◫</span>Editor web</button>
+    <button data-section="features"><span class="nav-icon">✧</span>Características</button>
+    <button data-section="gallery"><span class="nav-icon">▧</span>Galería</button>
+    <button data-section="changelog"><span class="nav-icon">≡</span>Registro de cambios</button>
+    <button data-section="versions"><span class="nav-icon">◈</span>Versiones</button>
+    <button data-section="releases"><span class="nav-icon">📦</span>Subir launcher</button>
+    <button data-section="downloads"><span class="nav-icon">↓</span>Descargas</button>
   </nav>
 
-  <div class="nav-title">ACCESS MANAGEMENT</div>
+  <div class="nav-title">GESTIÓN DE ACCESO</div>
   <nav class="nav">
     <button data-section="keys"><span class="nav-icon">🎁</span>Gift Keys</button>
-    <button data-section="settings"><span class="nav-icon">⚙</span>Settings</button>
+    <button data-section="settings"><span class="nav-icon">⚙</span>Configuración</button>
   </nav>
 
   <div class="nav-bottom">
-    <div class="profile"><div class="avatar">F</div><div><strong>fvrever</strong><small>Administrator</small></div></div>
-    <button class="logout" id="logoutButton">↪ &nbsp; SIGN OUT</button>
+    <div class="profile"><div class="avatar">F</div><div><strong>fvrever</strong><small>Administrador</small></div></div>
+    <button class="logout" id="logoutButton">↪ &nbsp; CERRAR SESIÓN</button>
   </div>
 </aside>
 
 <main class="main">
-  <div class="topbar">
-    <div style="display:flex;align-items:center;gap:12px">
-      <button class="mobile-menu" id="mobileMenu">☰</button>
-      <div class="breadcrumb">FVREVER / <span id="breadcrumb">Overview</span></div>
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="mobile-menu" id="mobileMenu">☰</button>
+    <div class="breadcrumb">FVREVER / <span id="breadcrumb">Resumen</span></div>
+  </div>
+  <div class="status"><span class="dot"></span> SESIÓN ADMINISTRATIVA ACTIVA</div>
+</div>
+
+<section class="section active" id="overview">
+  <div class="heading">
+    <div class="eyebrow">CENTRO DE CONTROL</div>
+    <h1>Bienvenido de nuevo, FVREVER.</h1>
+    <p class="subtitle">Administra tu sitio web, publicaciones del launcher y sistema de acceso.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="card-label">VERSIÓN ACTUAL</div><div class="card-value" id="statVersion">—</div><div class="card-note">Información de lanzamiento</div></div>
+    <div class="card"><div class="card-label">ELEMENTOS EN GALERÍA</div><div class="card-value" id="statGallery">0</div><div class="card-note">Imágenes configuradas</div></div>
+    <div class="card"><div class="card-label">ESTADO DEL SITIO</div><div class="card-value" style="color:var(--green)">EN LÍNEA</div><div class="card-note">Sitio público disponible</div></div>
+  </div>
+  <div class="grid">
+    <div class="panel">
+      <h2>Administración rápida</h2><p class="panel-desc">Accede directamente a las secciones principales.</p>
+      <div class="action-list">
+        <div class="action"><div><strong>Editar portada</strong><small>Cambiar título y descripción</small></div><button data-go="website">ABRIR →</button></div>
+        <div class="action"><div><strong>Publicar launcher</strong><small>Subir un nuevo instalador</small></div><button data-go="releases">ABRIR →</button></div>
+        <div class="action"><div><strong>Administrar Gift Keys</strong><small>Generación y revocación de códigos</small></div><button data-go="keys">ABRIR →</button></div>
+        <div class="action"><div><strong>Actualizar novedades</strong><small>Publicar notas de versión</small></div><button data-go="changelog">ABRIR →</button></div>
+      </div>
     </div>
-    <div class="status"><span class="dot"></span> ADMIN SESSION ACTIVE</div>
+    <div class="panel">
+      <h2>Estado de conexiones</h2><p class="panel-desc">Estado de las conexiones con el servidor.</p>
+      <div class="status-box"><strong>Autenticación</strong><br>Protegida mediante la sesión administrativa FVREVER.</div>
+      <div class="status-box"><strong>Contenido web</strong><br><span id="connectionStatus">Comprobando API de contenido...</span></div>
+      <div id="sessionInfo" class="panel-desc" style="margin-top:15px;margin-bottom:0">Comprobando sesión...</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="website">
+  <div class="heading"><div class="eyebrow">SITIO PÚBLICO</div><h1>Editor web</h1><p class="subtitle">Edita el contenido principal que ven los visitantes.</p></div>
+  <div class="panel">
+    <h2>Contenido de portada</h2><p class="panel-desc">Los cambios se guardarán en la configuración del sitio.</p>
+    <div class="form-grid">
+      <div class="field full"><label>Título del sitio</label><input id="siteTitle" placeholder="FVREVER CLIENT"></div>
+      <div class="field full"><label>Título principal</label><input id="heroTitle" placeholder="ENTER THE FVREVER CLIENT"></div>
+      <div class="field full"><label>Descripción principal</label><textarea id="heroDescription"></textarea></div>
+      <div class="field"><label>Enlace de Discord</label><input id="discordUrl" placeholder="https://discord.gg/..."></div>
+      <div class="field"><label>Nombre del launcher</label><input id="downloadName" placeholder="FVREVER Client"></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" id="saveWebsite">GUARDAR CAMBIOS</button></div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="heading"><div class="eyebrow">FUNCIONES DEL CLIENTE</div><h1>Características</h1><p class="subtitle">Administra las tarjetas de características del sitio web.</p></div>
+  <div class="panel">
+    <h2>Añadir característica</h2>
+    <div class="form-grid">
+      <div class="field"><label>Título</label><input id="featureTitle" placeholder="Instancias independientes"></div>
+      <div class="field"><label>Icono o símbolo</label><input id="featureIcon" placeholder="✧"></div>
+      <div class="field full"><label>Descripción</label><textarea id="featureDescription" placeholder="Describe esta característica..."></textarea></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" id="addFeature">AÑADIR</button><button class="btn btn-secondary" id="saveFeatures">GUARDAR CAMBIOS</button></div>
+  </div>
+  <div class="panel" style="margin-top:15px"><h2>Características actuales</h2><div id="featureList" class="empty">Cargando...</div></div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="heading"><div class="eyebrow">CONTENIDO VISUAL</div><h1>Galería</h1><p class="subtitle">Administra las imágenes que aparecen en el sitio público.</p></div>
+  <div class="panel">
+    <h2>Añadir imagen</h2>
+    <div class="form-grid">
+      <div class="field full"><label>URL de la imagen</label><input id="galleryUrl" placeholder="https://..."></div>
+      <div class="field"><label>Título</label><input id="galleryTitle" placeholder="Interfaz del launcher"></div>
+      <div class="field"><label>Categoría</label><input id="galleryCategory" placeholder="LAUNCHER"></div>
+      <div class="field full"><label>Descripción</label><input id="galleryDescription" placeholder="Una vista de FVREVER Client"></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" id="addGallery">AÑADIR IMAGEN</button></div>
+  </div>
+  <div class="panel" style="margin-top:15px"><h2>Imágenes actuales</h2><div id="galleryList" class="empty">Cargando galería...</div></div>
+</section>
+
+<section class="section" id="changelog">
+  <div class="heading"><div class="eyebrow">NOTAS DE VERSIÓN</div><h1>Registro de cambios</h1><p class="subtitle">Publica novedades y mejoras para la comunidad.</p></div>
+  <div class="panel">
+    <h2>Crear actualización</h2>
+    <div class="form-grid">
+      <div class="field"><label>Versión</label><input id="changeVersion" placeholder="1.2.0"></div>
+      <div class="field"><label>Título</label><input id="changeTitle" placeholder="Mejoras de rendimiento"></div>
+      <div class="field full"><label>Descripción de cambios</label><textarea id="changeDescription" placeholder="Describe las novedades..."></textarea></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" id="addChangelog">PUBLICAR NOVEDADES</button></div>
+  </div>
+  <div class="panel" style="margin-top:15px"><h2>Publicaciones actuales</h2><div id="changelogList" class="empty">Cargando...</div></div>
+</section>
+
+<section class="section" id="versions">
+  <div class="heading"><div class="eyebrow">GESTIÓN DE VERSIONES</div><h1>Versiones</h1><p class="subtitle">Configura los datos de la versión publicada.</p></div>
+  <div class="panel">
+    <h2>Información de la versión actual</h2>
+    <div class="notice"><strong>Importante:</strong> Esta sección guarda los datos de versión. Para subir el instalador utiliza la sección «Subir launcher».</div>
+    <div class="form-grid">
+      <div class="field"><label>Número de versión</label><input id="version" placeholder="1.0.0"></div>
+      <div class="field"><label>Nombre del instalador</label><input id="releaseName" placeholder="FVREVER Client Setup"></div>
+      <div class="field full"><label>URL pública (opcional)</label><input id="releaseUrl" placeholder="Déjalo vacío para una descarga privada"></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" id="saveVersion">GUARDAR VERSIÓN</button></div>
+  </div>
+</section>
+
+<section class="section" id="releases">
+  <div class="heading"><div class="eyebrow">DISTRIBUCIÓN DEL CLIENTE</div><h1>Subir launcher</h1><p class="subtitle">Prepara una nueva publicación de FVREVER Client.</p></div>
+  <div class="panel">
+    <h2>Publicar nuevo instalador</h2>
+    <div class="notice"><strong>Almacenamiento privado:</strong> los instaladores deben guardarse en el Blob privado <b>fvrever-releases</b>. No se debe utilizar el almacenamiento público de imágenes.</div>
+    <div class="form-grid">
+      <div class="field"><label>Versión del launcher</label><input id="uploadVersion" placeholder="1.0.0"></div>
+      <div class="field"><label>Nombre de la publicación</label><input id="uploadName" placeholder="FVREVER Client Setup"></div>
+      <div class="field full"><label>Descripción de la versión</label><textarea id="uploadDescription" placeholder="Describe esta versión..."></textarea></div>
+      <div class="field full">
+        <label>Archivo del launcher</label>
+        <input id="releaseFile" type="file" accept=".exe,.msi,.zip">
+        <small>Formatos permitidos: .EXE, .MSI y .ZIP. Selecciona el instalador que deseas publicar.</small>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="uploadRelease">SUBIR NUEVA VERSIÓN</button>
+    </div>
+    <div id="uploadProgressWrap" class="hidden">
+      <div class="progress"><span id="uploadProgress"></span></div>
+      <p class="panel-desc" id="uploadStatus" style="margin-top:8px">Preparando archivo...</p>
+    </div>
+    <div class="status-box"><strong>Protección:</strong> el archivo no debe quedar disponible mediante una URL pública. La autorización de descarga se gestionará desde el servidor.</div>
+  </div>
+  <div class="panel" style="margin-top:15px">
+    <h2>Publicación actual</h2>
+    <p class="panel-desc">Aquí aparecerán los datos de los instaladores publicados cuando conectemos el servicio de lanzamientos.</p>
+    <div id="releaseList" class="empty">La administración de archivos privados se conectará en el siguiente paso.</div>
+  </div>
+</section>
+
+<section class="section" id="downloads">
+  <div class="heading"><div class="eyebrow">DISTRIBUCIÓN</div><h1>Descargas</h1><p class="subtitle">Información del instalador y protección de descargas.</p></div>
+  <div class="panel">
+    <h2>Configuración de descarga</h2>
+    <div class="notice"><strong>Protección activa en diseño:</strong> el sitio público no debe enlazar directamente a una URL permanente del instalador. La descarga se servirá mediante una función protegida.</div>
+    <p class="panel-desc">Versión configurada: <strong id="downloadSummary">No configurada</strong></p>
+  </div>
+</section>
+
+<section class="section" id="keys">
+  <div class="heading"><div class="eyebrow">CONTROL DE ACCESO</div><h1>Gift Keys</h1><p class="subtitle">Genera y administra códigos de acceso de FVREVER Client.</p></div>
+
+  <div class="notice"><strong>Validez de 30 días.</strong> Cada código puede utilizarse una sola vez. La validación y el registro se realizan en el servidor.</div>
+
+  <div class="cards">
+    <div class="card"><div class="card-label">CÓDIGOS DISPONIBLES</div><div class="card-value" id="keyStatAvailable">—</div><div class="card-note">Listos para canjear</div></div>
+    <div class="card"><div class="card-label">CÓDIGOS USADOS</div><div class="card-value" id="keyStatUsed">—</div><div class="card-note">Ya canjeados</div></div>
+    <div class="card"><div class="card-label">CÓDIGOS CADUCADOS</div><div class="card-value" id="keyStatExpired">—</div><div class="card-note">Superaron los 30 días</div></div>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="card-label">CÓDIGOS REVOCADOS</div><div class="card-value" id="keyStatRevoked">—</div><div class="card-note">Desactivados manualmente</div></div>
+    <div class="card"><div class="card-label">TOTAL GENERADOS</div><div class="card-value" id="keyStatTotal">—</div><div class="card-note">Todos los códigos</div></div>
   </div>
 
-  <section class="section active" id="overview">
-    <div class="heading">
-      <div class="eyebrow">CONTROL CENTER</div>
-      <h1>Welcome back, FVREVER.</h1>
-      <p class="subtitle">Manage your public website, client releases and access system.</p>
+  <div class="panel">
+    <h2>Generar códigos nuevos</h2>
+    <p class="panel-desc">Genera un código o un lote de hasta 500 códigos. Cada uno caduca 30 días después de su creación.</p>
+    <div class="field">
+      <label>CANTIDAD DE CÓDIGOS</label>
+      <input id="keyQuantity" type="number" min="1" max="500" value="1">
     </div>
-    <div class="cards">
-      <div class="card"><div class="card-label">CURRENT VERSION</div><div class="card-value" id="statVersion">—</div><div class="card-note">Website release information</div></div>
-      <div class="card"><div class="card-label">GALLERY ITEMS</div><div class="card-value" id="statGallery">0</div><div class="card-note">Configured gallery entries</div></div>
-      <div class="card"><div class="card-label">WEBSITE STATUS</div><div class="card-value" style="color:var(--green)">ONLINE</div><div class="card-note">Public website availability</div></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="generateKeys">GENERAR CÓDIGOS</button>
+      <button class="btn btn-secondary" id="copyGeneratedKeys" disabled>COPIAR CÓDIGOS</button>
+      <button class="btn btn-secondary" id="downloadGeneratedKeys" disabled>EXPORTAR TXT</button>
     </div>
-    <div class="grid">
-      <div class="panel">
-        <h2>Quick management</h2><p class="panel-desc">Jump directly to a content section.</p>
-        <div class="action-list">
-          <div class="action"><div><strong>Edit homepage</strong><small>Change title and description</small></div><button data-go="website">OPEN →</button></div>
-          <div class="action"><div><strong>Update gallery</strong><small>Manage public screenshot URLs</small></div><button data-go="gallery">OPEN →</button></div>
-          <div class="action"><div><strong>Publish changelog</strong><small>Manage release notes</small></div><button data-go="changelog">OPEN →</button></div>
-          <div class="action"><div><strong>Manage Gift Keys</strong><small>One-time redemption system</small></div><button data-go="keys">OPEN →</button></div>
-        </div>
-      </div>
-      <div class="panel">
-        <h2>Connection status</h2><p class="panel-desc">Current connection to the content API.</p>
-        <div class="status-box"><strong>Authentication</strong><br>Protected by the FVREVER administrator session.</div>
-        <div class="status-box"><strong>Content storage</strong><br><span id="connectionStatus">Checking content API...</span></div>
-        <div id="sessionInfo" class="panel-desc" style="margin-top:15px;margin-bottom:0">Checking session...</div>
-      </div>
-    </div>
-  </section>
+    <div id="generatedKeys" class="empty" style="margin-top:15px">Los códigos generados aparecerán aquí.</div>
+  </div>
 
-  <section class="section" id="website">
-    <div class="heading"><div class="eyebrow">PUBLIC WEBSITE</div><h1>Website Editor</h1><p class="subtitle">Edit the homepage content shown to visitors.</p></div>
-    <div class="panel">
-      <h2>Homepage content</h2><p class="panel-desc">These values will be saved to the website content configuration.</p>
-      <div class="form-grid">
-        <div class="field full"><label>Website title</label><input id="siteTitle" placeholder="FVREVER CLIENT"></div>
-        <div class="field full"><label>Hero title</label><input id="heroTitle" placeholder="ENTER THE FVREVER CLIENT"></div>
-        <div class="field full"><label>Hero description</label><textarea id="heroDescription"></textarea></div>
-        <div class="field"><label>Discord URL</label><input id="discordUrl" placeholder="https://discord.gg/..."></div>
-        <div class="field"><label>Download display name</label><input id="downloadName" placeholder="FVREVER Client"></div>
+  <div class="panel" style="margin-top:16px">
+    <h2>Base de datos de códigos</h2>
+    <p class="panel-desc">Busca, filtra y administra los códigos generados.</p>
+    <div class="form-grid">
+      <div class="field">
+        <label>BUSCAR CÓDIGO</label>
+        <input id="keySearch" placeholder="FVR-XXXX-XXXX">
       </div>
-      <div class="btn-row"><button class="btn btn-primary" id="saveWebsite">SAVE WEBSITE CONTENT</button></div>
-    </div>
-  </section>
-
-  <section class="section" id="features">
-    <div class="heading"><div class="eyebrow">CLIENT CAPABILITIES</div><h1>Features</h1><p class="subtitle">Create and manage the feature cards on your public website.</p></div>
-    <div class="panel">
-      <h2>Add a feature</h2><p class="panel-desc">Create a title and description for a feature.</p>
-      <div class="form-grid">
-        <div class="field"><label>Feature title</label><input id="featureTitle" placeholder="Independent Instances"></div>
-        <div class="field"><label>Icon name or symbol</label><input id="featureIcon" placeholder="✧"></div>
-        <div class="field full"><label>Description</label><textarea id="featureDescription" placeholder="Describe this feature..."></textarea></div>
+      <div class="field">
+        <label>FILTRAR POR ESTADO</label>
+        <select id="keyStatus">
+          <option value="all">Todos los estados</option>
+          <option value="available">Disponible</option>
+          <option value="used">Usado</option>
+          <option value="expired">Caducado</option>
+          <option value="revoked">Revocado</option>
+        </select>
       </div>
-      <div class="btn-row"><button class="btn btn-primary" id="addFeature">ADD FEATURE</button><button class="btn btn-secondary" id="saveFeatures">SAVE CHANGES</button></div>
     </div>
-    <div class="panel" style="margin-top:15px"><h2>Current features</h2><div id="featureList" class="empty">Loading features...</div></div>
-  </section>
+    <div class="btn-row"><button class="btn btn-primary" id="refreshKeys">ACTUALIZAR LISTADO</button></div>
+    <div id="keyList" class="empty" style="margin-top:15px">Cargando códigos...</div>
+  </div>
+</section>
 
-  <section class="section" id="gallery">
-    <div class="heading"><div class="eyebrow">VISUAL CONTENT</div><h1>Gallery</h1><p class="subtitle">Manage the images displayed on your public website.</p></div>
-    <div class="panel">
-      <h2>Add gallery image</h2><p class="panel-desc">Add a public image URL. Upload controls will be connected to Blob in the next integration step.</p>
-      <div class="form-grid">
-        <div class="field full"><label>Image URL</label><input id="galleryUrl" placeholder="https://..."></div>
-        <div class="field"><label>Image title</label><input id="galleryTitle" placeholder="Launcher Interface"></div>
-        <div class="field"><label>Category</label><input id="galleryCategory" placeholder="LAUNCHER"></div>
-        <div class="field full"><label>Description</label><input id="galleryDescription" placeholder="A look inside FVREVER Client"></div>
-      </div>
-      <div class="btn-row"><button class="btn btn-primary" id="addGallery">ADD IMAGE</button></div>
-    </div>
-    <div class="panel" style="margin-top:15px"><h2>Gallery items</h2><div id="galleryList" class="empty">Loading gallery...</div></div>
-  </section>
-
-  <section class="section" id="changelog">
-    <div class="heading"><div class="eyebrow">RELEASE NOTES</div><h1>Changelog</h1><p class="subtitle">Publish updates and improvements to your community.</p></div>
-    <div class="panel">
-      <h2>Create update</h2>
-      <div class="form-grid">
-        <div class="field"><label>Version label</label><input id="changeVersion" placeholder="1.2.0"></div>
-        <div class="field"><label>Update title</label><input id="changeTitle" placeholder="Performance improvements"></div>
-        <div class="field full"><label>Release notes</label><textarea id="changeDescription" placeholder="Describe what's new..."></textarea></div>
-      </div>
-      <div class="btn-row"><button class="btn btn-primary" id="addChangelog">ADD CHANGELOG</button></div>
-    </div>
-    <div class="panel" style="margin-top:15px"><h2>Published entries</h2><div id="changelogList" class="empty">Loading changelog...</div></div>
-  </section>
-
-  <section class="section" id="versions">
-    <div class="heading"><div class="eyebrow">RELEASE MANAGEMENT</div><h1>Versions</h1><p class="subtitle">Configure the currently published release.</p></div>
-    <div class="panel">
-      <h2>Current release information</h2>
-      <div class="notice"><strong>Release storage:</strong> The current form saves release metadata only. The protected installer upload and private download flow will be connected separately. Do not paste a private or temporary URL here.</div>
-      <div class="form-grid">
-        <div class="field"><label>Version number</label><input id="version" placeholder="1.0.0"></div>
-        <div class="field"><label>Installer display name</label><input id="releaseName" placeholder="FVREVER Client Setup"></div>
-        <div class="field full"><label>Public download URL</label><input id="releaseUrl" placeholder="Leave empty until private download is connected"></div>
-      </div>
-      <div class="btn-row"><button class="btn btn-primary" id="saveVersion">SAVE RELEASE INFORMATION</button></div>
-    </div>
-  </section>
-
-  <section class="section" id="downloads">
-    <div class="heading"><div class="eyebrow">DISTRIBUTION</div><h1>Downloads</h1><p class="subtitle">Review the current release download configuration.</p></div>
-    <div class="panel">
-      <h2>Download protection</h2>
-      <div class="notice"><strong>Important:</strong> The public website must not link directly to a permanent installer URL. Gift Key validation and one-time download authorization will be implemented through a protected server endpoint.</div>
-      <p class="panel-desc">Current configured release: <strong id="downloadSummary">Not configured</strong></p>
-    </div>
-  </section>
-
-  <section class="section" id="keys">
-    <div class="heading"><div class="eyebrow">ACCESS CONTROL</div><h1>Gift Keys</h1><p class="subtitle">Manage one-time access codes for FVREVER Client.</p></div>
-    <div class="panel">
-      <div class="notice"><strong>One-time redemption system.</strong><br>Each code will authorize one download only. Codes will be checked and consumed by the server, not by browser JavaScript.</div>
-      <h2>Key management</h2>
-      <p class="panel-desc">The secure key database, batch generation, revocation and redemption history are not connected yet. We will add them before enabling this section.</p>
-      <div class="cards">
-        <div class="card"><div class="card-label">AVAILABLE KEYS</div><div class="card-value">—</div><div class="card-note">Backend pending</div></div>
-        <div class="card"><div class="card-label">REDEEMED KEYS</div><div class="card-value">—</div><div class="card-note">Backend pending</div></div>
-        <div class="card"><div class="card-label">REVOKED KEYS</div><div class="card-value">—</div><div class="card-note">Backend pending</div></div>
-      </div>
-      <div class="btn-row"><button class="btn btn-secondary" disabled>KEY GENERATION — COMING NEXT</button></div>
-    </div>
-  </section>
-
-  <section class="section" id="settings">
-    <div class="heading"><div class="eyebrow">SYSTEM CONFIGURATION</div><h1>Settings</h1><p class="subtitle">Administration and integration status.</p></div>
-    <div class="panel">
-      <h2>Environment</h2>
-      <div class="status-box"><strong>Authentication</strong><br>Dashboard session is verified by /api/me.</div>
-      <div class="status-box"><strong>Content storage</strong><br>Website configuration is stored using Vercel Blob.</div>
-      <div class="status-box"><strong>Media storage</strong><br>Public Blob storage is intended for public media. Private installer delivery will use a separate protected flow.</div>
-      <div class="status-box"><strong>Gift Keys</strong><br>One-time redemption backend is pending.</div>
-    </div>
-  </section>
+<section class="section" id="settings">
+  <div class="heading"><div class="eyebrow">CONFIGURACIÓN DEL SISTEMA</div><h1>Configuración</h1><p class="subtitle">Estado de la administración y de las integraciones.</p></div>
+  <div class="panel">
+    <h2>Entorno</h2>
+    <div class="status-box"><strong>Autenticación</strong><br>La sesión se verifica mediante /api/me.</div>
+    <div class="status-box"><strong>Contenido web</strong><br>La configuración se guarda mediante la API de contenido.</div>
+    <div class="status-box"><strong>Archivos públicos</strong><br>El Blob público se reserva para imágenes y vídeos del sitio.</div>
+    <div class="status-box"><strong>Instaladores privados</strong><br>Se utilizará el almacenamiento privado fvrever-releases.</div>
+    <div class="status-box"><strong>Gift Keys</strong><br>La gestión de códigos utiliza la API protegida del servidor.</div>
+  </div>
+</section>
 </main>
 </div>
 
@@ -327,6 +394,8 @@ let content = {
   changelog:[]
 };
 
+let generatedKeys = [];
+
 function toast(message){
   const el=$("toast");
   el.textContent=message;
@@ -339,7 +408,7 @@ function showSection(name){
   sections.forEach(s=>s.classList.toggle("active",s.id===name));
   navButtons.forEach(b=>b.classList.toggle("active",b.dataset.section===name));
   const active=document.querySelector(`[data-section="${name}"]`);
-  $("breadcrumb").textContent=active?active.textContent.trim():"Overview";
+  $("breadcrumb").textContent=active?active.textContent.trim():"Resumen";
   sidebar.classList.remove("open");
 }
 
@@ -353,16 +422,16 @@ async function api(url,options={}){
     cache:"no-store",
     ...options,
     headers:{
-      ...(options.body?{"Content-Type":"application/json"}:{}),
+      ...(options.body && !(options.body instanceof FormData)?{"Content-Type":"application/json"}:{}),
       ...(options.headers||{})
     }
   });
   if(response.status===401){
     window.location.replace("/dashboard.html");
-    throw new Error("Session expired");
+    throw new Error("La sesión ha caducado.");
   }
   const data=await response.json().catch(()=>({}));
-  if(!response.ok)throw new Error(data.error||"Request failed");
+  if(!response.ok)throw new Error(data.error||"Error en la solicitud");
   return data;
 }
 
@@ -370,15 +439,18 @@ async function loadContent(){
   try{
     const data=await api("/api/content");
     content={...content,...data};
+    if(!Array.isArray(content.features))content.features=[];
+    if(!Array.isArray(content.gallery))content.gallery=[];
+    if(!Array.isArray(content.changelog))content.changelog=[];
     fillFields();
     renderAll();
-    $("connectionStatus").textContent="Connected. Website content loaded successfully.";
+    $("connectionStatus").textContent="Conectado. Contenido cargado correctamente.";
     $("statVersion").textContent=content.version||"—";
     $("statGallery").textContent=content.gallery.length;
-    $("downloadSummary").textContent=content.downloadName||"Not configured";
+    $("downloadSummary").textContent=content.downloadName||"No configurada";
   }catch(error){
-    $("connectionStatus").textContent="Could not load content: "+error.message;
-    toast("Could not load website content.");
+    $("connectionStatus").textContent="No se pudo cargar: "+error.message;
+    toast("Error al cargar el contenido.");
   }
 }
 
@@ -395,17 +467,12 @@ function fillFields(){
 
 async function saveContent(){
   try{
-    await api("/api/content",{
-      method:"PUT",
-      body:JSON.stringify(content)
-    });
+    await api("/api/content",{method:"PUT",body:JSON.stringify(content)});
     $("statVersion").textContent=content.version||"—";
     $("statGallery").textContent=content.gallery.length;
-    $("downloadSummary").textContent=content.downloadName||"Not configured";
-    toast("Changes saved successfully.");
-  }catch(error){
-    toast("Save failed: "+error.message);
-  }
+    $("downloadSummary").textContent=content.downloadName||"No configurada";
+    toast("Cambios guardados correctamente.");
+  }catch(error){toast("No se pudo guardar: "+error.message);}
 }
 
 $("saveWebsite").addEventListener("click",()=>{
@@ -428,7 +495,7 @@ $("addFeature").addEventListener("click",()=>{
   const title=$("featureTitle").value.trim();
   const description=$("featureDescription").value.trim();
   const icon=$("featureIcon").value.trim()||"✧";
-  if(!title||!description){toast("Enter a feature title and description.");return;}
+  if(!title||!description){toast("Escribe un título y una descripción.");return;}
   content.features.push({title,description,icon});
   $("featureTitle").value="";
   $("featureDescription").value="";
@@ -436,20 +503,16 @@ $("addFeature").addEventListener("click",()=>{
   renderFeatures();
   saveContent();
 });
-
 $("saveFeatures").addEventListener("click",saveContent);
 
 $("addGallery").addEventListener("click",()=>{
   const url=$("galleryUrl").value.trim();
   const title=$("galleryTitle").value.trim();
-  if(!url||!title){toast("Enter an image URL and title.");return;}
-  try{
-    const parsed=new URL(url);
-    if(parsed.protocol!=="https:"){toast("Image URL must use HTTPS.");return;}
-  }catch{toast("Enter a valid image URL.");return;}
+  if(!url||!title){toast("Escribe una URL y un título.");return;}
+  try{const parsed=new URL(url);if(parsed.protocol!=="https:"){toast("La URL debe utilizar HTTPS.");return;}}
+  catch{toast("Escribe una URL válida.");return;}
   content.gallery.push({
-    url,
-    title,
+    url,title,
     category:$("galleryCategory").value.trim()||"FVREVER",
     description:$("galleryDescription").value.trim()
   });
@@ -465,7 +528,7 @@ $("addChangelog").addEventListener("click",()=>{
   const version=$("changeVersion").value.trim();
   const title=$("changeTitle").value.trim();
   const description=$("changeDescription").value.trim();
-  if(!version||!title||!description){toast("Complete all changelog fields.");return;}
+  if(!version||!title||!description){toast("Completa todos los campos.");return;}
   content.changelog.unshift({version,title,description,date:new Date().toISOString()});
   $("changeVersion").value="";
   $("changeTitle").value="";
@@ -476,92 +539,233 @@ $("addChangelog").addEventListener("click",()=>{
 
 function renderFeatures(){
   const box=$("featureList");
-  if(!content.features.length){box.className="empty";box.textContent="No features added yet.";return;}
-  box.className="";
-  box.replaceChildren();
+  if(!content.features.length){box.className="empty";box.textContent="Todavía no hay características.";return;}
+  box.className="";box.replaceChildren();
   content.features.forEach((item,index)=>{
-    const row=document.createElement("div");
-    row.className="list-item";
+    const row=document.createElement("div");row.className="list-item";
     const text=document.createElement("div");
-    const title=document.createElement("strong");
-    title.textContent=(item.icon||"✧")+"  "+item.title;
-    const desc=document.createElement("p");
-    desc.textContent=item.description;
+    const title=document.createElement("strong");title.textContent=(item.icon||"✧")+"  "+item.title;
+    const desc=document.createElement("p");desc.textContent=item.description;
     text.append(title,desc);
-    const remove=document.createElement("button");
-    remove.textContent="DELETE";
+    const remove=document.createElement("button");remove.textContent="ELIMINAR";
     remove.addEventListener("click",()=>{
-      content.features.splice(index,1);
-      renderFeatures();
-      saveContent();
+      content.features.splice(index,1);renderFeatures();saveContent();
     });
-    row.append(text,remove);
-    box.append(row);
+    row.append(text,remove);box.append(row);
   });
 }
 
 function renderGallery(){
   const box=$("galleryList");
-  if(!content.gallery.length){box.className="empty";box.textContent="No gallery images added yet.";return;}
-  box.className="";
-  box.replaceChildren();
+  if(!content.gallery.length){box.className="empty";box.textContent="Todavía no hay imágenes.";return;}
+  box.className="";box.replaceChildren();
   content.gallery.forEach((item,index)=>{
-    const row=document.createElement("div");
-    row.className="list-item";
+    const row=document.createElement("div");row.className="list-item";
     const text=document.createElement("div");
-    const title=document.createElement("strong");
-    title.textContent=item.title;
-    const desc=document.createElement("p");
-    desc.textContent=(item.category||"FVREVER")+" · "+(item.description||item.url);
-    const image=document.createElement("img");
-    image.className="preview-image";
-    image.src=item.url;
-    image.alt=item.title;
+    const title=document.createElement("strong");title.textContent=item.title;
+    const desc=document.createElement("p");desc.textContent=(item.category||"FVREVER")+" · "+(item.description||item.url);
+    const image=document.createElement("img");image.className="preview-image";image.src=item.url;image.alt=item.title;
     image.onerror=()=>image.remove();
     text.append(title,desc,image);
-    const remove=document.createElement("button");
-    remove.textContent="DELETE";
+    const remove=document.createElement("button");remove.textContent="ELIMINAR";
     remove.addEventListener("click",()=>{
-      content.gallery.splice(index,1);
-      renderGallery();
-      saveContent();
+      content.gallery.splice(index,1);renderGallery();saveContent();
     });
-    row.append(text,remove);
-    box.append(row);
+    row.append(text,remove);box.append(row);
   });
 }
 
 function renderChangelog(){
   const box=$("changelogList");
-  if(!content.changelog.length){box.className="empty";box.textContent="No changelog entries yet.";return;}
-  box.className="";
-  box.replaceChildren();
+  if(!content.changelog.length){box.className="empty";box.textContent="Todavía no hay publicaciones.";return;}
+  box.className="";box.replaceChildren();
   content.changelog.forEach((item,index)=>{
-    const row=document.createElement("div");
-    row.className="list-item";
+    const row=document.createElement("div");row.className="list-item";
     const text=document.createElement("div");
-    const title=document.createElement("strong");
-    title.textContent="v"+item.version+" · "+item.title;
-    const desc=document.createElement("p");
-    desc.textContent=item.description;
+    const title=document.createElement("strong");title.textContent="v"+item.version+" · "+item.title;
+    const desc=document.createElement("p");desc.textContent=item.description;
     text.append(title,desc);
-    const remove=document.createElement("button");
-    remove.textContent="DELETE";
+    const remove=document.createElement("button");remove.textContent="ELIMINAR";
     remove.addEventListener("click",()=>{
-      content.changelog.splice(index,1);
-      renderChangelog();
-      saveContent();
+      content.changelog.splice(index,1);renderChangelog();saveContent();
     });
-    row.append(text,remove);
-    box.append(row);
+    row.append(text,remove);box.append(row);
   });
 }
 
-function renderAll(){
-  renderFeatures();
-  renderGallery();
-  renderChangelog();
+function renderAll(){renderFeatures();renderGallery();renderChangelog();}
+
+// GIFT KEYS
+async function loadKeyStats(){
+  try{
+    const data=await api("/api/gift-keys?action=stats");
+    const s=data.stats||{};
+    $("keyStatAvailable").textContent=s.available??0;
+    $("keyStatUsed").textContent=s.used??0;
+    $("keyStatExpired").textContent=s.expired??0;
+    $("keyStatRevoked").textContent=s.revoked??0;
+    $("keyStatTotal").textContent=s.total??0;
+  }catch(error){toast("No se pudieron cargar las estadísticas: "+error.message);}
 }
+
+function formatDate(value){
+  if(!value)return "—";
+  const date=new Date(value);
+  return Number.isNaN(date.getTime())?"—":date.toLocaleString("es-SV");
+}
+
+function statusLabel(status){
+  return ({
+    available:"Disponible",
+    used:"Usado",
+    expired:"Caducado",
+    revoked:"Revocado"
+  })[status]||status;
+}
+
+async function loadKeys(){
+  const box=$("keyList");
+  box.className="empty";
+  box.textContent="Cargando códigos...";
+  try{
+    const params=new URLSearchParams({
+      action:"list",
+      status:$("keyStatus").value,
+      search:$("keySearch").value.trim(),
+      limit:"500",
+      offset:"0"
+    });
+    const data=await api("/api/gift-keys?"+params.toString());
+    const keys=data.keys||[];
+    if(!keys.length){
+      box.className="empty";
+      box.textContent="No se encontraron códigos.";
+      return;
+    }
+    box.className="table-wrap";
+    box.replaceChildren();
+    const table=document.createElement("table");
+    const thead=document.createElement("thead");
+    const headRow=document.createElement("tr");
+    ["CÓDIGO","ESTADO","CREACIÓN","CADUCIDAD","USADO","ACCIÓN"].forEach(label=>{
+      const th=document.createElement("th");th.textContent=label;headRow.append(th);
+    });
+    thead.append(headRow);
+    const tbody=document.createElement("tbody");
+    keys.forEach(key=>{
+      const tr=document.createElement("tr");
+      const code=document.createElement("td");code.className="code";code.textContent=key.code;
+      const state=document.createElement("td");
+      const pill=document.createElement("span");pill.className="pill "+key.status;pill.textContent=statusLabel(key.status);state.append(pill);
+      const created=document.createElement("td");created.textContent=formatDate(key.createdAt);
+      const expires=document.createElement("td");expires.textContent=formatDate(key.expiresAt);
+      const used=document.createElement("td");used.textContent=formatDate(key.usedAt);
+      const action=document.createElement("td");
+      if(key.status==="available"){
+        const revoke=document.createElement("button");
+        revoke.className="btn-danger";
+        revoke.textContent="REVOCAR";
+        revoke.addEventListener("click",()=>revokeKey(key.id));
+        action.append(revoke);
+      }else{
+        action.textContent="—";
+      }
+      tr.append(code,state,created,expires,used,action);
+      tbody.append(tr);
+    });
+    table.append(thead,tbody);box.append(table);
+  }catch(error){
+    box.className="empty";
+    box.textContent="Error al cargar códigos: "+error.message;
+  }
+}
+
+async function refreshKeys(){
+  await Promise.all([loadKeyStats(),loadKeys()]);
+}
+
+$("generateKeys").addEventListener("click",async()=>{
+  const quantity=Number($("keyQuantity").value);
+  if(!Number.isInteger(quantity)||quantity<1||quantity>500){
+    toast("La cantidad debe estar entre 1 y 500.");return;
+  }
+  const button=$("generateKeys");
+  button.disabled=true;button.textContent="GENERANDO...";
+  try{
+    const data=await api("/api/gift-keys",{
+      method:"POST",
+      body:JSON.stringify({action:"generate",quantity})
+    });
+    generatedKeys=(data.keys||[]).map(item=>item.code);
+    const box=$("generatedKeys");
+    box.className="empty";
+    box.textContent=generatedKeys.join("\n");
+    box.style.whiteSpace="pre-wrap";
+    $("copyGeneratedKeys").disabled=!generatedKeys.length;
+    $("downloadGeneratedKeys").disabled=!generatedKeys.length;
+    toast("Se generaron "+generatedKeys.length+" códigos correctamente.");
+    await refreshKeys();
+  }catch(error){toast("No se pudieron generar los códigos: "+error.message);}
+  finally{button.disabled=false;button.textContent="GENERAR CÓDIGOS";}
+});
+
+$("copyGeneratedKeys").addEventListener("click",async()=>{
+  if(!generatedKeys.length)return;
+  try{
+    await navigator.clipboard.writeText(generatedKeys.join("\n"));
+    toast("Códigos copiados.");
+  }catch{toast("No se pudo acceder al portapapeles.");}
+});
+
+$("downloadGeneratedKeys").addEventListener("click",()=>{
+  if(!generatedKeys.length)return;
+  const blob=new Blob([generatedKeys.join("\r\n")],{type:"text/plain;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download="fvrever-gift-keys.txt";a.click();
+  URL.revokeObjectURL(url);
+});
+
+async function revokeKey(id){
+  if(!confirm("¿Seguro que quieres revocar este código? Esta acción no se puede deshacer."))return;
+  try{
+    await api("/api/gift-keys",{
+      method:"POST",
+      body:JSON.stringify({action:"revoke",id})
+    });
+    toast("Código revocado.");
+    await refreshKeys();
+  }catch(error){toast("No se pudo revocar: "+error.message);}
+}
+
+$("refreshKeys").addEventListener("click",refreshKeys);
+$("keyStatus").addEventListener("change",loadKeys);
+$("keySearch").addEventListener("keydown",event=>{
+  if(event.key==="Enter")loadKeys();
+});
+
+// SUBIDA DE INSTALADORES
+// Este formulario queda preparado para /api/releases.
+// El endpoint privado y el sistema de transferencia se instalarán por separado.
+$("uploadRelease").addEventListener("click",()=>{
+  const file=$("releaseFile").files[0];
+  const version=$("uploadVersion").value.trim();
+  const name=$("uploadName").value.trim();
+  const description=$("uploadDescription").value.trim();
+
+  if(!version||!name||!file){
+    toast("Completa la versión, el nombre y selecciona un archivo.");
+    return;
+  }
+
+  const extension=file.name.split(".").pop().toLowerCase();
+  if(!["exe","msi","zip"].includes(extension)){
+    toast("Solo se permiten archivos EXE, MSI o ZIP.");
+    return;
+  }
+
+  toast("El formulario está preparado. Falta conectar la API privada de subida.");
+});
 
 async function verifySession(){
   try{
@@ -570,18 +774,19 @@ async function verifySession(){
       window.location.replace("/dashboard.html");
       return;
     }
-    $("sessionInfo").textContent="Authenticated as "+data.username+". Session verified.";
+    $("sessionInfo").textContent="Sesión autenticada como "+data.username+".";
     await loadContent();
+    await refreshKeys();
   }catch(error){
-    if(error.message!=="Session expired"){
-      $("sessionInfo").textContent="Session verification failed.";
+    if(error.message!=="La sesión ha caducado."){
+      $("sessionInfo").textContent="No se pudo verificar la sesión.";
     }
   }
 }
 
 $("logoutButton").addEventListener("click",async()=>{
   $("logoutButton").disabled=true;
-  $("logoutButton").textContent="SIGNING OUT...";
+  $("logoutButton").textContent="CERRANDO SESIÓN...";
   try{
     await fetch("/api/logout",{method:"POST",credentials:"same-origin"});
   }finally{
