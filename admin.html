@@ -13,38 +13,27 @@
 :root{--bg:#0d0a10;--side:#120e16;--panel:#19131e;--pink:#f08aa8;--red:#ed4167;--text:#fff7fa;--muted:#a99ca9;--line:#ffffff17;--green:#72d9a0}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;min-height:100vh}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
 .layout{display:flex;min-height:100vh}
 .sidebar{width:255px;position:fixed;inset:0 auto 0 0;z-index:20;display:flex;flex-direction:column;padding:25px 17px;background:#120e16f7;border-right:1px solid var(--line);overflow:auto}
 .brand{display:flex;gap:12px;align-items:center;padding:4px 8px 25px;border-bottom:1px solid var(--line)}
 .brand-mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#ff7896,#c5264d);font:900 21px "Space Grotesk"}
-.brand-name{font:800 16px "Space Grotesk";letter-spacing:1.5px}
-.brand-sub{font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:4px}
+.brand-name{font:800 16px "Space Grotesk";letter-spacing:1.5px}.brand-sub{font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:4px}
 .nav-title{font-size:9px;font-weight:800;letter-spacing:2px;color:#796d7d;margin:25px 10px 11px}
-.nav{display:grid;gap:5px}
-.nav button{width:100%;padding:12px;border:1px solid transparent;border-radius:10px;background:none;color:#b8acb9;text-align:left;font-size:12px;font-weight:700}
-.nav button:hover{background:#ffffff0b;color:white}
-.nav button.active{background:#ed41671c;border-color:#ed416744;color:#ffadc1}
+.nav{display:grid;gap:5px}.nav button{width:100%;padding:12px;border:1px solid transparent;border-radius:10px;background:none;color:#b8acb9;text-align:left;font-size:12px;font-weight:700}
+.nav button:hover{background:#ffffff0b;color:white}.nav button.active{background:#ed41671c;border-color:#ed416744;color:#ffadc1}
 .nav-icon{display:inline-block;width:23px;font-size:16px}
-.nav-bottom{margin-top:auto;padding-top:20px}
-.profile{display:flex;gap:10px;align-items:center;padding:16px 7px;border-top:1px solid var(--line)}
+.nav-bottom{margin-top:auto;padding-top:20px}.profile{display:flex;gap:10px;align-items:center;padding:16px 7px;border-top:1px solid var(--line)}
 .avatar{width:35px;height:35px;border-radius:50%;background:#422032;color:#ffabc0;display:grid;place-items:center;font-weight:900}
-.profile strong{font-size:12px}
-.profile small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+.profile strong{font-size:12px}.profile small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
 .logout{width:100%;padding:12px;border:1px solid #71334a;background:#29151f;color:#ffabc0;border-radius:9px;font-size:10px;font-weight:900}
 .main{margin-left:255px;width:calc(100% - 255px);padding:34px 4.5%;min-width:0}
 .topbar{height:38px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
-.breadcrumb{font-size:11px;color:#958796}
-.breadcrumb span{color:var(--pink)}
-.status{font-size:10px;color:#b3a7b3}
-.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:7px}
-.mobile-menu{display:none}
-.section{display:none}
-.section.active{display:block;animation:fade .2s ease}
+.breadcrumb{font-size:11px;color:#958796}.breadcrumb span{color:var(--pink)}
+.status{font-size:10px;color:#b3a7b3}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:7px}
+.mobile-menu{display:none}.section{display:none}.section.active{display:block;animation:fade .2s ease}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.heading{margin-bottom:25px}
-.eyebrow{color:var(--pink);font-size:9px;letter-spacing:3px;font-weight:900;margin-bottom:10px}
+.heading{margin-bottom:25px}.eyebrow{color:var(--pink);font-size:9px;letter-spacing:3px;font-weight:900;margin-bottom:10px}
 h1{font:700 clamp(25px,3vw,34px) "Space Grotesk";margin-bottom:9px}
 .subtitle,.panel-desc{color:var(--muted);font-size:12px;line-height:1.8}
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:18px}
@@ -53,15 +42,12 @@ h1{font:700 clamp(25px,3vw,34px) "Space Grotesk";margin-bottom:9px}
 .card-value{font:800 25px "Space Grotesk";margin-top:15px;overflow-wrap:anywhere}
 .card-note{font-size:10px;color:#897b8b;margin-top:6px}
 .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
-.panel h2{font:700 15px "Space Grotesk";margin-bottom:8px}
-.panel-desc{margin-bottom:17px}
+.panel h2{font:700 15px "Space Grotesk";margin-bottom:8px}.panel-desc{margin-bottom:17px}
 .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.field{display:grid;gap:7px;margin-bottom:14px;min-width:0}
-.field.full{grid-column:1/-1}
+.field{display:grid;gap:7px;margin-bottom:14px;min-width:0}.field.full{grid-column:1/-1}
 .field label{font-size:10px;font-weight:800;color:#c4b6c4}
 .field input,.field textarea,.field select{width:100%;padding:12px;border:1px solid #443344;border-radius:9px;background:#100d14;color:white;outline:none;font-size:12px}
-.field textarea{min-height:100px;resize:vertical}
-.field small{font-size:10px;color:#9c8c9b;line-height:1.5}
+.field textarea{min-height:100px;resize:vertical}.field small{font-size:10px;color:#9c8c9b;line-height:1.5}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--pink)}
 .btn-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
 .btn{border:1px solid transparent;border-radius:9px;padding:12px 16px;font-size:10px;font-weight:900;letter-spacing:.5px}
@@ -72,27 +58,18 @@ h1{font:700 clamp(25px,3vw,34px) "Space Grotesk";margin-bottom:9px}
 .notice,.status-box{padding:13px;border-radius:9px;background:#251620;border:1px solid #694052;color:#c7b3c1;font-size:11px;line-height:1.7;margin:12px 0}
 .notice strong,.status-box strong{color:#ffabc0}
 .list-item{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;padding:13px;border:1px solid var(--line);background:#201923;border-radius:10px;margin-top:9px}
-.list-item strong{font-size:11px}
-.list-item p{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
-.list-item button{flex-shrink:0}
-.empty{padding:24px;text-align:center;border:1px dashed #50394d;border-radius:11px;color:#9c8b9d;font-size:11px;line-height:1.8}
+.list-item strong{font-size:11px}.list-item p{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.list-item button{flex-shrink:0}.empty{padding:24px;text-align:center;border:1px dashed #50394d;border-radius:11px;color:#9c8b9d;font-size:11px;line-height:1.8}
 .hidden{display:none!important}
 #toast{position:fixed;right:24px;bottom:24px;z-index:100;padding:13px 17px;background:#241b29;border:1px solid #654056;color:#ffe9f0;border-radius:10px;font-size:11px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}
 #toast.show{opacity:1;transform:none}
 .progress{height:8px;background:#100d14;border-radius:20px;overflow:hidden;margin-top:12px}
 .progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ed4167,#f08aa8);transition:width .2s}
 table{width:100%;border-collapse:collapse;min-width:650px;font-size:10px}
-th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}
-th{color:#bbaaba;font-size:9px}
-.table-wrap{overflow:auto;margin-top:15px}
-.code{font-family:monospace;color:#ffb5c8;white-space:nowrap}
+th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{color:#bbaaba;font-size:9px}
+.table-wrap{overflow:auto;margin-top:15px}.code{font-family:monospace;color:#ffb5c8;white-space:nowrap}
 .pill{display:inline-block;padding:5px 8px;border-radius:20px;background:#29202d;font-size:9px}
-.available{background:#173025;color:#83e0aa}
-.used{background:#302a3d;color:#c8b8ff}
-.expired{background:#382b1d;color:#f2c27d}
-.revoked{background:#3b1d28;color:#ff9db5}
-
-/* GALERÍA */
+.available{background:#173025;color:#83e0aa}.used{background:#302a3d;color:#c8b8ff}.expired{background:#382b1d;color:#f2c27d}.revoked{background:#3b1d28;color:#ff9db5}
 .gallery-slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
 .gallery-slot{min-width:0;border:1px solid #ffffff17;border-radius:15px;background:#17121c;overflow:hidden}
 .slot-preview{height:215px;min-height:215px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:23px;background:linear-gradient(135deg,#30202e,#17121c 75%)}
@@ -103,8 +80,7 @@ th{color:#bbaaba;font-size:9px}
 .slot-placeholder h3{font:700 20px "Space Grotesk";margin-top:7px}
 .slot-placeholder p{font-size:11px;color:#b7a9b7;margin-top:5px}
 .slot-number{position:absolute;top:12px;left:13px;z-index:3;padding:6px 9px;background:#100d14c9;border:1px solid #ffffff22;border-radius:7px;font-size:9px;font-weight:900;letter-spacing:1px}
-.slot-content{padding:15px}
-.slot-content h3{font:700 13px "Space Grotesk";margin-bottom:6px}
+.slot-content{padding:15px}.slot-content h3{font:700 13px "Space Grotesk";margin-bottom:6px}
 .slot-content p{font-size:10px;color:var(--muted);line-height:1.6;margin-bottom:12px}
 .slot-actions{display:flex;gap:8px;flex-wrap:wrap}
 .slot-actions button,.slot-actions label{font-size:9px;padding:10px 11px}
@@ -115,14 +91,10 @@ th{color:#bbaaba;font-size:9px}
 .editor-preview img{width:100%;height:100%;object-fit:cover;transform-origin:center;display:block}
 .editor-preview:after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,rgba(8,6,10,.6));pointer-events:none}
 .range-row{display:grid;grid-template-columns:1fr 55px;gap:12px;align-items:center;margin:12px 0}
-.range-row label{font-size:10px;color:#c4b6c4}
-.range-row input{width:100%;accent-color:#ed4167}
+.range-row label{font-size:10px;color:#c4b6c4}.range-row input{width:100%;accent-color:#ed4167}
 .range-value{text-align:right;font-size:10px;color:#ffb2c5}
-.editor .field{margin-bottom:10px}
-.editor .field input{padding:10px}
+.editor .field{margin-bottom:10px}.editor .field input{padding:10px}
 .editor-note{font-size:10px;color:#a99ca9;line-height:1.6;margin:8px 0 12px}
-
-/* PUBLICACIONES */
 .post-editor{border:1px solid #704154;background:#211720;border-radius:12px;padding:18px;margin-top:15px}
 .post-editor h3{font:700 15px "Space Grotesk";margin-bottom:14px}
 .post-list-card{padding:15px;border:1px solid #ffffff17;background:#201923;border-radius:11px;margin-top:10px}
@@ -139,273 +111,427 @@ th{color:#bbaaba;font-size:9px}
 .lang-tabs button.active{background:#6b2b43;border-color:#ed7898;color:white}
 .post-cover-preview{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0 14px;display:none}
 
-/* GESTOR DE LAUNCHERS */
-.release-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-.release-counter{display:flex;align-items:center;gap:9px;padding:9px 13px;border:1px solid #694052;background:#251620;border-radius:9px;color:#ffabc0;font-size:11px;font-weight:800}
-.release-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.release-card{min-width:0;padding:16px;border:1px solid #443044;background:linear-gradient(145deg,#211824,#17121c);border-radius:13px}
-.release-card-top{display:flex;gap:13px;align-items:center;min-width:0}
-.release-icon{width:66px;height:66px;flex-shrink:0;border-radius:13px;background:#30202e;border:1px solid #ffffff20;object-fit:cover}
-.release-icon-placeholder{display:grid;place-items:center;color:#ffabc0;font-size:23px}
-.release-card-info{min-width:0;flex:1}
-.release-card-info strong{font:700 13px "Space Grotesk";display:block;overflow-wrap:anywhere}
-.release-card-info small{display:block;font-size:10px;color:var(--muted);margin-top:5px;overflow-wrap:anywhere}
-.release-description{font-size:11px;color:#b9aab9;line-height:1.7;margin:14px 0;white-space:pre-wrap;overflow-wrap:anywhere}
-.release-meta{font-size:9px;color:#9b8a9b;line-height:1.8;border-top:1px solid var(--line);padding-top:10px}
-.release-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
-.release-actions button{font-size:9px;padding:9px 11px}
-.release-editor{display:none;margin-top:14px;padding:15px;background:#211720;border:1px solid #704154;border-radius:11px}
-.release-editor.open{display:block}
-.release-editor h3{font:700 13px "Space Grotesk";margin-bottom:13px}
-.icon-preview-wrap{display:flex;align-items:center;gap:13px;margin:8px 0 14px}
-.icon-preview{width:76px;height:76px;object-fit:cover;border-radius:14px;border:1px solid #ffffff25;background:#100d14}
-.icon-preview-empty{display:grid;place-items:center;color:#ffabc0;font-size:25px}
-.release-upload-note{font-size:10px;color:#a99ca9;line-height:1.7;margin:10px 0}
+/* FVREVER DEBUG CONSOLE */
+#fvDebugLauncher{position:fixed;right:22px;bottom:22px;z-index:99990;background:linear-gradient(110deg,#f04c70,#c92750);color:white;border:1px solid #ff9bb4;border-radius:12px;padding:13px 18px;font:900 11px "DM Sans",sans-serif;letter-spacing:1px;box-shadow:0 8px 30px #ed416755;cursor:pointer}
+#fvDebugPanel{position:fixed;z-index:99999;right:18px;bottom:78px;width:min(850px,calc(100vw - 36px));height:min(570px,75vh);background:#100d14;border:1px solid #704154;border-radius:15px;box-shadow:0 20px 80px #000b;display:none;overflow:hidden;color:#fff7fa;font:11px "DM Sans",sans-serif}
+#fvDebugPanel.open{display:flex;flex-direction:column}
+.fvd-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px;background:#1c1420;border-bottom:1px solid #ffffff18}
+.fvd-title{font:800 14px "Space Grotesk";letter-spacing:1px}.fvd-title span{color:#f08aa8}
+.fvd-actions{display:flex;gap:6px;flex-wrap:wrap}
+.fvd-btn{background:#30202e;border:1px solid #624052;color:#ffb5c8;border-radius:7px;padding:8px 10px;font-size:9px;font-weight:900;cursor:pointer}
+.fvd-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px}
+.fvd-stat{background:#1b1520;border:1px solid #ffffff12;border-radius:9px;padding:11px}
+.fvd-stat small{display:block;color:#a99ca9;font-size:8px;letter-spacing:1px}
+.fvd-stat strong{display:block;font:800 20px "Space Grotesk";margin-top:6px}
+.fvd-toolbar{display:flex;gap:7px;padding:0 12px 11px;flex-wrap:wrap}
+.fvd-toolbar input{flex:1;min-width:120px;background:#19131e;border:1px solid #453547;border-radius:7px;padding:9px;color:white;outline:none;font-size:10px}
+.fvd-toolbar select{background:#19131e;border:1px solid #453547;color:white;border-radius:7px;padding:8px;font-size:10px}
+#fvDebugLogs{overflow:auto;flex:1;padding:10px 12px;background:#0c0a10;font-family:Consolas,monospace}
+.fvd-log{padding:9px 10px;margin-bottom:6px;border-left:3px solid #777;background:#17121b;border-radius:4px;overflow-wrap:anywhere;line-height:1.6}
+.fvd-log.error{border-color:#ed4167}.fvd-log.warn{border-color:#f2c27d}.fvd-log.api{border-color:#8e8bff}.fvd-log.upload{border-color:#f08aa8}.fvd-log.info{border-color:#72d9a0}
+.fvd-meta{color:#887b8b;font-size:9px}.fvd-level{font-weight:900;margin-right:7px}
+.fvd-log.error .fvd-level{color:#ff7797}.fvd-log.warn .fvd-level{color:#f2c27d}.fvd-log.api .fvd-level{color:#aaa8ff}.fvd-log.upload .fvd-level{color:#ffabc0}.fvd-log.info .fvd-level{color:#72d9a0}
+.fvd-message{color:#f8edf3;white-space:pre-wrap}.fvd-empty{text-align:center;padding:35px;color:#887b8b}
+
 @media(max-width:950px){.sidebar{width:220px}.main{margin-left:220px;width:calc(100% - 220px);padding:25px 3%}.grid{grid-template-columns:1fr}}
-@media(max-width:760px){.gallery-slots,.release-grid{grid-template-columns:1fr}}
-@media(max-width:680px){.sidebar{transform:translateX(-100%);width:260px;transition:.25s}.sidebar.open{transform:none}.main{margin:0;width:100%;padding:20px 15px}.mobile-menu{display:inline-block;border:1px solid var(--line);background:#211621;color:var(--pink);padding:9px 12px;border-radius:8px}.topbar{margin-bottom:24px}.cards{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.status{display:none}.slot-preview,.editor-preview{height:185px;min-height:185px}.slot-content{padding:13px}.post-list-top{flex-direction:column}}
+@media(max-width:760px){.gallery-slots{grid-template-columns:1fr}}
+@media(max-width:680px){.sidebar{transform:translateX(-100%);width:260px;transition:.25s}.sidebar.open{transform:none}.main{margin:0;width:100%;padding:20px 15px}.mobile-menu{display:inline-block;border:1px solid var(--line);background:#211621;color:var(--pink);padding:9px 12px;border-radius:8px}.topbar{margin-bottom:24px}.cards{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.status{display:none}.slot-preview,.editor-preview{height:185px;min-height:185px}.slot-content{padding:13px}.post-list-top{flex-direction:column}.fvd-stats{grid-template-columns:repeat(2,1fr)}.fvd-head{align-items:flex-start;flex-direction:column}#fvDebugPanel{right:8px;bottom:70px;width:calc(100vw - 16px);height:75vh}}
 </style>
 </head>
 
 <body>
 <div class="layout">
 <aside class="sidebar" id="sidebar">
-  <div class="brand"><div class="brand-mark">F</div><div><div class="brand-name">FVREVER</div><div class="brand-sub">ADMINISTRACIÓN</div></div></div>
-  <div class="nav-title">ESPACIO DE TRABAJO</div>
-  <nav class="nav">
-    <button class="active" data-section="overview"><span class="nav-icon">⌂</span>Resumen</button>
-    <button data-section="website"><span class="nav-icon">◫</span>Editor web</button>
-    <button data-section="features"><span class="nav-icon">✧</span>Características</button>
-    <button data-section="gallery"><span class="nav-icon">▧</span>Galería</button>
-    <button data-section="changelog"><span class="nav-icon">≡</span>Publicaciones</button>
-    <button data-section="versions"><span class="nav-icon">◈</span>Versiones</button>
-    <button data-section="releases"><span class="nav-icon">📦</span>Launchers</button>
-    <button data-section="downloads"><span class="nav-icon">↓</span>Descargas</button>
-  </nav>
-  <div class="nav-title">GESTIÓN DE ACCESO</div>
-  <nav class="nav">
-    <button data-section="keys"><span class="nav-icon">🎁</span>Gift Keys</button>
-    <button data-section="settings"><span class="nav-icon">⚙</span>Configuración</button>
-  </nav>
-  <div class="nav-bottom">
-    <div class="profile"><div class="avatar">F</div><div><strong>fvrever</strong><small>Administrador</small></div></div>
-    <button class="logout" id="logoutButton">↪ CERRAR SESIÓN</button>
-  </div>
+<div class="brand"><div class="brand-mark">F</div><div><div class="brand-name">FVREVER</div><div class="brand-sub">ADMINISTRACIÓN</div></div></div>
+<div class="nav-title">ESPACIO DE TRABAJO</div>
+<nav class="nav">
+<button class="active" data-section="overview"><span class="nav-icon">⌂</span>Resumen</button>
+<button data-section="website"><span class="nav-icon">◫</span>Editor web</button>
+<button data-section="features"><span class="nav-icon">✧</span>Características</button>
+<button data-section="gallery"><span class="nav-icon">▧</span>Galería</button>
+<button data-section="changelog"><span class="nav-icon">≡</span>Publicaciones</button>
+<button data-section="versions"><span class="nav-icon">◈</span>Versiones</button>
+<button data-section="releases"><span class="nav-icon">📦</span>Subir launcher</button>
+<button data-section="downloads"><span class="nav-icon">↓</span>Descargas</button>
+</nav>
+<div class="nav-title">GESTIÓN DE ACCESO</div>
+<nav class="nav">
+<button data-section="keys"><span class="nav-icon">🎁</span>Gift Keys</button>
+<button data-section="settings"><span class="nav-icon">⚙</span>Configuración</button>
+</nav>
+<div class="nav-bottom"><div class="profile"><div class="avatar">F</div><div><strong>fvrever</strong><small>Administrador</small></div></div><button class="logout" id="logoutButton">↪ CERRAR SESIÓN</button></div>
 </aside>
 
 <main class="main">
-<div class="topbar">
-  <div style="display:flex;align-items:center;gap:12px">
-    <button class="mobile-menu" id="mobileMenu">☰</button>
-    <div class="breadcrumb">FVREVER / <span id="breadcrumb">Resumen</span></div>
-  </div>
-  <div class="status"><span class="dot"></span>SESIÓN ADMINISTRATIVA ACTIVA</div>
-</div>
+<div class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="mobile-menu" id="mobileMenu">☰</button><div class="breadcrumb">FVREVER / <span id="breadcrumb">Resumen</span></div></div><div class="status"><span class="dot"></span>SESIÓN ADMINISTRATIVA ACTIVA</div></div>
 
 <section class="section active" id="overview">
-  <div class="heading"><div class="eyebrow">CENTRO DE CONTROL</div><h1>Bienvenido de nuevo, FVREVER.</h1><p class="subtitle">Administra el sitio, la galería, las publicaciones y los códigos de acceso.</p></div>
-  <div class="cards">
-    <div class="card"><div class="card-label">VERSIÓN ACTUAL</div><div class="card-value" id="statVersion">—</div></div>
-    <div class="card"><div class="card-label">IMÁGENES EN GALERÍA</div><div class="card-value" id="statGallery">0 / 4</div></div>
-    <div class="card"><div class="card-label">PUBLICACIONES</div><div class="card-value" id="statPosts">0</div></div>
-  </div>
-  <div class="grid">
-    <div class="panel"><h2>Administración rápida</h2><p class="panel-desc">Accesos directos a las funciones principales.</p>
-      <div class="btn-row">
-        <button class="btn secondary" data-go="website">EDITOR WEB</button>
-        <button class="btn secondary" data-go="gallery">GALERÍA</button>
-        <button class="btn secondary" data-go="changelog">PUBLICACIONES</button>
-        <button class="btn secondary" data-go="releases">LAUNCHERS</button>
-        <button class="btn secondary" data-go="keys">GIFT KEYS</button>
-      </div>
-    </div>
-    <div class="panel"><h2>Conexiones</h2><div class="status-box"><strong>Sesión</strong><br><span id="sessionInfo">Comprobando...</span></div><div class="status-box"><strong>Contenido</strong><br><span id="connectionStatus">Comprobando API...</span></div></div>
-  </div>
+<div class="heading"><div class="eyebrow">CENTRO DE CONTROL</div><h1>Bienvenido de nuevo, FVREVER.</h1><p class="subtitle">Administra el sitio, la galería, las publicaciones y los códigos de acceso.</p></div>
+<div class="cards">
+<div class="card"><div class="card-label">VERSIÓN ACTUAL</div><div class="card-value" id="statVersion">—</div></div>
+<div class="card"><div class="card-label">IMÁGENES EN GALERÍA</div><div class="card-value" id="statGallery">0 / 4</div></div>
+<div class="card"><div class="card-label">PUBLICACIONES</div><div class="card-value" id="statPosts">0</div></div>
+</div>
+<div class="grid"><div class="panel"><h2>Administración rápida</h2><p class="panel-desc">Accesos directos a las funciones principales.</p><div class="btn-row"><button class="btn secondary" data-go="website">EDITOR WEB</button><button class="btn secondary" data-go="gallery">GALERÍA</button><button class="btn secondary" data-go="changelog">PUBLICACIONES</button><button class="btn secondary" data-go="releases">SUBIR LAUNCHER</button><button class="btn secondary" data-go="keys">GIFT KEYS</button></div></div><div class="panel"><h2>Conexiones</h2><div class="status-box"><strong>Sesión</strong><br><span id="sessionInfo">Comprobando...</span></div><div class="status-box"><strong>Contenido</strong><br><span id="connectionStatus">Comprobando API...</span></div></div></div>
 </section>
 
 <section class="section" id="website">
-  <div class="heading"><div class="eyebrow">SITIO PÚBLICO</div><h1>Editor web</h1><p class="subtitle">Edita los textos principales de la portada.</p></div>
-  <div class="panel"><div class="form-grid">
-    <div class="field full"><label>Título del sitio</label><input id="siteTitle"></div>
-    <div class="field full"><label>Título principal</label><input id="heroTitle"></div>
-    <div class="field full"><label>Descripción principal</label><textarea id="heroDescription"></textarea></div>
-    <div class="field"><label>Discord</label><input id="discordUrl"></div>
-    <div class="field"><label>Nombre del launcher</label><input id="downloadName"></div>
-  </div><button class="btn primary" id="saveWebsite">GUARDAR CAMBIOS</button></div>
+<div class="heading"><div class="eyebrow">SITIO PÚBLICO</div><h1>Editor web</h1><p class="subtitle">Edita los textos principales de la portada.</p></div>
+<div class="panel"><div class="form-grid">
+<div class="field full"><label>Título del sitio</label><input id="siteTitle"></div>
+<div class="field full"><label>Título principal</label><input id="heroTitle"></div>
+<div class="field full"><label>Descripción principal</label><textarea id="heroDescription"></textarea></div>
+<div class="field"><label>Discord</label><input id="discordUrl"></div>
+<div class="field"><label>Nombre del launcher</label><input id="downloadName"></div>
+</div><button class="btn primary" id="saveWebsite">GUARDAR CAMBIOS</button></div>
 </section>
 
 <section class="section" id="features">
-  <div class="heading"><div class="eyebrow">FUNCIONES</div><h1>Características</h1><p class="subtitle">Administra las tarjetas de características del sitio.</p></div>
-  <div class="panel"><div class="form-grid">
-    <div class="field"><label>Título</label><input id="featureTitle"></div>
-    <div class="field"><label>Icono</label><input id="featureIcon" placeholder="✧"></div>
-    <div class="field full"><label>Descripción</label><textarea id="featureDescription"></textarea></div>
-  </div><button class="btn primary" id="addFeature">AÑADIR CARACTERÍSTICA</button></div>
-  <div class="panel" style="margin-top:15px"><h2>Características actuales</h2><div id="featureList" class="empty">Cargando...</div></div>
+<div class="heading"><div class="eyebrow">FUNCIONES</div><h1>Características</h1><p class="subtitle">Administra las tarjetas de características del sitio.</p></div>
+<div class="panel"><div class="form-grid"><div class="field"><label>Título</label><input id="featureTitle"></div><div class="field"><label>Icono</label><input id="featureIcon" placeholder="✧"></div><div class="field full"><label>Descripción</label><textarea id="featureDescription"></textarea></div></div><button class="btn primary" id="addFeature">AÑADIR CARACTERÍSTICA</button></div>
+<div class="panel" style="margin-top:15px"><h2>Características actuales</h2><div id="featureList" class="empty">Cargando...</div></div>
 </section>
 
 <section class="section" id="gallery">
-  <div class="heading"><div class="eyebrow">CONTENIDO VISUAL</div><h1>Editor visual de galería</h1><p class="subtitle">Cada espacio corresponde a una tarjeta de la portada. Ajusta la imagen y revisa la vista previa antes de publicarla.</p></div>
-  <div class="notice"><strong>Importante:</strong> seleccionar una imagen no la sube. Primero puedes ajustar zoom, posición, título y descripción. La subida ocurre únicamente al pulsar PUBLICAR CAMBIOS.</div>
-  <div class="panel">
-    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><h2>Los cuatro espacios de la portada</h2><span class="pill">2 columnas · 215 px escritorio · 185 px móvil</span></div>
-    <p class="panel-desc">Los espacios no se desplazan. Si eliminas la imagen del Slot 2, los Slots 3 y 4 permanecen en su sitio.</p>
-    <div class="gallery-slots" id="gallerySlots"><div class="empty">Cargando los cuatro slots...</div></div>
-  </div>
+<div class="heading"><div class="eyebrow">CONTENIDO VISUAL</div><h1>Editor visual de galería</h1><p class="subtitle">Cada espacio corresponde a una tarjeta de la portada. Ajusta la imagen y revisa la vista previa antes de publicarla.</p></div>
+<div class="notice"><strong>Importante:</strong> seleccionar una imagen no la sube. Primero puedes ajustar zoom, posición, título y descripción. La subida ocurre únicamente al pulsar PUBLICAR CAMBIOS.</div>
+<div class="panel">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><h2>Los cuatro espacios de la portada</h2><span class="pill">2 columnas · 215 px escritorio · 185 px móvil</span></div>
+<p class="panel-desc">Los espacios no se desplazan. Si eliminas la imagen del Slot 2, los Slots 3 y 4 permanecen en su sitio.</p>
+<div class="gallery-slots" id="gallerySlots"><div class="empty">Cargando los cuatro slots...</div></div>
+</div>
 </section>
 
 <section class="section" id="changelog">
-  <div class="heading"><div class="eyebrow">CONTENIDO DEL SITIO</div><h1>Publicaciones y novedades</h1><p class="subtitle">Crea anuncios, actualizaciones, correcciones y noticias. Puedes guardar borradores y publicar cuando estén listos.</p></div>
-  <div class="notice"><strong>Publicación:</strong> solo los elementos con estado PUBLICADO aparecen en la página principal. Los borradores se guardan en el servidor, pero no son visibles para los visitantes.</div>
-  <div class="panel">
-    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><h2 id="postEditorHeading">Crear publicación</h2><span class="pill">ES · EN · FR · PT</span></div>
-    <div class="form-grid">
-      <div class="field"><label>Versión (opcional)</label><input id="postVersion" placeholder="1.2.0"></div>
-      <div class="field"><label>Categoría</label><select id="postCategory"><option value="update">Update / Actualización</option><option value="announcement">Announcement / Anuncio</option><option value="fix">Fix / Corrección</option><option value="news">News / Noticias</option></select></div>
-      <div class="field"><label>Fecha</label><input id="postDate" type="date"></div>
-      <div class="field"><label>Estado</label><select id="postStatus"><option value="draft">Borrador</option><option value="published">Publicado</option></select></div>
-      <div class="field full"><label>Imagen de portada opcional</label><input id="postImageFile" type="file" accept=".png,.jpg,.jpeg,.webp,.gif,image/png,image/jpeg,image/webp,image/gif"><small>PNG, JPG, JPEG, WEBP o GIF. Máximo 20 MB.</small><img id="postImagePreview" class="post-cover-preview" alt="Vista previa de portada"></div>
-      <div class="field full"><label>O URL de imagen existente (opcional)</label><input id="postImageUrl" placeholder="https://..."></div>
-    </div>
-    <div class="field" style="margin-top:8px"><label>Traducciones del contenido</label></div>
-    <div class="lang-tabs">
-      <button type="button" class="active" data-post-lang="es">ESPAÑOL</button>
-      <button type="button" data-post-lang="en">ENGLISH</button>
-      <button type="button" data-post-lang="fr">FRANÇAIS</button>
-      <button type="button" data-post-lang="pt">PORTUGUÊS</button>
-    </div>
-    <div class="post-editor">
-      <div class="field"><label>Título</label><input id="postTitle" maxlength="140" placeholder="Título de la publicación"></div>
-      <div class="field"><label>Descripción breve</label><textarea id="postExcerpt" maxlength="400" placeholder="Resumen que aparecerá en la tarjeta..."></textarea></div>
-      <div class="field"><label>Contenido completo</label><textarea id="postBody" style="min-height:180px" placeholder="Escribe aquí el contenido completo..."></textarea></div>
-      <p class="editor-note">Cambia de idioma para añadir las traducciones. Si una traducción queda vacía, la página utilizará el idioma original de la publicación.</p>
-    </div>
-    <div class="field" style="margin-top:15px"><label style="display:flex;align-items:center;gap:9px"><input type="checkbox" id="postFeatured" style="width:auto;accent-color:#ed4167"> Destacar esta publicación</label></div>
-    <div class="btn-row">
-      <button class="btn primary" id="savePost">GUARDAR PUBLICACIÓN</button>
-      <button class="btn secondary" id="newPost">NUEVA PUBLICACIÓN</button>
-      <button class="btn secondary" id="cancelPost">CANCELAR EDICIÓN</button>
-    </div>
-  </div>
-  <div class="panel" style="margin-top:15px"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h2>Publicaciones guardadas</h2><span class="pill" id="postCount">0 publicaciones</span></div><div id="postList" class="empty">Cargando...</div></div>
+<div class="heading"><div class="eyebrow">CONTENIDO DEL SITIO</div><h1>Publicaciones y novedades</h1><p class="subtitle">Crea anuncios, actualizaciones, correcciones y noticias. Puedes guardar borradores y publicar cuando estén listos.</p></div>
+<div class="notice"><strong>Publicación:</strong> solo los elementos con estado PUBLICADO aparecen en la página principal. Los borradores se guardan en el servidor, pero no son visibles para los visitantes.</div>
+<div class="panel">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><h2 id="postEditorHeading">Crear publicación</h2><span class="pill">ES · EN · FR · PT</span></div>
+<div class="form-grid">
+<div class="field"><label>Versión (opcional)</label><input id="postVersion" placeholder="1.2.0"></div>
+<div class="field"><label>Categoría</label><select id="postCategory"><option value="update">Update / Actualización</option><option value="announcement">Announcement / Anuncio</option><option value="fix">Fix / Corrección</option><option value="news">News / Noticias</option></select></div>
+<div class="field"><label>Fecha</label><input id="postDate" type="date"></div>
+<div class="field"><label>Estado</label><select id="postStatus"><option value="draft">Borrador</option><option value="published">Publicado</option></select></div>
+<div class="field full"><label>Imagen de portada opcional</label><input id="postImageFile" type="file" accept=".png,.jpg,.jpeg,.webp,.gif,image/png,image/jpeg,image/webp,image/gif"><small>PNG, JPG, JPEG, WEBP o GIF. Máximo 20 MB.</small><img id="postImagePreview" class="post-cover-preview" alt="Vista previa de portada"></div>
+<div class="field full"><label>O URL de imagen existente (opcional)</label><input id="postImageUrl" placeholder="https://..."></div>
+</div>
+<div class="field" style="margin-top:8px"><label>Traducciones del contenido</label></div>
+<div class="lang-tabs">
+<button type="button" class="active" data-post-lang="es">ESPAÑOL</button>
+<button type="button" data-post-lang="en">ENGLISH</button>
+<button type="button" data-post-lang="fr">FRANÇAIS</button>
+<button type="button" data-post-lang="pt">PORTUGUÊS</button>
+</div>
+<div class="post-editor">
+<div class="field"><label>Título</label><input id="postTitle" maxlength="140" placeholder="Título de la publicación"></div>
+<div class="field"><label>Descripción breve</label><textarea id="postExcerpt" maxlength="400" placeholder="Resumen que aparecerá en la tarjeta..."></textarea></div>
+<div class="field"><label>Contenido completo</label><textarea id="postBody" style="min-height:180px" placeholder="Escribe aquí el contenido completo..."></textarea></div>
+<p class="editor-note">Cambia de idioma para añadir las traducciones. Si una traducción queda vacía, la página utilizará el idioma original de la publicación.</p>
+</div>
+<div class="field" style="margin-top:15px"><label style="display:flex;align-items:center;gap:9px"><input type="checkbox" id="postFeatured" style="width:auto;accent-color:#ed4167"> Destacar esta publicación</label></div>
+<div class="btn-row">
+<button class="btn primary" id="savePost">GUARDAR PUBLICACIÓN</button>
+<button class="btn secondary" id="newPost">NUEVA PUBLICACIÓN</button>
+<button class="btn secondary" id="cancelPost">CANCELAR EDICIÓN</button>
+</div>
+</div>
+<div class="panel" style="margin-top:15px"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h2>Publicaciones guardadas</h2><span class="pill" id="postCount">0 publicaciones</span></div><div id="postList" class="empty">Cargando...</div></div>
 </section>
 
 <section class="section" id="versions">
-  <div class="heading"><div class="eyebrow">VERSIONES</div><h1>Información de versión</h1></div>
-  <div class="panel"><div class="notice">La URL pública debe permanecer vacía si utilizas descargas privadas con Gift Keys.</div><div class="form-grid">
-    <div class="field"><label>Versión</label><input id="version"></div>
-    <div class="field"><label>Nombre</label><input id="releaseName"></div>
-    <div class="field full"><label>URL pública opcional</label><input id="releaseUrl"></div>
-  </div><button class="btn primary" id="saveVersion">GUARDAR VERSIÓN</button></div>
+<div class="heading"><div class="eyebrow">VERSIONES</div><h1>Información de versión</h1></div>
+<div class="panel"><div class="notice">La URL pública debe permanecer vacía si utilizas descargas privadas con Gift Keys.</div><div class="form-grid"><div class="field"><label>Versión</label><input id="version"></div><div class="field"><label>Nombre</label><input id="releaseName"></div><div class="field full"><label>URL pública opcional</label><input id="releaseUrl"></div></div><button class="btn primary" id="saveVersion">GUARDAR VERSIÓN</button></div>
 </section>
 
-<!-- RELEASE MANAGER -->
 <section class="section" id="releases">
-  <div class="heading">
-    <div class="eyebrow">DISTRIBUCIÓN PRIVADA</div>
-    <h1>Gestor de launchers</h1>
-    <p class="subtitle">Sube, edita, reemplaza y elimina tus instaladores privados. Administra también sus iconos y descripciones.</p>
-  </div>
-
-  <div class="notice"><strong>Almacenamiento privado:</strong> los instaladores permanecen en el Blob privado. El navegador nunca recibe una URL pública del instalador.</div>
-
-  <div class="panel">
-    <div class="release-toolbar">
-      <div>
-        <h2>Subir nuevo launcher</h2>
-        <p class="panel-desc" style="margin:5px 0 0">Puedes mantener hasta tres instaladores al mismo tiempo.</p>
-      </div>
-      <div class="release-counter"><span id="releaseCount">0 / 3</span><span>LAUNCHERS</span></div>
-    </div>
-
-    <div class="form-grid">
-      <div class="field"><label>Versión</label><input id="uploadVersion" placeholder="1.0.0"></div>
-      <div class="field"><label>Nombre de publicación</label><input id="uploadName" placeholder="FVREVER Client Setup"></div>
-      <div class="field full"><label>Descripción</label><textarea id="uploadDescription" placeholder="Describe esta versión del launcher..."></textarea></div>
-      <div class="field full">
-        <label>Archivo del launcher</label>
-        <input id="releaseFile" type="file" accept=".exe,.msi,.zip">
-        <small>Formatos permitidos: EXE, MSI y ZIP. Máximo 500 MB.</small>
-      </div>
-      <div class="field full">
-        <label>Icono del launcher (opcional)</label>
-        <input id="releaseIconFile" type="file" accept=".png,.jpg,.jpeg,.webp,.ico,image/png,image/jpeg,image/webp,image/x-icon,image/vnd.microsoft.icon">
-        <small>PNG, JPG, JPEG, WEBP o ICO. Recomendado: imagen cuadrada de 256 × 256 px. Máximo 5 MB.</small>
-        <div class="icon-preview-wrap">
-          <img id="newReleaseIconPreview" class="icon-preview hidden" alt="Vista previa del icono">
-          <div id="newReleaseIconPlaceholder" class="icon-preview icon-preview-empty">📦</div>
-          <span class="editor-note">Vista previa del icono que aparecerá junto a este launcher.</span>
-        </div>
-      </div>
-    </div>
-
-    <button class="btn primary" id="uploadRelease">SUBIR NUEVO LAUNCHER</button>
-    <div id="uploadProgressWrap" class="hidden">
-      <div class="progress"><span id="uploadProgress"></span></div>
-      <p class="panel-desc" id="uploadStatus">Preparando...</p>
-    </div>
-  </div>
-
-  <div class="panel" style="margin-top:15px">
-    <div class="release-toolbar">
-      <div><h2>Launchers almacenados</h2><p class="panel-desc" style="margin:5px 0 0">Estos archivos se consultan directamente en tu Blob privado.</p></div>
-      <button class="btn secondary" id="refreshReleases">↻ ACTUALIZAR LISTA</button>
-    </div>
-    <div id="releaseList" class="empty">Cargando launchers...</div>
-  </div>
+<div class="heading"><div class="eyebrow">DISTRIBUCIÓN PRIVADA</div><h1>Subir launcher</h1><p class="subtitle">Publica el instalador en el Blob privado fvrever-releases.</p></div>
+<div class="panel"><div class="notice"><strong>Privado:</strong> los instaladores no se publican como imágenes ni reciben una URL pública permanente.</div><div class="form-grid"><div class="field"><label>Versión</label><input id="uploadVersion" placeholder="1.0.0"></div><div class="field"><label>Nombre de publicación</label><input id="uploadName" placeholder="FVREVER Client Setup"></div><div class="field full"><label>Descripción</label><textarea id="uploadDescription"></textarea></div><div class="field full"><label>Archivo (.exe, .msi, .zip)</label><input id="releaseFile" type="file" accept=".exe,.msi,.zip"><small>Máximo permitido por esta interfaz: 500 MB.</small></div></div><button class="btn primary" id="uploadRelease">SUBIR NUEVA VERSIÓN</button><div id="uploadProgressWrap" class="hidden"><div class="progress"><span id="uploadProgress"></span></div><p class="panel-desc" id="uploadStatus">Preparando...</p></div></div>
+<div class="panel" style="margin-top:15px"><h2>Publicaciones de este navegador</h2><div id="releaseList" class="empty">Las publicaciones nuevas aparecerán aquí después de subirlas.</div></div>
 </section>
 
 <section class="section" id="downloads">
-  <div class="heading"><div class="eyebrow">DISTRIBUCIÓN</div><h1>Descargas</h1></div>
-  <div class="panel"><h2>Configuración</h2><div class="notice">El sitio público no debe enlazar directamente a una URL permanente del instalador. La autorización debe pasar por el servidor.</div><p class="panel-desc">Versión configurada: <strong id="downloadSummary">No configurada</strong></p></div>
+<div class="heading"><div class="eyebrow">DISTRIBUCIÓN</div><h1>Descargas</h1></div>
+<div class="panel"><h2>Configuración</h2><div class="notice">El sitio público no debe enlazar directamente a una URL permanente del instalador. La autorización debe pasar por el servidor.</div><p class="panel-desc">Versión configurada: <strong id="downloadSummary">No configurada</strong></p></div>
 </section>
 
 <section class="section" id="keys">
-  <div class="heading"><div class="eyebrow">CONTROL DE ACCESO</div><h1>Gift Keys</h1><p class="subtitle">Genera, consulta y revoca códigos de acceso.</p></div>
-  <div class="notice"><strong>Validez de 30 días.</strong> Cada código se puede utilizar una sola vez.</div>
-  <div class="cards">
-    <div class="card"><div class="card-label">DISPONIBLES</div><div class="card-value" id="keyStatAvailable">—</div></div>
-    <div class="card"><div class="card-label">USADOS</div><div class="card-value" id="keyStatUsed">—</div></div>
-    <div class="card"><div class="card-label">CADUCADOS</div><div class="card-value" id="keyStatExpired">—</div></div>
-  </div>
-  <div class="cards">
-    <div class="card"><div class="card-label">REVOCADOS</div><div class="card-value" id="keyStatRevoked">—</div></div>
-    <div class="card"><div class="card-label">TOTAL</div><div class="card-value" id="keyStatTotal">—</div></div>
-  </div>
-  <div class="panel">
-    <h2>Generar códigos</h2>
-    <div class="field"><label>CANTIDAD (1–500)</label><input id="keyQuantity" type="number" min="1" max="500" value="1"></div>
-    <div class="btn-row">
-      <button class="btn primary" id="generateKeys">GENERAR CÓDIGOS</button>
-      <button class="btn secondary" id="copyGeneratedKeys" disabled>COPIAR</button>
-      <button class="btn secondary" id="downloadGeneratedKeys" disabled>EXPORTAR TXT</button>
-    </div>
-    <div id="generatedKeys" class="empty" style="margin-top:14px">Los códigos aparecerán aquí.</div>
-  </div>
-  <div class="panel" style="margin-top:15px">
-    <h2>Base de datos</h2>
-    <div class="form-grid">
-      <div class="field"><label>BUSCAR</label><input id="keySearch" placeholder="FVR-XXXX-XXXX"></div>
-      <div class="field"><label>ESTADO</label><select id="keyStatus"><option value="all">Todos</option><option value="available">Disponible</option><option value="used">Usado</option><option value="expired">Caducado</option><option value="revoked">Revocado</option></select></div>
-    </div>
-    <button class="btn primary" id="refreshKeys">ACTUALIZAR</button>
-    <div id="keyList" class="empty" style="margin-top:14px">Cargando...</div>
-  </div>
+<div class="heading"><div class="eyebrow">CONTROL DE ACCESO</div><h1>Gift Keys</h1><p class="subtitle">Genera, consulta y revoca códigos de acceso.</p></div>
+<div class="notice"><strong>Validez de 30 días.</strong> Cada código se puede utilizar una sola vez.</div>
+<div class="cards"><div class="card"><div class="card-label">DISPONIBLES</div><div class="card-value" id="keyStatAvailable">—</div></div><div class="card"><div class="card-label">USADOS</div><div class="card-value" id="keyStatUsed">—</div></div><div class="card"><div class="card-label">CADUCADOS</div><div class="card-value" id="keyStatExpired">—</div></div></div>
+<div class="cards"><div class="card"><div class="card-label">REVOCADOS</div><div class="card-value" id="keyStatRevoked">—</div></div><div class="card"><div class="card-label">TOTAL</div><div class="card-value" id="keyStatTotal">—</div></div></div>
+<div class="panel"><h2>Generar códigos</h2><div class="field"><label>CANTIDAD (1–500)</label><input id="keyQuantity" type="number" min="1" max="500" value="1"></div><div class="btn-row"><button class="btn primary" id="generateKeys">GENERAR CÓDIGOS</button><button class="btn secondary" id="copyGeneratedKeys" disabled>COPIAR</button><button class="btn secondary" id="downloadGeneratedKeys" disabled>EXPORTAR TXT</button></div><div id="generatedKeys" class="empty" style="margin-top:14px">Los códigos aparecerán aquí.</div></div>
+<div class="panel" style="margin-top:15px"><h2>Base de datos</h2><div class="form-grid"><div class="field"><label>BUSCAR</label><input id="keySearch" placeholder="FVR-XXXX-XXXX"></div><div class="field"><label>ESTADO</label><select id="keyStatus"><option value="all">Todos</option><option value="available">Disponible</option><option value="used">Usado</option><option value="expired">Caducado</option><option value="revoked">Revocado</option></select></div></div><button class="btn primary" id="refreshKeys">ACTUALIZAR</button><div id="keyList" class="empty" style="margin-top:14px">Cargando...</div></div>
 </section>
 
 <section class="section" id="settings">
-  <div class="heading"><div class="eyebrow">SISTEMA</div><h1>Configuración</h1></div>
-  <div class="panel">
-    <div class="status-box"><strong>Autenticación</strong><br>Sesión protegida mediante /api/me.</div>
-    <div class="status-box"><strong>Imágenes</strong><br>Blob público fvrever-assets.</div>
-    <div class="status-box"><strong>Instaladores</strong><br>Blob privado fvrever-releases.</div>
-    <div class="status-box"><strong>Gift Keys</strong><br>Base de datos Neon y API protegida.</div>
-    <div class="status-box"><strong>Publicaciones</strong><br>Contenido almacenado en /api/content.</div>
-  </div>
+<div class="heading"><div class="eyebrow">SISTEMA</div><h1>Configuración</h1></div>
+<div class="panel"><div class="status-box"><strong>Autenticación</strong><br>Sesión protegida mediante /api/me.</div><div class="status-box"><strong>Imágenes</strong><br>Blob público fvrever-assets.</div><div class="status-box"><strong>Instaladores</strong><br>Blob privado fvrever-releases.</div><div class="status-box"><strong>Gift Keys</strong><br>Base de datos Neon y API protegida.</div><div class="status-box"><strong>Publicaciones</strong><br>Contenido almacenado en /api/content.</div></div>
 </section>
 </main>
 </div>
+
 <div id="toast"></div>
+
+<!-- DEBUG CONSOLE UI -->
+<button id="fvDebugLauncher" type="button">⌘ DEBUG CONSOLE</button>
+<div id="fvDebugPanel">
+ <div class="fvd-head">
+  <div>
+   <div class="fvd-title">FVREVER <span>DEBUG CONSOLE</span></div>
+   <div class="fvd-meta">Browser diagnostics · Live monitoring</div>
+  </div>
+  <div class="fvd-actions">
+   <button class="fvd-btn" id="fvdCopy">COPIAR</button>
+   <button class="fvd-btn" id="fvdExport">EXPORTAR JSON</button>
+   <button class="fvd-btn" id="fvdClear">LIMPIAR</button>
+   <button class="fvd-btn" id="fvdClose">CERRAR ✕</button>
+  </div>
+ </div>
+ <div class="fvd-stats">
+  <div class="fvd-stat"><small>TOTAL EVENTOS</small><strong id="fvdTotal">0</strong></div>
+  <div class="fvd-stat"><small>ERRORES</small><strong id="fvdErrors">0</strong></div>
+  <div class="fvd-stat"><small>ADVERTENCIAS</small><strong id="fvdWarnings">0</strong></div>
+  <div class="fvd-stat"><small>FALLOS API</small><strong id="fvdApiErrors">0</strong></div>
+ </div>
+ <div class="fvd-toolbar">
+  <input id="fvdSearch" placeholder="Buscar en los registros...">
+  <select id="fvdFilter">
+   <option value="all">Todos los eventos</option>
+   <option value="error">Errores</option>
+   <option value="warn">Advertencias</option>
+   <option value="api">API</option>
+   <option value="upload">Subidas</option>
+   <option value="info">Información</option>
+  </select>
+ </div>
+ <div id="fvDebugLogs"><div class="fvd-empty">Iniciando sistema de diagnóstico...</div></div>
+</div>
+
+<script>
+(()=>{
+"use strict";
+if(window.FVDEBUG)return;
+
+const records=[];
+const MAX_LOGS=1000;
+const panel=document.getElementById("fvDebugPanel");
+const logs=document.getElementById("fvDebugLogs");
+const originalFetch=window.fetch.bind(window);
+const originalConsole={};
+let filter="all",search="";
+
+const secretPattern=/password|passwd|authorization|cookie|token|secret|api[_-]?key|access[_-]?key/i;
+
+function clean(value,depth=0){
+ if(depth>4)return "[depth limit]";
+ if(value instanceof Error)return{name:value.name,message:value.message,stack:value.stack};
+ if(typeof value==="string"){
+  return value
+   .replace(/(bearer\s+)[^\s"']+/gi,"$1[REDACTED]")
+   .replace(/((?:password|token|secret|authorization|cookie|api[_-]?key)\s*[:=]\s*)[^&\s,;]+/gi,"$1[REDACTED]")
+   .slice(0,3000);
+ }
+ if(value instanceof File)return{name:value.name,size:value.size,type:value.type};
+ if(value instanceof Blob)return{size:value.size,type:value.type};
+ if(Array.isArray(value))return value.slice(0,30).map(v=>clean(v,depth+1));
+ if(value&&typeof value==="object"){
+  const out={};
+  for(const[k,v]of Object.entries(value).slice(0,40))out[k]=secretPattern.test(k)?"[REDACTED]":clean(v,depth+1);
+  return out;
+ }
+ if(typeof value==="function")return"[Function]";
+ return value;
+}
+
+function safeUrl(raw){
+ try{
+  const u=new URL(raw,location.href);
+  return u.origin===location.origin?u.pathname:u.origin+u.pathname;
+ }catch{return String(raw).split("?")[0].split("#")[0]}
+}
+
+function format(args){
+ return args.map(v=>{
+  const c=clean(v);
+  if(typeof c==="string")return c;
+  try{return JSON.stringify(c)}catch{return String(c)}
+ }).join(" ");
+}
+
+function add(level,message,details){
+ records.push({
+  time:new Date().toISOString(),
+  level,
+  message:String(message).slice(0,3000),
+  details:details===undefined?null:clean(details)
+ });
+ if(records.length>MAX_LOGS)records.shift();
+ update();
+}
+
+function update(){
+ document.getElementById("fvdTotal").textContent=records.length;
+ document.getElementById("fvdErrors").textContent=records.filter(x=>x.level==="error").length;
+ document.getElementById("fvdWarnings").textContent=records.filter(x=>x.level==="warn").length;
+ document.getElementById("fvdApiErrors").textContent=records.filter(x=>x.level==="api"&&x.message.includes("HTTP ")).length;
+
+ const visible=records.filter(x=>{
+  const match=filter==="all"||x.level===filter;
+  const text=(x.message+" "+JSON.stringify(x.details||"")).toLowerCase();
+  return match&&text.includes(search);
+ }).slice().reverse();
+
+ logs.replaceChildren();
+ if(!visible.length){
+  const empty=document.createElement("div");
+  empty.className="fvd-empty";
+  empty.textContent="No hay eventos para mostrar.";
+  logs.append(empty);
+  return;
+ }
+
+ for(const entry of visible){
+  const row=document.createElement("div");
+  row.className="fvd-log "+entry.level;
+  const meta=document.createElement("div");
+  meta.className="fvd-meta";
+  meta.textContent=new Date(entry.time).toLocaleTimeString("es-SV")+" · "+entry.level.toUpperCase();
+  const message=document.createElement("div");
+  message.className="fvd-message";
+  const level=document.createElement("span");
+  level.className="fvd-level";
+  level.textContent="["+entry.level.toUpperCase()+"]";
+  const content=document.createElement("span");
+  content.textContent=entry.message;
+  message.append(level,content);
+  row.append(meta,message);
+  if(entry.details!==null){
+   const detail=document.createElement("div");
+   detail.className="fvd-meta";
+   detail.style.whiteSpace="pre-wrap";
+   detail.textContent=format([entry.details]);
+   row.append(detail);
+  }
+  logs.append(row);
+ }
+}
+
+function exportData(){
+ return JSON.stringify({
+  application:"FVREVER ADMIN",
+  exportedAt:new Date().toISOString(),
+  userAgent:navigator.userAgent,
+  count:records.length,
+  records
+ },null,2);
+}
+
+function copyData(){
+ navigator.clipboard.writeText(exportData())
+  .then(()=>add("info","Registros copiados al portapapeles."))
+  .catch(()=>add("error","No se pudieron copiar los registros."));
+}
+
+function downloadData(){
+ const blob=new Blob([exportData()],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download="fvrever-debug-"+Date.now()+".json";
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+ add("info","Archivo de diagnóstico exportado.");
+}
+
+window.FVDEBUG={
+ log:(m,d)=>add("info",m,d),
+ info:(m,d)=>add("info",m,d),
+ warn:(m,d)=>add("warn",m,d),
+ error:(m,d)=>add("error",m,d),
+ upload:(m,d)=>add("upload",m,d),
+ api:(m,d)=>add("api",m,d),
+ getLogs:()=>records.map(x=>({...x})),
+ clear:()=>{records.length=0;update()}
+};
+
+["log","info","warn","error"].forEach(level=>{
+ originalConsole[level]=console[level].bind(console);
+ console[level]=(...args)=>{
+  originalConsole[level](...args);
+  add(level==="log"?"info":level,format(args));
+ };
+});
+
+window.fetch=async(input,init={})=>{
+ const rawUrl=typeof input==="string"?input:input.url;
+ const url=safeUrl(rawUrl);
+ const method=(init.method||(input&&input.method)||"GET").toUpperCase();
+ const started=performance.now();
+ const isUpload=/upload|blob/i.test(url);
+ const category=isUpload?"upload":"api";
+ add(category,"REQUEST "+method+" "+url);
+ try{
+  const response=await originalFetch(input,init);
+  const duration=Math.round(performance.now()-started);
+  add(response.ok?category:"error","HTTP "+response.status+" "+method+" "+url,{
+   status:response.status,ok:response.ok,durationMs:duration
+  });
+  return response;
+ }catch(error){
+  add("error","NETWORK ERROR "+method+" "+url,{
+   message:error.message,durationMs:Math.round(performance.now()-started)
+  });
+  throw error;
+ }
+};
+
+window.addEventListener("error",event=>{
+ if(event.target&&event.target!==window){
+  const target=event.target;
+  add("error","RESOURCE LOAD ERROR",{
+   tag:target.tagName,
+   source:safeUrl(target.src||target.href||"unknown")
+  });
+  return;
+ }
+ add("error",event.message||"JavaScript error",{
+  file:safeUrl(event.filename||""),
+  line:event.lineno,
+  column:event.colno
+ });
+});
+
+window.addEventListener("unhandledrejection",event=>{
+ add("error","UNHANDLED PROMISE REJECTION",clean(event.reason));
+});
+
+document.getElementById("fvDebugLauncher").onclick=()=>{
+ panel.classList.toggle("open");
+ if(panel.classList.contains("open"))update();
+};
+document.getElementById("fvdClose").onclick=()=>panel.classList.remove("open");
+document.getElementById("fvdCopy").onclick=copyData;
+document.getElementById("fvdExport").onclick=downloadData;
+document.getElementById("fvdClear").onclick=()=>{
+ if(confirm("¿Eliminar todos los registros de esta sesión?")){
+  records.length=0;
+  add("info","Consola limpiada.");
+ }
+};
+document.getElementById("fvdSearch").oninput=e=>{
+ search=e.target.value.toLowerCase();
+ update();
+};
+document.getElementById("fvdFilter").onchange=e=>{
+ filter=e.target.value;
+ update();
+};
+
+add("info","FVREVER Debug Console iniciada.");
+add("info","Monitor de JavaScript, API, recursos y subidas activado.");
+add("info","Máximo de registros en memoria: "+MAX_LOGS);
+})();
+</script>
 
 <script type="module">
 import { upload } from "https://esm.sh/@vercel/blob@2.9.0/client";
@@ -414,7 +540,6 @@ const $=id=>document.getElementById(id);
 const sections=[...document.querySelectorAll(".section")];
 const nav=[...document.querySelectorAll("[data-section]")];
 const sidebar=$("sidebar");
-
 const defaults=[
  {category:"LAUNCHER",title:"Your Minecraft Hub",description:"Launcher interface preview coming soon."},
  {category:"CUSTOMIZATION",title:"Make It Yours",description:"Explore your personalized setup."},
@@ -423,20 +548,10 @@ const defaults=[
 ];
 
 let content={
- siteTitle:"FVREVER CLIENT",
- heroTitle:"ENTER THE FVREVER CLIENT",
- heroDescription:"",
- version:"",
- downloadUrl:"",
- downloadName:"FVREVER Client",
- discordUrl:"",
- features:[],
- gallery:[null,null,null,null],
- changelog:[],
- releases:[],
- posts:[]
+ siteTitle:"FVREVER CLIENT",heroTitle:"ENTER THE FVREVER CLIENT",heroDescription:"",
+ version:"",downloadUrl:"",downloadName:"FVREVER Client",discordUrl:"",
+ features:[],gallery:[null,null,null,null],changelog:[],releases:[],posts:[]
 };
-
 let generatedKeys=[];
 let editorFiles=[null,null,null,null];
 let editorValues=[null,null,null,null];
@@ -444,32 +559,29 @@ let editingPostId=null;
 let postLanguage="es";
 let postTranslations={es:{title:"",excerpt:"",body:""},en:{title:"",excerpt:"",body:""},fr:{title:"",excerpt:"",body:""},pt:{title:"",excerpt:"",body:""}};
 let postImageFile=null;
-let releaseMetadata={};
-let releaseIconFile=null;
-let releaseIconObjectUrl=null;
-let editingReleasePath=null;
 
-function toast(message){
- $("toast").textContent=message;
+function toast(m){
+ $("toast").textContent=m;
  $("toast").classList.add("show");
  clearTimeout(window.toastTimer);
  window.toastTimer=setTimeout(()=>$("toast").classList.remove("show"),3200);
 }
 
-function showSection(name){
- sections.forEach(s=>s.classList.toggle("active",s.id===name));
- nav.forEach(b=>b.classList.toggle("active",b.dataset.section===name));
- $("breadcrumb").textContent=nav.find(b=>b.dataset.section===name)?.textContent.trim()||"Resumen";
+function showSection(n){
+ sections.forEach(s=>s.classList.toggle("active",s.id===n));
+ nav.forEach(b=>b.classList.toggle("active",b.dataset.section===n));
+ $("breadcrumb").textContent=nav.find(b=>b.dataset.section===n)?.textContent.trim()||"Resumen";
  sidebar.classList.remove("open");
-
- if(name==="releases")loadReleases().catch(e=>toast("No se pudieron cargar los launchers: "+e.message));
+ FVDEBUG.info("Sección abierta: "+n);
 }
+
 nav.forEach(b=>b.addEventListener("click",()=>showSection(b.dataset.section)));
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>showSection(b.dataset.go)));
 $("mobileMenu").onclick=()=>sidebar.classList.toggle("open");
 
 async function api(url,opt={}){
- const response=await fetch(url,{
+ FVDEBUG.api("API request: "+url,{method:opt.method||"GET"});
+ let r=await fetch(url,{
   credentials:"same-origin",
   cache:"no-store",
   ...opt,
@@ -478,37 +590,36 @@ async function api(url,opt={}){
    ...(opt.headers||{})
   }
  });
- if(response.status===401){
+ if(r.status===401){
+  FVDEBUG.warn("Sesión no autorizada. Redirigiendo al login.");
   location.replace("/dashboard.html");
   throw Error("La sesión ha caducado.");
  }
- const data=await response.json().catch(()=>({}));
- if(!response.ok)throw Error(data.error||"Error en la solicitud.");
- return data;
+ let d=await r.json().catch(()=>({}));
+ if(!r.ok){
+  FVDEBUG.error("API devolvió un error.",{url,status:r.status,error:d.error||"Error en la solicitud"});
+  throw Error(d.error||"Error en la solicitud");
+ }
+ return d;
 }
 
 function normalizeGallery(arr){
  const result=[null,null,null,null];
  if(!Array.isArray(arr))return result;
- arr.forEach((item,index)=>{
+ arr.forEach((item,i)=>{
   if(!item)return;
   const slot=Number(item.slot);
-  const target=Number.isInteger(slot)&&slot>=1&&slot<=4?slot-1:index;
-  if(target>=0&&target<4)result[target]=item;
+  const index=Number.isInteger(slot)&&slot>=1&&slot<=4?slot-1:i;
+  if(index>=0&&index<4)result[index]=item;
  });
  return result;
 }
 function galleryCount(){return content.gallery.filter(x=>x&&x.url).length}
-
 function fill(){
- for(const [id,key] of [
-  ["siteTitle","siteTitle"],["heroTitle","heroTitle"],["heroDescription","heroDescription"],
-  ["discordUrl","discordUrl"],["downloadName","downloadName"],["version","version"],
-  ["releaseName","downloadName"],["releaseUrl","downloadUrl"]
- ])$(id).value=content[key]||"";
+ for(const [id,key] of [["siteTitle","siteTitle"],["heroTitle","heroTitle"],["heroDescription","heroDescription"],["discordUrl","discordUrl"],["downloadName","downloadName"],["version","version"],["releaseName","downloadName"],["releaseUrl","downloadUrl"]])$(id).value=content[key]||"";
 }
 
-async function saveContent(message="Cambios guardados."){
+async function saveContent(msg="Cambios guardados."){
  content.gallery=normalizeGallery(content.gallery);
  content.posts=Array.isArray(content.posts)?content.posts:[];
  await api("/api/content",{method:"PUT",body:JSON.stringify(content)});
@@ -516,167 +627,111 @@ async function saveContent(message="Cambios guardados."){
  $("statGallery").textContent=galleryCount()+" / 4";
  $("statPosts").textContent=content.posts.length;
  $("downloadSummary").textContent=content.downloadName||"No configurada";
- toast(message);
+ toast(msg);
+ FVDEBUG.info("Contenido guardado correctamente.");
 }
 
 async function loadContent(){
  try{
-  const data=await api("/api/content");
-  content={...content,...data};
-  for(const key of ["features","changelog","releases","posts"])if(!Array.isArray(content[key]))content[key]=[];
+  let d=await api("/api/content");
+  content={...content,...d};
+  for(let k of ["features","changelog","releases","posts"])if(!Array.isArray(content[k]))content[k]=[];
   content.gallery=normalizeGallery(content.gallery);
-  fill();
-  renderAll();
-  renderPosts();
+  fill();renderAll();renderPosts();
   $("connectionStatus").textContent="Conectado correctamente.";
   $("statVersion").textContent=content.version||"—";
   $("statGallery").textContent=galleryCount()+" / 4";
   $("statPosts").textContent=content.posts.length;
   $("downloadSummary").textContent=content.downloadName||"No configurada";
- }catch(error){
-  $("connectionStatus").textContent=error.message;
+  FVDEBUG.info("Contenido del sitio cargado.",{gallery:galleryCount(),posts:content.posts.length});
+ }catch(e){
+  $("connectionStatus").textContent=e.message;
+  FVDEBUG.error("No se pudo cargar el contenido.",e);
   toast("No se pudo cargar el contenido.");
  }
 }
 
 $("saveWebsite").onclick=async()=>{
- for(const [id,key] of [
-  ["siteTitle","siteTitle"],["heroTitle","heroTitle"],["heroDescription","heroDescription"],
-  ["discordUrl","discordUrl"],["downloadName","downloadName"]
- ])content[key]=$(id).value.trim();
- try{await saveContent()}catch(e){toast("No se pudo guardar: "+e.message)}
+ for(let [id,key] of [["siteTitle","siteTitle"],["heroTitle","heroTitle"],["heroDescription","heroDescription"],["discordUrl","discordUrl"],["downloadName","downloadName"]])content[key]=$(id).value.trim();
+ try{await saveContent()}catch(e){FVDEBUG.error("Error guardando editor web.",e);toast("No se pudo guardar: "+e.message)}
 };
 
 $("saveVersion").onclick=async()=>{
  content.version=$("version").value.trim();
  content.downloadName=$("releaseName").value.trim();
  content.downloadUrl=$("releaseUrl").value.trim();
- try{await saveContent()}catch(e){toast(e.message)}
+ try{await saveContent()}catch(e){FVDEBUG.error("Error guardando versión.",e);toast(e.message)}
 };
 
 $("addFeature").onclick=async()=>{
- const title=$("featureTitle").value.trim();
- const description=$("featureDescription").value.trim();
- const icon=$("featureIcon").value.trim()||"✧";
+ let title=$("featureTitle").value.trim(),description=$("featureDescription").value.trim(),icon=$("featureIcon").value.trim()||"✧";
  if(!title||!description)return toast("Completa el título y la descripción.");
  content.features.push({title,description,icon});
- $("featureTitle").value="";
- $("featureDescription").value="";
- $("featureIcon").value="";
+ $("featureTitle").value=$("featureDescription").value=$("featureIcon").value="";
  renderFeatures();
- try{await saveContent()}catch(e){toast(e.message)}
+ try{await saveContent()}catch(e){FVDEBUG.error("Error guardando característica.",e);toast(e.message)}
 };
 
 /* GALERÍA */
 function makeRange(label,id,value){
- const wrap=document.createElement("div");
- wrap.className="range-row";
+ const wrap=document.createElement("div");wrap.className="range-row";
  const left=document.createElement("div");
- const lab=document.createElement("label");
- lab.textContent=label;
- lab.htmlFor=id;
- const range=document.createElement("input");
- range.type="range";range.id=id;range.min="0";range.max="100";range.value=value;
- const val=document.createElement("div");
- val.className="range-value";val.textContent=value+"%";
- range.addEventListener("input",()=>{
-  val.textContent=range.value+"%";
-  updateEditorPreview(Number(wrap.dataset.slot));
- });
- left.append(lab,range);wrap.append(left,val);
- return wrap;
+ const lab=document.createElement("label");lab.textContent=label;lab.htmlFor=id;
+ const range=document.createElement("input");range.type="range";range.id=id;range.min="0";range.max="100";range.value=value;
+ const val=document.createElement("div");val.className="range-value";val.textContent=value+"%";
+ range.addEventListener("input",()=>{val.textContent=range.value+"%";updateEditorPreview(Number(wrap.dataset.slot))});
+ left.append(lab,range);wrap.append(left,val);return wrap;
 }
 
-function updateEditorPreview(index){
- const value=editorValues[index];
- if(!value)return;
- const img=$("editorImage"+index);
- if(!img)return;
- img.style.objectPosition=value.positionX+"% "+value.positionY+"%";
- img.style.transform="scale("+value.zoom/100+")";
+function updateEditorPreview(i){
+ const v=editorValues[i];if(!v)return;
+ const img=$("editorImage"+i);if(!img)return;
+ img.style.objectPosition=v.positionX+"% "+v.positionY+"%";
+ img.style.transform="scale("+v.zoom/100+")";
 }
 
 function renderGallery(){
- const box=$("gallerySlots");
- box.replaceChildren();
- content.gallery=normalizeGallery(content.gallery);
-
+ const box=$("gallerySlots");box.replaceChildren();content.gallery=normalizeGallery(content.gallery);
  for(let i=0;i<4;i++){
-  const item=content.gallery[i],defaultsItem=defaults[i];
-  const slot=document.createElement("article");
-  slot.className="gallery-slot";
-  const preview=document.createElement("div");
-  preview.className="slot-preview";
-
-  const number=document.createElement("span");
-  number.className="slot-number";
-  number.textContent="SLOT "+(i+1);
-
+  const item=content.gallery[i],d=defaults[i];
+  const slot=document.createElement("article");slot.className="gallery-slot";
+  const preview=document.createElement("div");preview.className="slot-preview";
+  const number=document.createElement("span");number.className="slot-number";number.textContent="SLOT "+(i+1);
   if(item?.url){
-   const img=document.createElement("img");
-   img.src=item.url;img.alt=item.title||"Imagen del slot "+(i+1);
+   const img=document.createElement("img");img.src=item.url;img.alt=item.title||"Imagen del slot "+(i+1);
    img.style.objectPosition=(item.positionX??50)+"% "+(item.positionY??50)+"%";
-   img.style.transform="scale("+(item.zoom??100)/100+")";
-   preview.append(img);
+   img.style.transform="scale("+(item.zoom??100)/100+")";preview.append(img);
   }
-
-  const details=document.createElement("div");
-  details.className="slot-placeholder";
-  const category=document.createElement("span");
-  category.textContent=(item?.category||defaultsItem.category).toUpperCase();
-  const title=document.createElement("h3");
-  title.textContent=item?.title||defaultsItem.title;
-  const description=document.createElement("p");
-  description.textContent=item?.description||defaultsItem.description;
-  details.append(category,title,description);
-  preview.append(number,details);
-
-  const body=document.createElement("div");
-  body.className="slot-content";
-  const heading=document.createElement("h3");
-  heading.textContent=item?.url?(item.title||"Imagen publicada"):"Espacio disponible";
-  const info=document.createElement("p");
-  info.textContent=item?.url?"Imagen guardada en este slot. Puedes editar el recorte o reemplazarla.":"Todavía no hay una imagen publicada en este espacio.";
-  const actions=document.createElement("div");
-  actions.className="slot-actions";
-
-  const edit=document.createElement("button");
-  edit.className="btn secondary";
-  edit.textContent=item?.url?"EDITAR IMAGEN":"AÑADIR IMAGEN";
-  edit.onclick=()=>openEditor(i);
-  actions.append(edit);
-
+  const details=document.createElement("div");details.className="slot-placeholder";
+  const cat=document.createElement("span");cat.textContent=(item?.category||d.category).toUpperCase();
+  const title=document.createElement("h3");title.textContent=item?.title||d.title;
+  const desc=document.createElement("p");desc.textContent=item?.description||d.description;
+  details.append(cat,title,desc);preview.append(number,details);
+  const body=document.createElement("div");body.className="slot-content";
+  const heading=document.createElement("h3");heading.textContent=item?.url?(item.title||"Imagen publicada"):"Espacio disponible";
+  const info=document.createElement("p");info.textContent=item?.url?"Imagen guardada en este slot. Puedes editar el recorte o reemplazarla.":"Todavía no hay una imagen publicada en este espacio.";
+  const actions=document.createElement("div");actions.className="slot-actions";
+  const edit=document.createElement("button");edit.className="btn secondary";edit.textContent=item?.url?"EDITAR IMAGEN":"AÑADIR IMAGEN";edit.onclick=()=>openEditor(i);actions.append(edit);
   if(item?.url){
-   const del=document.createElement("button");
-   del.className="danger";
-   del.textContent="VACIAR SLOT";
+   const del=document.createElement("button");del.className="danger";del.textContent="VACIAR SLOT";
    del.onclick=async()=>{
     if(!confirm("¿Quieres quitar la imagen del Slot "+(i+1)+"?"))return;
-    const old=content.gallery[i];
-    content.gallery[i]=null;
+    const old=content.gallery[i];content.gallery[i]=null;
     try{await saveContent("Slot "+(i+1)+" vaciado.");renderGallery()}
-    catch(e){content.gallery[i]=old;renderGallery();toast(e.message)}
-   };
-   actions.append(del);
+    catch(e){content.gallery[i]=old;renderGallery();FVDEBUG.error("Error vaciando slot.",e);toast(e.message)}
+   };actions.append(del);
   }
   body.append(heading,info,actions);
-
-  const editor=document.createElement("div");
-  editor.className="editor";
-  editor.id="slotEditor"+i;
-  slot.append(preview,body,editor);
-  box.append(slot);
+  const editor=document.createElement("div");editor.className="editor";editor.id="slotEditor"+i;
+  slot.append(preview,body,editor);box.append(slot);
  }
 }
 
 function openEditor(i){
- const item=content.gallery[i]||{};
- const editor=$("slotEditor"+i);
+ const item=content.gallery[i]||{},editor=$("slotEditor"+i);
  document.querySelectorAll(".editor.open").forEach(x=>{if(x!==editor)x.classList.remove("open")});
  if(editor.classList.contains("open")){editor.classList.remove("open");return}
- editor.classList.add("open");
- editorFiles[i]=null;
-
+ editor.classList.add("open");editorFiles[i]=null;
  editorValues[i]={
   zoom:Number(item.zoom)||100,
   positionX:Number.isFinite(Number(item.positionX))?Number(item.positionX):50,
@@ -686,176 +741,115 @@ function openEditor(i){
   description:item.description||defaults[i].description
  };
  editor.replaceChildren();
-
- const h=document.createElement("h4");
- h.textContent="EDITOR · SLOT "+(i+1);
- const preview=document.createElement("div");
- preview.className="editor-preview";
- const img=document.createElement("img");
- img.id="editorImage"+i;
- img.src=item.url||"";
- if(!item.url)img.style.display="none";
- preview.append(img);
-
- const fileField=document.createElement("div");
- fileField.className="field";
- const fileLabel=document.createElement("label");
- fileLabel.textContent=item.url?"Reemplazar imagen (opcional)":"Seleccionar imagen";
- const file=document.createElement("input");
- file.type="file";
- file.accept=".png,.jpg,.jpeg,.webp,.gif,image/png,image/jpeg,image/webp,image/gif";
+ const h=document.createElement("h4");h.textContent="EDITOR · SLOT "+(i+1);
+ const preview=document.createElement("div");preview.className="editor-preview";
+ const img=document.createElement("img");img.id="editorImage"+i;img.src=item.url||"";if(!item.url)img.style.display="none";preview.append(img);
+ const fileField=document.createElement("div");fileField.className="field";
+ const fileLabel=document.createElement("label");fileLabel.textContent=item.url?"Reemplazar imagen (opcional)":"Seleccionar imagen";
+ const file=document.createElement("input");file.type="file";file.accept=".png,.jpg,.jpeg,.webp,.gif,image/png,image/jpeg,image/webp,image/gif";
  file.addEventListener("change",()=>{
   const f=file.files?.[0];if(!f)return;
   const ext=f.name.split(".").pop().toLowerCase();
   if(!["png","jpg","jpeg","webp","gif"].includes(ext)){toast("Formato no permitido.");file.value="";return}
   if(f.size>20*1024*1024){toast("La imagen supera el límite de 20 MB.");file.value="";return}
-  editorFiles[i]=f;
-  img.src=URL.createObjectURL(f);
-  img.style.display="block";
+  editorFiles[i]=f;img.src=URL.createObjectURL(f);img.style.display="block";
+  FVDEBUG.upload("Imagen seleccionada para Slot "+(i+1),{name:f.name,size:f.size,type:f.type});
   toast("Vista previa lista. Aún no se ha subido.");
  });
  fileField.append(fileLabel,file);
-
- const note=document.createElement("p");
- note.className="editor-note";
- note.textContent="Formatos: PNG, JPG, JPEG, WEBP o GIF. Máximo 20 MB. La imagen no se sube hasta publicar.";
-
+ const note=document.createElement("p");note.className="editor-note";note.textContent="Formatos: PNG, JPG, JPEG, WEBP o GIF. Máximo 20 MB. La imagen no se sube hasta publicar.";
  const ranges=document.createElement("div");
- const zoom=makeRange("Zoom","zoomRange"+i,Math.round((editorValues[i].zoom-100)/1.5));
- zoom.querySelector("input").addEventListener("input",e=>{
-  editorValues[i].zoom=100+Number(e.target.value)*1.5;
-  zoom.querySelector(".range-value").textContent=Math.round(editorValues[i].zoom)+"%";
-  updateEditorPreview(i);
- });
+ const zoom=makeRange("Zoom","zoomRange"+i,(editorValues[i].zoom-100)/1.5);
+ zoom.querySelector("input").addEventListener("input",e=>{editorValues[i].zoom=100+Number(e.target.value)*1.5;zoom.querySelector(".range-value").textContent=Math.round(editorValues[i].zoom)+"%";updateEditorPreview(i)});
  const posX=makeRange("Posición horizontal","xRange"+i,editorValues[i].positionX);
  posX.querySelector("input").addEventListener("input",e=>{editorValues[i].positionX=Number(e.target.value);updateEditorPreview(i)});
  const posY=makeRange("Posición vertical","yRange"+i,editorValues[i].positionY);
  posY.querySelector("input").addEventListener("input",e=>{editorValues[i].positionY=Number(e.target.value);updateEditorPreview(i)});
  ranges.append(zoom,posX,posY);
-
- const fields=document.createElement("div");
- fields.className="form-grid";
+ const fields=document.createElement("div");fields.className="form-grid";
  const makeField=(label,value,key)=>{
-  const f=document.createElement("div");f.className="field";
-  const l=document.createElement("label");l.textContent=label;
-  const input=document.createElement("input");input.value=value;
-  input.addEventListener("input",()=>editorValues[i][key]=input.value);
-  f.append(l,input);return f;
+  const f=document.createElement("div");f.className="field";const l=document.createElement("label");l.textContent=label;
+  const input=document.createElement("input");input.value=value;input.addEventListener("input",()=>editorValues[i][key]=input.value);f.append(l,input);return f;
  };
  fields.append(makeField("Título",editorValues[i].title,"title"),makeField("Categoría",editorValues[i].category,"category"));
- const desc=makeField("Descripción",editorValues[i].description,"description");
- desc.style.gridColumn="1/-1";
- fields.append(desc);
-
- const actions=document.createElement("div");
- actions.className="btn-row";
- const publish=document.createElement("button");
- publish.className="btn primary";
- publish.textContent="PUBLICAR CAMBIOS";
- publish.onclick=()=>publishSlot(i,publish);
- const cancel=document.createElement("button");
- cancel.className="btn secondary";
- cancel.textContent="CERRAR EDITOR";
- cancel.onclick=()=>editor.classList.remove("open");
- actions.append(publish,cancel);
- editor.append(h,preview,fileField,note,ranges,fields,actions);
- updateEditorPreview(i);
+ const desc=makeField("Descripción",editorValues[i].description,"description");desc.style.gridColumn="1/-1";fields.append(desc);
+ const actions=document.createElement("div");actions.className="btn-row";
+ const publish=document.createElement("button");publish.className="btn primary";publish.textContent="PUBLICAR CAMBIOS";publish.onclick=()=>publishSlot(i,publish);
+ const cancel=document.createElement("button");cancel.className="btn secondary";cancel.textContent="CERRAR EDITOR";cancel.onclick=()=>editor.classList.remove("open");
+ actions.append(publish,cancel);editor.append(h,preview,fileField,note,ranges,fields,actions);updateEditorPreview(i);
 }
 
 async function publishSlot(i,button){
- const values=editorValues[i];
- if(!values)return;
+ const values=editorValues[i];if(!values)return;
  const file=editorFiles[i],current=content.gallery[i];
  if(!current?.url&&!file)return toast("Selecciona una imagen para este slot.");
  if(file&&file.size>20*1024*1024)return toast("La imagen supera el límite de 20 MB.");
- button.disabled=true;
- button.textContent=file?"SUBIENDO Y PUBLICANDO...":"GUARDANDO...";
+ button.disabled=true;button.textContent=file?"SUBIENDO Y PUBLICANDO...":"GUARDANDO...";
+ FVDEBUG.upload("Inicio de publicación del Slot "+(i+1),{hasNewFile:!!file,fileName:file?.name,fileSize:file?.size});
  try{
   let imageData=current?{...current}:{};
   if(file){
    const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
    const blob=await upload("gallery/slot-"+(i+1)+"-"+Date.now()+"-"+safeName,file,{access:"public",handleUploadUrl:"/api/upload"});
-   imageData.url=blob.url;
-   imageData.pathname=blob.pathname;
+   imageData.url=blob.url;imageData.pathname=blob.pathname;
+   FVDEBUG.upload("Imagen subida correctamente.",{slot:i+1,pathname:blob.pathname});
   }
-  content.gallery[i]={
-   ...imageData,slot:i+1,
-   title:String(values.title||"").trim(),
-   category:String(values.category||"FVREVER").trim(),
-   description:String(values.description||"").trim(),
-   zoom:Math.round(values.zoom),
-   positionX:Math.round(values.positionX),
-   positionY:Math.round(values.positionY)
-  };
+  content.gallery[i]={...imageData,slot:i+1,title:String(values.title||"").trim(),category:String(values.category||"FVREVER").trim(),description:String(values.description||"").trim(),zoom:Math.round(values.zoom),positionX:Math.round(values.positionX),positionY:Math.round(values.positionY)};
   await saveContent("Slot "+(i+1)+" publicado correctamente.");
-  editorFiles[i]=null;
-  renderGallery();
- }catch(e){toast("No se pudo publicar el Slot "+(i+1)+": "+e.message)}
- finally{button.disabled=false;button.textContent="PUBLICAR CAMBIOS"}
+  editorFiles[i]=null;renderGallery();
+ }catch(e){
+  FVDEBUG.error("No se pudo publicar el Slot "+(i+1),e);
+  toast("No se pudo publicar el Slot "+(i+1)+": "+e.message);
+ }finally{
+  button.disabled=false;button.textContent="PUBLICAR CAMBIOS";
+ }
 }
 
 function renderFeatures(){
- const box=$("featureList");
- box.replaceChildren();
+ let box=$("featureList");box.replaceChildren();
  if(!content.features.length){box.className="empty";box.textContent="Todavía no hay características.";return}
  box.className="";
- content.features.forEach((item,index)=>{
-  const row=document.createElement("div");row.className="list-item";
-  const info=document.createElement("div");
-  const strong=document.createElement("strong");
-  const p=document.createElement("p");
-  strong.textContent=(item.icon||"✧")+" "+item.title;
-  p.textContent=item.description;
-  info.append(strong,p);
-  const del=document.createElement("button");
-  del.className="danger";del.textContent="ELIMINAR";
+ content.features.forEach((x,i)=>{
+  let row=document.createElement("div");row.className="list-item";
+  let t=document.createElement("div"),strong=document.createElement("strong"),p=document.createElement("p");
+  strong.textContent=(x.icon||"✧")+" "+x.title;p.textContent=x.description;t.append(strong,p);
+  let del=document.createElement("button");del.className="danger";del.textContent="ELIMINAR";
   del.onclick=async()=>{
-   const old=content.features.splice(index,1)[0];
-   renderFeatures();
+   const old=content.features.splice(i,1)[0];renderFeatures();
    try{await saveContent()}
-   catch(e){content.features.splice(index,0,old);renderFeatures();toast(e.message)}
+   catch(e){content.features.splice(i,0,old);renderFeatures();FVDEBUG.error("Error eliminando característica.",e);toast(e.message)}
   };
-  row.append(info,del);box.append(row);
+  row.append(t,del);box.append(row);
  });
 }
 
 function renderChangelog(){
- const box=$("changelogList");
- if(!box)return;
- box.replaceChildren();
+ let box=$("changelogList");if(!box)return;box.replaceChildren();
  if(!content.changelog.length){box.className="empty";box.textContent="Todavía no hay publicaciones antiguas.";return}
  box.className="";
- content.changelog.forEach((item,index)=>{
-  const row=document.createElement("div");row.className="list-item";
-  const info=document.createElement("div");
-  const strong=document.createElement("strong");
-  const p=document.createElement("p");
-  strong.textContent="v"+item.version+" · "+item.title;
-  p.textContent=item.description;
-  info.append(strong,p);
-  const del=document.createElement("button");
-  del.className="danger";del.textContent="ELIMINAR";
-  del.onclick=async()=>{
-   const old=content.changelog.splice(index,1)[0];
-   renderChangelog();
+ content.changelog.forEach((x,i)=>{
+  let row=document.createElement("div");row.className="list-item";
+  let t=document.createElement("div"),s=document.createElement("strong"),p=document.createElement("p");
+  s.textContent="v"+x.version+" · "+x.title;p.textContent=x.description;t.append(s,p);
+  let b=document.createElement("button");b.className="danger";b.textContent="ELIMINAR";
+  b.onclick=async()=>{
+   const old=content.changelog.splice(i,1)[0];renderChangelog();
    try{await saveContent()}
-   catch(e){content.changelog.splice(index,0,old);renderChangelog();toast(e.message)}
+   catch(e){content.changelog.splice(i,0,old);renderChangelog();FVDEBUG.error("Error eliminando changelog.",e);toast(e.message)}
   };
-  row.append(info,del);box.append(row);
+  row.append(t,b);box.append(row);
  });
 }
 function renderAll(){renderFeatures();renderGallery();renderChangelog()}
 
-/* PUBLICACIONES */
+/* EDITOR DE PUBLICACIONES */
 function setPostLanguage(lang){
  if(!["es","en","fr","pt"].includes(lang))return;
  saveCurrentPostLanguage();
  postLanguage=lang;
  document.querySelectorAll("[data-post-lang]").forEach(b=>b.classList.toggle("active",b.dataset.postLang===lang));
  const t=postTranslations[lang]||{title:"",excerpt:"",body:""};
- $("postTitle").value=t.title||"";
- $("postExcerpt").value=t.excerpt||"";
- $("postBody").value=t.body||"";
+ $("postTitle").value=t.title||"";$("postExcerpt").value=t.excerpt||"";$("postBody").value=t.body||"";
 }
 function saveCurrentPostLanguage(){
  postTranslations[postLanguage]={
@@ -870,22 +864,15 @@ function resetPostEditor(){
  editingPostId=null;
  postTranslations={es:{title:"",excerpt:"",body:""},en:{title:"",excerpt:"",body:""},fr:{title:"",excerpt:"",body:""},pt:{title:"",excerpt:"",body:""}};
  postImageFile=null;
- $("postVersion").value="";
- $("postCategory").value="update";
+ $("postVersion").value="";$("postCategory").value="update";
  $("postDate").value=new Date().toISOString().slice(0,10);
- $("postStatus").value="draft";
- $("postFeatured").checked=false;
- $("postImageFile").value="";
- $("postImageUrl").value="";
- $("postImagePreview").src="";
- $("postImagePreview").style.display="none";
+ $("postStatus").value="draft";$("postFeatured").checked=false;
+ $("postImageFile").value="";$("postImageUrl").value="";
+ $("postImagePreview").src="";$("postImagePreview").style.display="none";
  $("postEditorHeading").textContent="Crear publicación";
  $("savePost").textContent="GUARDAR PUBLICACIÓN";
- $("postTitle").value="";
- $("postExcerpt").value="";
- $("postBody").value="";
- postLanguage="es";
- setPostLanguage("es");
+ $("postTitle").value="";$("postExcerpt").value="";$("postBody").value="";
+ postLanguage="es";setPostLanguage("es");
 }
 $("newPost").onclick=resetPostEditor;
 $("cancelPost").onclick=resetPostEditor;
@@ -895,10 +882,10 @@ $("postImageFile").addEventListener("change",()=>{
  const ext=file.name.split(".").pop().toLowerCase();
  if(!["png","jpg","jpeg","webp","gif"].includes(ext)){toast("Formato de imagen no permitido.");$("postImageFile").value="";return}
  if(file.size>20*1024*1024){toast("La imagen supera 20 MB.");$("postImageFile").value="";return}
- postImageFile=file;
- $("postImagePreview").src=URL.createObjectURL(file);
- $("postImagePreview").style.display="block";
+ postImageFile=file;$("postImagePreview").src=URL.createObjectURL(file);$("postImagePreview").style.display="block";
+ FVDEBUG.upload("Imagen de portada seleccionada.",{name:file.name,size:file.size});
 });
+
 $("postImageUrl").addEventListener("input",()=>{
  if($("postImageUrl").value.trim()&&!postImageFile){
   $("postImagePreview").src=$("postImageUrl").value.trim();
@@ -911,21 +898,14 @@ function editPost(id){
  editingPostId=id;
  postTranslations=JSON.parse(JSON.stringify(post.translations||{}));
  for(const lang of ["es","en","fr","pt"])if(!postTranslations[lang])postTranslations[lang]={title:"",excerpt:"",body:""};
- $("postVersion").value=post.version||"";
- $("postCategory").value=post.category||"update";
+ $("postVersion").value=post.version||"";$("postCategory").value=post.category||"update";
  $("postDate").value=(post.date||new Date().toISOString().slice(0,10)).slice(0,10);
- $("postStatus").value=post.status||"draft";
- $("postFeatured").checked=!!post.featured;
- $("postImageUrl").value=post.image||"";
- postImageFile=null;
- $("postImageFile").value="";
- if(post.image){$("postImagePreview").src=post.image;$("postImagePreview").style.display="block"}
- else $("postImagePreview").style.display="none";
+ $("postStatus").value=post.status||"draft";$("postFeatured").checked=!!post.featured;
+ $("postImageUrl").value=post.image||"";postImageFile=null;$("postImageFile").value="";
+ if(post.image){$("postImagePreview").src=post.image;$("postImagePreview").style.display="block"}else $("postImagePreview").style.display="none";
  $("postEditorHeading").textContent="Editar publicación";
  $("savePost").textContent="GUARDAR CAMBIOS";
- postLanguage="es";
- setPostLanguage("es");
- showSection("changelog");
+ postLanguage="es";setPostLanguage("es");showSection("changelog");
  document.querySelector("#changelog .panel").scrollIntoView({behavior:"smooth"});
 }
 
@@ -934,15 +914,14 @@ async function savePost(){
  const originalLanguage=["es","en","fr","pt"].find(lang=>postTranslations[lang].title||postTranslations[lang].excerpt||postTranslations[lang].body);
  if(!originalLanguage)return toast("Añade al menos un título y contenido.");
  if(!postTranslations[originalLanguage].title)return toast("El título es obligatorio.");
- const button=$("savePost");
- button.disabled=true;
- button.textContent="GUARDANDO...";
+ const button=$("savePost");button.disabled=true;button.textContent="GUARDANDO...";
  try{
   let image=$("postImageUrl").value.trim();
   if(postImageFile){
    const safeName=postImageFile.name.replace(/[^a-zA-Z0-9._-]/g,"_");
    const blob=await upload("posts/"+Date.now()+"-"+safeName,postImageFile,{access:"public",handleUploadUrl:"/api/upload"});
    image=blob.url;
+   FVDEBUG.upload("Imagen de publicación subida correctamente.",{pathname:blob.pathname});
   }
   const post={
    id:editingPostId||("post-"+Date.now()+"-"+Math.random().toString(36).slice(2,9)),
@@ -956,34 +935,38 @@ async function savePost(){
    translations:postTranslations
   };
   const index=content.posts.findIndex(p=>p.id===post.id);
-  if(index>=0)content.posts[index]=post;
-  else content.posts.unshift(post);
+  if(index>=0)content.posts[index]=post;else content.posts.unshift(post);
   await saveContent(post.status==="published"?"Publicación publicada.":"Borrador guardado.");
-  renderPosts();
-  resetPostEditor();
- }catch(e){toast("No se pudo guardar la publicación: "+e.message)}
- finally{button.disabled=false;button.textContent=editingPostId?"GUARDAR CAMBIOS":"GUARDAR PUBLICACIÓN"}
+  renderPosts();resetPostEditor();
+ }catch(e){
+  FVDEBUG.error("No se pudo guardar la publicación.",e);
+  toast("No se pudo guardar la publicación: "+e.message);
+ }finally{
+  button.disabled=false;
+  button.textContent=editingPostId?"GUARDAR CAMBIOS":"GUARDAR PUBLICACIÓN";
+ }
 }
 $("savePost").onclick=savePost;
 
 async function deletePost(id){
  if(!confirm("¿Eliminar esta publicación permanentemente?"))return;
- const index=content.posts.findIndex(p=>p.id===id);
- if(index<0)return;
- const old=content.posts.splice(index,1)[0];
- renderPosts();
- try{await saveContent("Publicación eliminada.")}
- catch(e){content.posts.splice(index,0,old);renderPosts();toast("No se pudo eliminar: "+e.message)}
+ const index=content.posts.findIndex(p=>p.id===id);if(index<0)return;
+ const old=content.posts.splice(index,1)[0];renderPosts();
+ try{await saveContent("Publicación eliminada.");}
+ catch(e){content.posts.splice(index,0,old);renderPosts();FVDEBUG.error("Error eliminando publicación.",e);toast("No se pudo eliminar: "+e.message)}
 }
+
 async function togglePostStatus(id){
  const post=content.posts.find(p=>p.id===id);if(!post)return;
  post.status=post.status==="published"?"draft":"published";
- try{await saveContent(post.status==="published"?"Publicación publicada.":"Publicación movida a borradores.");renderPosts()}
- catch(e){toast(e.message)}
+ try{
+  await saveContent(post.status==="published"?"Publicación publicada.":"Publicación movida a borradores.");
+  renderPosts();
+ }catch(e){FVDEBUG.error("Error cambiando estado de publicación.",e);toast(e.message)}
 }
+
 function renderPosts(){
- const box=$("postList");
- box.replaceChildren();
+ const box=$("postList");box.replaceChildren();
  $("postCount").textContent=content.posts.length+" publicaciones";
  $("statPosts").textContent=content.posts.length;
  if(!content.posts.length){box.className="empty";box.textContent="Todavía no has creado publicaciones.";return}
@@ -998,9 +981,7 @@ function renderPosts(){
   const desc=document.createElement("p");desc.textContent=(main.excerpt||main.body||"").slice(0,220);
   const meta=document.createElement("p");meta.textContent=(post.category||"news").toUpperCase()+" · "+(post.date||"Sin fecha")+(post.featured?" · DESTACADA":"");
   info.append(title,desc,meta);
-  const status=document.createElement("span");
-  status.className="post-status "+(post.status==="published"?"published":"draft");
-  status.textContent=post.status==="published"?"PUBLICADO":"BORRADOR";
+  const status=document.createElement("span");status.className="post-status "+(post.status==="published"?"published":"draft");status.textContent=post.status==="published"?"PUBLICADO":"BORRADOR";
   top.append(info,status);row.append(top);
   const actions=document.createElement("div");actions.className="post-actions";
   const edit=document.createElement("button");edit.className="btn secondary";edit.textContent="EDITAR";edit.onclick=()=>editPost(post.id);
@@ -1010,580 +991,154 @@ function renderPosts(){
  });
 }
 
-/* =========================================================
-   GESTOR DE LAUNCHERS PRIVADOS
-   ========================================================= */
-
-function formatBytes(bytes){
- if(!Number.isFinite(Number(bytes)))return "Tamaño desconocido";
- const units=["B","KB","MB","GB"];
- let value=Number(bytes),index=0;
- while(value>=1024&&index<units.length-1){value/=1024;index++}
- return value.toFixed(index===0?0:2)+" "+units[index];
-}
-function formatDate(value){
- if(!value)return "Fecha desconocida";
- const date=new Date(value);
- return Number.isNaN(date.getTime())?"Fecha desconocida":date.toLocaleString("es-SV");
-}
-function safeText(value){
- return String(value??"");
-}
-function getReleaseMeta(pathname){
- return releaseMetadata[pathname]||content.releases.find(x=>x.pathname===pathname)||{};
-}
-function updateReleaseCounter(count){
- $("releaseCount").textContent=count+" / 3";
- const full=count>=3;
- $("uploadRelease").disabled=full;
- $("releaseFile").disabled=full;
- $("uploadRelease").textContent=full?"LÍMITE DE 3 LAUNCHERS ALCANZADO":"SUBIR NUEVO LAUNCHER";
-}
-function resetNewReleaseIcon(){
- releaseIconFile=null;
- if(releaseIconObjectUrl)URL.revokeObjectURL(releaseIconObjectUrl);
- releaseIconObjectUrl=null;
- $("releaseIconFile").value="";
- $("newReleaseIconPreview").src="";
- $("newReleaseIconPreview").classList.add("hidden");
- $("newReleaseIconPlaceholder").classList.remove("hidden");
-}
-$("releaseIconFile").addEventListener("change",()=>{
- const file=$("releaseIconFile").files?.[0];
- if(!file)return;
- const ext=file.name.split(".").pop().toLowerCase();
- if(!["png","jpg","jpeg","webp","ico"].includes(ext)){
-  toast("Formato de icono no permitido.");
-  $("releaseIconFile").value="";
-  return;
- }
- if(file.size>5*1024*1024){
-  toast("El icono supera el límite de 5 MB.");
-  $("releaseIconFile").value="";
-  return;
- }
- releaseIconFile=file;
- if(releaseIconObjectUrl)URL.revokeObjectURL(releaseIconObjectUrl);
- releaseIconObjectUrl=URL.createObjectURL(file);
- $("newReleaseIconPreview").src=releaseIconObjectUrl;
- $("newReleaseIconPreview").classList.remove("hidden");
- $("newReleaseIconPlaceholder").classList.add("hidden");
-});
-
-async function uploadReleaseIcon(file){
- if(!file)return null;
- const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
- const blob=await upload("release-icons/"+Date.now()+"-"+safeName,file,{
-  access:"public",
-  handleUploadUrl:"/api/upload"
- });
- return {iconUrl:blob.url,iconPathname:blob.pathname};
-}
-
-async function fetchReleaseList(){
- const data=await api("/api/releases-manage");
- if(!data.success||!Array.isArray(data.releases))throw Error("El servidor no devolvió una lista válida.");
- return data.releases;
-}
-
-async function loadReleases(){
- const box=$("releaseList");
- box.className="empty";
- box.textContent="Consultando almacenamiento privado...";
- $("refreshReleases").disabled=true;
- try{
-  const releases=await fetchReleaseList();
-  renderReleaseList(releases);
- }catch(error){
-  box.className="empty";
-  box.textContent="No se pudieron cargar los launchers: "+error.message;
-  updateReleaseCounter(0);
-  throw error;
- }finally{
-  $("refreshReleases").disabled=false;
- }
-}
-
-function renderReleaseList(releases){
- const box=$("releaseList");
- box.replaceChildren();
- updateReleaseCounter(releases.length);
-
- if(!releases.length){
-  box.className="empty";
-  box.textContent="Todavía no hay instaladores en el Blob privado. Puedes subir tu primer launcher arriba.";
-  return;
- }
- box.className="release-grid";
-
- releases.forEach(blob=>{
-  const meta=getReleaseMeta(blob.pathname);
-  const card=document.createElement("article");
-  card.className="release-card";
-
-  const top=document.createElement("div");
-  top.className="release-card-top";
-
-  let icon;
-  if(meta.iconUrl){
-   icon=document.createElement("img");
-   icon.className="release-icon";
-   icon.src=meta.iconUrl;
-   icon.alt="Icono del launcher";
-   icon.onerror=()=>{icon.replaceWith(makeReleasePlaceholder())};
-  }else{
-   icon=makeReleasePlaceholder();
-  }
-
-  const info=document.createElement("div");
-  info.className="release-card-info";
-  const title=document.createElement("strong");
-  title.textContent=meta.name||blob.pathname.split("/").pop();
-  const version=document.createElement("small");
-  version.textContent=meta.version?"VERSIÓN "+meta.version:"Versión no especificada";
-  info.append(title,version);
-  top.append(icon,info);
-
-  const description=document.createElement("p");
-  description.className="release-description";
-  description.textContent=meta.description||"Sin descripción. Pulsa EDITAR para añadir información.";
-
-  const metadata=document.createElement("div");
-  metadata.className="release-meta";
-  metadata.textContent="ARCHIVO: "+blob.pathname.split("/").pop()+"\nTAMAÑO: "+formatBytes(blob.size)+"\nSUBIDO: "+formatDate(blob.uploadedAt);
-
-  const actions=document.createElement("div");
-  actions.className="release-actions";
-
-  const edit=document.createElement("button");
-  edit.className="btn secondary";
-  edit.textContent="EDITAR INFORMACIÓN";
-  edit.onclick=()=>openReleaseEditor(blob,meta);
-
-  const replace=document.createElement("button");
-  replace.className="btn secondary";
-  replace.textContent="REEMPLAZAR ARCHIVO";
-  replace.onclick=()=>replaceRelease(blob,meta);
-
-  const del=document.createElement("button");
-  del.className="danger";
-  del.textContent="ELIMINAR";
-  del.onclick=()=>deleteRelease(blob.pathname);
-
-  actions.append(edit,replace,del);
-  card.append(top,description,metadata,actions);
-  box.append(card);
- });
-}
-
-function makeReleasePlaceholder(){
- const placeholder=document.createElement("div");
- placeholder.className="release-icon release-icon-placeholder";
- placeholder.textContent="📦";
- return placeholder;
-}
-
-function openReleaseEditor(blob,meta){
- editingReleasePath=blob.pathname;
- const old=document.querySelector(".release-editor");
- if(old)old.remove();
-
- const card=[...document.querySelectorAll(".release-card")].find(x=>x.textContent.includes(blob.pathname.split("/").pop()));
- if(!card)return;
-
- const editor=document.createElement("div");
- editor.className="release-editor open";
-
- const heading=document.createElement("h3");
- heading.textContent="EDITAR INFORMACIÓN DEL LAUNCHER";
-
- const form=document.createElement("div");
- form.className="form-grid";
-
- const createField=(label,value,type="text")=>{
-  const wrap=document.createElement("div");
-  wrap.className="field";
-  const l=document.createElement("label");
-  l.textContent=label;
-  const input=type==="textarea"?document.createElement("textarea"):document.createElement("input");
-  if(type!=="textarea")input.type=type;
-  input.value=value||"";
-  wrap.append(l,input);
-  return {wrap,input};
- };
-
- const name=createField("Nombre",meta.name||"");
- const version=createField("Versión",meta.version||"");
- const description=createField("Descripción",meta.description||"","textarea");
- description.wrap.style.gridColumn="1/-1";
-
- const iconField=document.createElement("div");
- iconField.className="field full";
- const iconLabel=document.createElement("label");
- iconLabel.textContent="Cambiar icono (opcional)";
- const iconInput=document.createElement("input");
- iconInput.type="file";
- iconInput.accept=".png,.jpg,.jpeg,.webp,.ico,image/png,image/jpeg,image/webp,image/x-icon,image/vnd.microsoft.icon";
- const iconPreviewWrap=document.createElement("div");
- iconPreviewWrap.className="icon-preview-wrap";
- const iconPreview=document.createElement("img");
- iconPreview.className="icon-preview";
- iconPreview.alt="Vista previa del icono";
- if(meta.iconUrl)iconPreview.src=meta.iconUrl;
- else iconPreview.classList.add("hidden");
- const placeholder=document.createElement("div");
- placeholder.className="icon-preview icon-preview-empty";
- placeholder.textContent="📦";
- if(meta.iconUrl)placeholder.classList.add("hidden");
- iconPreviewWrap.append(iconPreview,placeholder);
- iconField.append(iconLabel,iconInput,iconPreviewWrap);
-
- let selectedIcon=null;
- let previewUrl=null;
- iconInput.addEventListener("change",()=>{
-  const file=iconInput.files?.[0];
-  if(!file)return;
-  const ext=file.name.split(".").pop().toLowerCase();
-  if(!["png","jpg","jpeg","webp","ico"].includes(ext)){toast("Formato de icono no permitido.");iconInput.value="";return}
-  if(file.size>5*1024*1024){toast("El icono supera 5 MB.");iconInput.value="";return}
-  selectedIcon=file;
-  if(previewUrl)URL.revokeObjectURL(previewUrl);
-  previewUrl=URL.createObjectURL(file);
-  iconPreview.src=previewUrl;
-  iconPreview.classList.remove("hidden");
-  placeholder.classList.add("hidden");
- });
-
- form.append(name.wrap,version.wrap,description.wrap,iconField);
-
- const buttons=document.createElement("div");
- buttons.className="btn-row";
-
- const save=document.createElement("button");
- save.className="btn primary";
- save.textContent="GUARDAR INFORMACIÓN";
- save.onclick=async()=>{
-  if(!name.input.value.trim()||!version.input.value.trim()){
-   toast("El nombre y la versión son obligatorios.");
-   return;
-  }
-  save.disabled=true;
-  save.textContent="GUARDANDO...";
-  try{
-   let iconData={};
-   if(selectedIcon)iconData=await uploadReleaseIcon(selectedIcon);
-   const oldMeta=getReleaseMeta(blob.pathname);
-   releaseMetadata[blob.pathname]={
-    ...oldMeta,
-    pathname:blob.pathname,
-    name:name.input.value.trim(),
-    version:version.input.value.trim(),
-    description:description.input.value.trim(),
-    ...(iconData||{})
-   };
-   content.releases=Array.isArray(content.releases)?content.releases:[];
-   const index=content.releases.findIndex(x=>x.pathname===blob.pathname);
-   if(index>=0)content.releases[index]={...content.releases[index],...releaseMetadata[blob.pathname]};
-   else content.releases.unshift(releaseMetadata[blob.pathname]);
-   await saveContent("Información del launcher actualizada.");
-   if(previewUrl)URL.revokeObjectURL(previewUrl);
-   await loadReleases();
-  }catch(error){toast("No se pudo guardar: "+error.message)}
-  finally{save.disabled=false;save.textContent="GUARDAR INFORMACIÓN"}
- };
-
- const cancel=document.createElement("button");
- cancel.className="btn secondary";
- cancel.textContent="CANCELAR";
- cancel.onclick=()=>{
-  if(previewUrl)URL.revokeObjectURL(previewUrl);
-  editor.remove();
- };
-
- buttons.append(save,cancel);
- editor.append(heading,form,buttons);
- card.append(editor);
- editor.scrollIntoView({behavior:"smooth",block:"nearest"});
-}
-
-async function deleteRelease(pathname){
- const filename=pathname.split("/").pop();
- if(!confirm("¿Eliminar permanentemente "+filename+" del Blob privado?"))return;
-
- try{
-  await api("/api/releases-manage",{
-   method:"DELETE",
-   body:JSON.stringify({pathname})
-  });
-
-  content.releases=(content.releases||[]).filter(x=>x.pathname!==pathname);
-  delete releaseMetadata[pathname];
-
-  try{await saveContent("Launcher eliminado del almacenamiento privado.")}
-  catch(e){toast("Archivo eliminado, pero no se pudo actualizar la metadata: "+e.message)}
-
-  await loadReleases();
- }catch(error){
-  toast("No se pudo eliminar el launcher: "+error.message);
- }
-}
-
-async function replaceRelease(blob,meta){
- const input=document.createElement("input");
- input.type="file";
- input.accept=".exe,.msi,.zip";
-
- input.onchange=async()=>{
-  const file=input.files?.[0];
-  if(!file)return;
-  const ext=file.name.split(".").pop().toLowerCase();
-  if(!["exe","msi","zip"].includes(ext))return toast("Solo se permiten EXE, MSI o ZIP.");
-  if(file.size>500*1024*1024)return toast("El archivo supera 500 MB.");
-
-  if(!confirm("Se eliminará el instalador anterior y se subirá el nuevo en su lugar. ¿Continuar?"))return;
-
-  try{
-   toast("Preparando reemplazo...");
-   await api("/api/releases-manage",{
-    method:"DELETE",
-    body:JSON.stringify({pathname:blob.pathname})
-   });
-
-   content.releases=(content.releases||[]).filter(x=>x.pathname!==blob.pathname);
-   delete releaseMetadata[blob.pathname];
-
-   try{await saveContent("Preparando el reemplazo...")}catch(e){console.warn(e)}
-
-   const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-   const newBlob=await upload("releases/"+Date.now()+"-"+safeName,file,{
-    access:"private",
-    handleUploadUrl:"/api/releases-upload"
-   });
-
-   const newMeta={
-    pathname:newBlob.pathname,
-    filename:file.name,
-    name:meta.name||file.name,
-    version:meta.version||"",
-    description:meta.description||"",
-    iconUrl:meta.iconUrl||"",
-    iconPathname:meta.iconPathname||"",
-    uploadedAt:new Date().toISOString()
-   };
-
-   content.releases.unshift(newMeta);
-   await saveContent("Launcher reemplazado correctamente.");
-   await loadReleases();
-  }catch(error){
-   toast("No se pudo completar el reemplazo: "+error.message);
-   await loadReleases().catch(()=>{});
-  }
- };
-
- input.click();
-}
-
+/* LAUNCHER PRIVADO */
 $("uploadRelease").onclick=async()=>{
- const file=$("releaseFile").files?.[0];
- const version=$("uploadVersion").value.trim();
- const name=$("uploadName").value.trim();
- const description=$("uploadDescription").value.trim();
-
+ let file=$("releaseFile").files[0],version=$("uploadVersion").value.trim(),name=$("uploadName").value.trim(),description=$("uploadDescription").value.trim();
  if(!file||!version||!name)return toast("Completa versión, nombre y archivo.");
- const ext=file.name.split(".").pop().toLowerCase();
+ let ext=file.name.split(".").pop().toLowerCase();
  if(!["exe","msi","zip"].includes(ext))return toast("Solo EXE, MSI o ZIP.");
  if(file.size>500*1024*1024)return toast("El archivo supera 500 MB.");
-
- const btn=$("uploadRelease");
- btn.disabled=true;
+ let btn=$("uploadRelease");btn.disabled=true;
  $("uploadProgressWrap").classList.remove("hidden");
- $("uploadProgress").style.width="10%";
  $("uploadStatus").textContent="Solicitando autorización privada...";
-
+ FVDEBUG.upload("Inicio de subida de launcher.",{filename:file.name,size:file.size,version});
  try{
-  const current=await fetchReleaseList();
-  if(current.length>=3)throw Error("Ya tienes 3 launchers. Elimina o reemplaza uno antes de subir otro.");
-
-  $("uploadProgress").style.width="25%";
-  $("uploadStatus").textContent="Subiendo icono...";
-  let iconData={};
-  if(releaseIconFile)iconData=await uploadReleaseIcon(releaseIconFile);
-
-  $("uploadProgress").style.width="45%";
-  $("uploadStatus").textContent="Transfiriendo instalador privado...";
-
-  const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-  const blob=await upload("releases/"+Date.now()+"-"+safeName,file,{
-   access:"private",
-   handleUploadUrl:"/api/releases-upload"
-  });
-
-  $("uploadProgress").style.width="85%";
-  $("uploadStatus").textContent="Guardando información del launcher...";
-
-  const metadata={
-   pathname:blob.pathname,
-   filename:file.name,
-   version,
-   name,
-   description,
-   iconUrl:iconData.iconUrl||"",
-   iconPathname:iconData.iconPathname||"",
-   uploadedAt:new Date().toISOString()
-  };
-
-  content.releases=Array.isArray(content.releases)?content.releases:[];
-  content.releases.unshift(metadata);
-
-  await saveContent("Launcher subido al almacenamiento privado.");
+  let auth=await api("/api/releases-upload",{method:"POST",body:JSON.stringify({filename:file.name,version})});
+  if(!auth.success||!auth.uploadUrl)throw Error("El servidor no devolvió una URL de subida.");
+  $("uploadStatus").textContent="Transfiriendo instalador...";
+  FVDEBUG.upload("Autorización recibida. Iniciando transferencia.");
+  let put=await fetch(auth.uploadUrl,{method:"PUT",body:file,headers:{"Content-Type":file.type||"application/octet-stream"}});
+  if(!put.ok)throw Error("Vercel Blob rechazó la subida ("+put.status+").");
   $("uploadProgress").style.width="100%";
-  $("uploadStatus").textContent="Subida completada correctamente.";
-
-  $("uploadVersion").value="";
-  $("uploadName").value="";
-  $("uploadDescription").value="";
-  $("releaseFile").value="";
-  resetNewReleaseIcon();
-
-  await loadReleases();
+  content.releases=Array.isArray(content.releases)?content.releases:[];
+  content.releases.unshift({
+   version,name,description,pathname:auth.pathname,
+   filename:file.name,uploadedAt:new Date().toISOString()
+  });
+  await saveContent("Instalador subido al almacenamiento privado.");
+  $("releaseList").className="";
+  let row=document.createElement("div");row.className="list-item";
+  let info=document.createElement("div"),strong=document.createElement("strong"),p=document.createElement("p");
+  strong.textContent="v"+version+" · "+name;
+  p.textContent=file.name+" · "+description+" · "+new Date().toLocaleString("es-SV");
+  info.append(strong,p);row.append(info);$("releaseList").prepend(row);
+  $("uploadStatus").textContent="Subida completada. Archivo guardado como privado.";
+  FVDEBUG.upload("Launcher subido correctamente.",{version,filename:file.name});
   toast("Launcher subido correctamente.");
- }catch(error){
-  $("uploadStatus").textContent="Error: "+error.message;
-  toast("No se pudo subir el launcher: "+error.message);
- }finally{
-  btn.disabled=false;
- }
+ }catch(e){
+  $("uploadStatus").textContent="Error: "+e.message;
+  FVDEBUG.error("Falló la subida del launcher.",e);
+  toast("No se pudo subir el launcher: "+e.message);
+ }finally{btn.disabled=false}
 };
-
-$("refreshReleases").onclick=()=>loadReleases().catch(e=>toast(e.message));
 
 /* GIFT KEYS */
 async function loadKeyStats(){
  try{
-  const d=await api("/api/gift-keys?action=stats");
-  const s=d.stats||{};
-  for(const [id,key] of [
-   ["keyStatAvailable","available"],["keyStatUsed","used"],
-   ["keyStatExpired","expired"],["keyStatRevoked","revoked"],["keyStatTotal","total"]
-  ])$(id).textContent=s[key]??0;
- }catch(e){toast("Error en estadísticas: "+e.message)}
+  let d=await api("/api/gift-keys?action=stats"),s=d.stats||{};
+  for(let [id,k] of [["keyStatAvailable","available"],["keyStatUsed","used"],["keyStatExpired","expired"],["keyStatRevoked","revoked"],["keyStatTotal","total"]])$(id).textContent=s[k]??0;
+ }catch(e){FVDEBUG.error("Error cargando estadísticas de Gift Keys.",e);toast("Error en estadísticas: "+e.message)}
 }
-function fmt(value){
- if(!value)return"—";
- const d=new Date(value);
- return isNaN(d)?"—":d.toLocaleString("es-SV");
-}
+
+function fmt(v){if(!v)return"—";let d=new Date(v);return isNaN(d)?"—":d.toLocaleString("es-SV")}
+
 async function loadKeys(){
- const box=$("keyList");
- box.className="empty";
- box.textContent="Cargando códigos...";
+ let box=$("keyList");box.className="empty";box.textContent="Cargando códigos...";
  try{
-  const q=new URLSearchParams({
-   action:"list",
-   status:$("keyStatus").value,
-   search:$("keySearch").value.trim(),
-   limit:"500",
-   offset:"0"
-  });
-  const d=await api("/api/gift-keys?"+q);
-  const keys=d.keys||[];
+  let q=new URLSearchParams({action:"list",status:$("keyStatus").value,search:$("keySearch").value.trim(),limit:"500",offset:"0"});
+  let d=await api("/api/gift-keys?"+q),keys=d.keys||[];
   if(!keys.length){box.textContent="No se encontraron códigos.";return}
-  box.className="table-wrap";
-  box.replaceChildren();
-  const table=document.createElement("table");
-  const thead=document.createElement("thead");
-  const tr=document.createElement("tr");
-  ["CÓDIGO","ESTADO","CREACIÓN","CADUCIDAD","USADO","ACCIÓN"].forEach(x=>{
-   const th=document.createElement("th");th.textContent=x;tr.append(th);
-  });
-  thead.append(tr);
-  const body=document.createElement("tbody");
+  box.className="table-wrap";box.replaceChildren();
+  let table=document.createElement("table"),thead=document.createElement("thead"),tr=document.createElement("tr");
+  ["CÓDIGO","ESTADO","CREACIÓN","CADUCIDAD","USADO","ACCIÓN"].forEach(x=>{let th=document.createElement("th");th.textContent=x;tr.append(th)});
+  thead.append(tr);let body=document.createElement("tbody");
   keys.forEach(k=>{
-   const row=document.createElement("tr");
-   [k.code,k.status,fmt(k.createdAt),fmt(k.expiresAt),fmt(k.usedAt)].forEach((value,index)=>{
-    const td=document.createElement("td");
-    td.textContent=value||"—";
-    if(index===0)td.className="code";
-    if(index===1){
+   let r=document.createElement("tr");
+   [k.code,k.status,fmt(k.createdAt),fmt(k.expiresAt),fmt(k.usedAt)].forEach((v,i)=>{
+    let td=document.createElement("td");td.textContent=v||"—";
+    if(i===0)td.className="code";
+    if(i===1){
      td.replaceChildren();
-     const span=document.createElement("span");
-     span.className="pill "+value;
-     span.textContent=({available:"Disponible",used:"Usado",expired:"Caducado",revoked:"Revocado"})[value]||value;
-     td.append(span);
+     let sp=document.createElement("span");sp.className="pill "+v;
+     sp.textContent=({available:"Disponible",used:"Usado",expired:"Caducado",revoked:"Revocado"})[v]||v;
+     td.append(sp);
     }
-    row.append(td);
+    r.append(td);
    });
-   const action=document.createElement("td");
+   let a=document.createElement("td");
    if(k.status==="available"){
-    const button=document.createElement("button");
-    button.className="danger";
-    button.textContent="REVOCAR";
-    button.onclick=()=>revokeKey(k.id);
-    action.append(button);
-   }else action.textContent="—";
-   row.append(action);
-   body.append(row);
+    let b=document.createElement("button");b.className="danger";b.textContent="REVOCAR";b.onclick=()=>revokeKey(k.id);a.append(b);
+   }else a.textContent="—";
+   r.append(a);body.append(r);
   });
-  table.append(thead,body);
-  box.append(table);
- }catch(e){box.textContent="Error: "+e.message}
+  table.append(thead,body);box.append(table);
+ }catch(e){
+  box.textContent="Error: "+e.message;
+  FVDEBUG.error("Error cargando Gift Keys.",e);
+ }
 }
+
 async function refreshKeys(){await Promise.all([loadKeyStats(),loadKeys()])}
 
 $("generateKeys").onclick=async()=>{
- const quantity=Number($("keyQuantity").value);
+ let quantity=Number($("keyQuantity").value);
  if(!Number.isInteger(quantity)||quantity<1||quantity>500)return toast("Cantidad permitida: 1–500.");
- const button=$("generateKeys");
- button.disabled=true;
- button.textContent="GENERANDO...";
+ let b=$("generateKeys");b.disabled=true;b.textContent="GENERANDO...";
  try{
-  const d=await api("/api/gift-keys",{method:"POST",body:JSON.stringify({action:"generate",quantity})});
+  let d=await api("/api/gift-keys",{method:"POST",body:JSON.stringify({action:"generate",quantity})});
   generatedKeys=(d.keys||[]).map(x=>x.code);
   $("generatedKeys").textContent=generatedKeys.join("\n")||"No se generaron códigos.";
   $("generatedKeys").style.whiteSpace="pre-wrap";
   $("copyGeneratedKeys").disabled=$("downloadGeneratedKeys").disabled=!generatedKeys.length;
+  FVDEBUG.info("Gift Keys generadas.",{count:generatedKeys.length});
   toast("Se generaron "+generatedKeys.length+" códigos.");
   await refreshKeys();
- }catch(e){toast("No se pudieron generar: "+e.message)}
- finally{button.disabled=false;button.textContent="GENERAR CÓDIGOS"}
+ }catch(e){
+  FVDEBUG.error("No se pudieron generar Gift Keys.",e);
+  toast("No se pudieron generar: "+e.message);
+ }finally{b.disabled=false;b.textContent="GENERAR CÓDIGOS"}
 };
 
 $("copyGeneratedKeys").onclick=async()=>{
  try{await navigator.clipboard.writeText(generatedKeys.join("\n"));toast("Códigos copiados.")}
- catch{toast("No se pudo copiar.")}
+ catch{FVDEBUG.error("No se pudieron copiar las Gift Keys.");toast("No se pudo copiar.")}
 };
+
 $("downloadGeneratedKeys").onclick=()=>{
- const url=URL.createObjectURL(new Blob([generatedKeys.join("\r\n")],{type:"text/plain"}));
- const a=document.createElement("a");
- a.href=url;a.download="fvrever-gift-keys.txt";a.click();
- URL.revokeObjectURL(url);
+ let u=URL.createObjectURL(new Blob([generatedKeys.join("\r\n")],{type:"text/plain"}));
+ let a=document.createElement("a");a.href=u;a.download="fvrever-gift-keys.txt";a.click();URL.revokeObjectURL(u);
 };
+
 async function revokeKey(id){
  if(!confirm("¿Revocar este código?"))return;
  try{
   await api("/api/gift-keys",{method:"POST",body:JSON.stringify({action:"revoke",id})});
+  FVDEBUG.info("Gift Key revocada.");
   toast("Código revocado.");
   await refreshKeys();
- }catch(e){toast(e.message)}
+ }catch(e){FVDEBUG.error("No se pudo revocar Gift Key.",e);toast(e.message)}
 }
+
 $("refreshKeys").onclick=refreshKeys;
 $("keyStatus").onchange=loadKeys;
 $("keySearch").onkeydown=e=>{if(e.key==="Enter")loadKeys()};
 
 async function verifySession(){
  try{
-  const d=await api("/api/me");
+  let d=await api("/api/me");
   if(!d.authenticated||d.username!=="fvrever")return location.replace("/dashboard.html");
   $("sessionInfo").textContent="Autenticado como "+d.username+".";
+  FVDEBUG.info("Sesión administrativa verificada.");
   await loadContent();
   await refreshKeys();
-  await loadReleases().catch(e=>console.warn("Release list:",e.message));
  }catch(e){
   $("sessionInfo").textContent="No se pudo verificar la sesión.";
+  FVDEBUG.error("No se pudo verificar la sesión.",e);
  }
 }
 
 $("logoutButton").onclick=async()=>{
+ FVDEBUG.info("Cerrando sesión administrativa.");
  try{await fetch("/api/logout",{method:"POST",credentials:"same-origin"})}
  finally{location.replace("/dashboard.html")}
 };
