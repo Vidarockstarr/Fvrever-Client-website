@@ -1,4 +1,5 @@
 const { redeemGiftKey } = require("../lib/gift-keys");
+const { createDownloadCookie } = require("../lib/release-access");
 
 module.exports = async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
@@ -39,6 +40,11 @@ module.exports = async function handler(req, res) {
           "This gift code cannot be redeemed."
       });
     }
+
+    res.setHeader(
+      "Set-Cookie",
+      createDownloadCookie(result.downloadId)
+    );
 
     return res.status(200).json({
       success: true,
